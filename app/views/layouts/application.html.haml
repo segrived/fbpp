@@ -10,6 +10,16 @@
   %body
     .container
       #header
-        %h1= link_to "Feedback++", :root
+        #logo
+          %h1= link_to "Feedback++", :root
+        #menu
+          %ul
+            - if logged?
+              %li!= "Logged as, " << link_to(logged_user.login, :profile)
+              %li= link_to "Logout", :logout
+            - else
+              %li= link_to "Login", :login
+              %li= link_to "Register", :register
+      .spacer
       #content
         =yield

@@ -9,6 +9,7 @@ Feedback::Application.routes.draw do
   get "login" => "sessions#login"
   post "login" => "sessions#login"
   get "logout" => "sessions#logout"
+  get "profile" => "sessions#profile"
 
   get "register" => "users#new"
   post "users/create"

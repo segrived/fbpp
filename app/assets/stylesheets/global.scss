@@ -24,9 +24,32 @@ body {
     padding: 10px 25px;
 }
 
-#header h1{
+#header #logo {
+    float: left;
+}
+
+#header #logo h1{
     margin-left: 25px;
-    margin: 0px;
+    padding: 10px 25px;
+}
+
+#header #menu {
+    float: right;
+}
+
+#header #menu ul {
+    list-style-type: none;
+    padding-right: 20px;
+    margin-top: 21px;
+}
+
+#header #menu ul li {
+    float: left;
+    padding-left: 18px;
+}
+
+#header #menu ul li a {
+    color: #555555;
 }
 
 #content {
