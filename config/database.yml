@@ -1,0 +1,19 @@
+psqlenv: &postgresql
+  adapter: postgresql
+  host: localhost
+  username: feedback_dev
+  password: feedback_dev
+  pool: 5
+  timeout: 5000
+
+development:
+    database: feedback_dev
+    <<: *postgresql
+
+test:
+    database: feedback_test
+    <<: *postgresql
+
+production:
+    database: feedback
+    <<: *postgresql

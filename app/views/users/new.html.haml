@@ -1,0 +1,84 @@
+/ Заголовок страницы
+%h1.page-title= t(:register)
+
+- if @user.errors.any?
+  - @user.errors.full_messages.each do |message|
+    %p= message
+
+/ Форма регистрации
+= form_for @user, :url => { :action => 'create' }, :html=> { :id => 'register-form' } do |f|
+
+  / Тип аккаунта
+  %p.form-field
+    / Студент
+    = f.radio_button :account_type, User::ACCTYPES[:student], :checked => true
+    = f.label "%s_%d" % [:account_type, User::ACCTYPES[:student]], t(:student)
+    / Преподаватель
+    = f.radio_button :account_type, User::ACCTYPES[:lecturer]
+    = f.label "%s_%d" % [:account_type, User::ACCTYPES[:lecturer]], t(:lecturer)
+
+  / Логин
+  %p.form-field
+    %dt= f.label :login, "#{t(:login)}:"
+    %dd= f.text_field :login
+
+  / Пароль
+  %p.form-field
+    %dt= f.label :password, "#{t(:password)}:"
+    %dd= f.password_field :password
+
+  / Подтверждение пароля
+  %p.form-field
+    %dt= f.label :password_confirmation, "#{t(:password_confirmation)}:"
+    %dd= f.password_field :password_confirmation
+    
+  / Имя
+  %p.form-field
+    %dt= f.label :name, "#{t(:name)}:"
+    %dd= f.text_field :name
+
+  / Фамилия
+  %p.form-field
+    %dt= f.label :surname, "#{t(:surname)}:"
+    %dd= f.text_field :surname
+
+  / Отчество
+  %p.form-field
+    %dt= f.label :patronymic, "#{t(:patronymic)}:"
+    %dd= f.text_field :patronymic
+
+  / День рождения
+  %p.form-field
+    %dt=  f.label :birthday, "#{t(:birthday)}:"
+    %dd=  f.date_select :birthday,
+      :start_year => Time.now.year - 60,
+      :end_year => Time.now.year - 10,
+      :default => { :year => 2000 }
+
+  / Отельные опции для студентов
+  %span#student-options
+    / Курс обучения
+    %p.form-field
+      %dt= label_tag :course, "#{t(:course)}:"
+      %dd= select_tag :course, |
+        options_for_select((1..5).map { |n| ["#{n} #{t(:course).downcase}", n] })
+    / Специальность
+    %p.form-field
+      %dt= label_tag :specialty, "#{t(:specialty)}:"
+      %dd= select_tag :specialty, |
+        options_from_collection_for_select(Specialty.all, :id, :name)
+
+  / Отдельные опции для преподавателей
+  %span#lecturer-options
+    %p.form-field
+      / Научное звание
+      %dt= label_tag :degree, "#{t(:degree)}:"
+      %dd= select_tag :degree, options_for_select((1..10))
+    / Кафедра
+    %p.form-field
+      %dt= label_tag :departament, "#{t(:departament)}:" 
+      %dd= select_tag :departament, |
+        options_from_collection_for_select(Departament.all, :id, :name)
+
+
+  = f.submit t(:registerBtnText), :id => "register-button"

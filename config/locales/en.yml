@@ -1,0 +1,16 @@
+en:
+  register: Register
+  login: Login
+  password: Password
+  password_confirmation: Password confirmation
+  name: Name
+  surname: Surname
+  patronymic: Patronymic
+  birthday: Birthday
+  course: Course
+  specialty: Specialty
+  degree: Degree
+  departament: Departament
+  student: Student
+  lecturer: Lecturer
+  registerBtnText: Register

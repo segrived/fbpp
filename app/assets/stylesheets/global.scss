@@ -1,0 +1,45 @@
+p, h1, form, button {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana;
+    font-size: 12px;
+    background: #eeeeee;
+}
+
+.container {
+    background: #f3f3f3;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #999999;
+}
+
+#header {
+    text-shadow: 1px 2px 3px #ccc, 0 0 0 #000;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0px;
+    padding: 10px 25px;
+}
+
+#header h1{
+    margin-left: 25px;
+    margin: 0px;
+}
+
+#content {
+    margin-right: 20px;
+    margin-bottom: 40px;
+}
+
+.spacer {
+    clear: both;
+    height: 1px;
+}
+
+form dd {
+    margin: 0;
+    padding: 0;
+}

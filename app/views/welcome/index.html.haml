@@ -1,0 +1,12 @@
+%h1 Добро пожаловать
+
+- if logged?
+  %div= "Добро пожаловать, #{logged_user.login}"
+  - if logged_user.student?
+    %div А ещё вы студент, вот потеха
+    - student = Student.get_by_uid(logged_user)
+    %div= "Вы на #{student.course} курсе"
+    %div= "Специальность: #{student.specialty.name}"
+    %div= student.user.id
+- else
+  %div Вы не вошли
