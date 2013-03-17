@@ -1,0 +1,64 @@
+/ Заголовок страницы
+%h1#page-title= tc('page-title.register')
+
+- if @user.errors.any?
+  .message-box#red-box
+    %ul
+    - @user.errors.full_messages.each do |message|
+      %li= message
+
+/ Форма регистрации
+= form_for @user, :url => { :action => 'create' }, :html=> { :id => 'register-form' } do |f|
+
+  / Логин
+  %p.form-field
+    = f.label :login, "#{tc('login')}:"
+    = f.text_field :login
+
+  / Пароль
+  %p.form-field
+    = f.label :password, "#{tc('password')}:"
+    = f.password_field :password
+
+  / Подтверждение пароля
+  %p.form-field
+    = f.label :password_confirmation, "#{tc('reg.passwordConfirmation')}:"
+    = f.password_field :password_confirmation
+    
+  / Имя
+  %p.form-field
+    = f.label :name, "#{tc('reg.name')}:"
+    = f.text_field :name
+
+  / Фамилия
+  %p.form-field
+    = f.label :surname, "#{tc('reg.surname')}:"
+    = f.text_field :surname
+
+  / Отчество
+  %p.form-field
+    = f.label :patronymic, "#{tc('reg.patronymic')}:"
+    = f.text_field :patronymic
+
+  / День рождения
+  %p.form-field
+    = f.label :birthday, "#{tc('reg.birthday')}:"
+    = f.date_select :birthday,
+      :start_year => Time.now.year - 60,
+      :end_year => Time.now.year - 10,
+      :default => { :year => 2000 },
+      :order => [:day, :month, :year]
+
+  / Тип аккаунта
+  %p.form-field
+    = f.label "#{tc('reg.accType')}:"
+    / Студент
+    = f.radio_button :account_type, User::ACCTYPES[:student], :checked => true
+    = f.label "%s_%d" % [:account_type, User::ACCTYPES[:student]],
+      tm('acctypes.student'), :class => 'inline'
+    / Преподаватель
+    = f.radio_button :account_type, User::ACCTYPES[:lecturer]
+    = f.label "%s_%d" % [:account_type, User::ACCTYPES[:lecturer]],
+      tm('acctypes.lecturer'), :class => 'inline'
+
+  = f.submit tc('reg.submit'), :id => "register-button"

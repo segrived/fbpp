@@ -5,21 +5,33 @@
     %title Feedback
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
+    :coffeescript
+      I18n.defaultLocale = "#{I18n.default_locale}"
+      I18n.locale = "#{I18n.locale}"
     = csrf_meta_tags
 
   %body
-    .container
-      #header
-        #logo
-          %h1= link_to "Feedback++", :root
-        #menu
-          %ul
-            - if logged?
-              %li!= "Logged as, " << link_to(logged_user.login, :profile)
-              %li= link_to "Logout", :logout
-            - else
-              %li= link_to "Login", :login
-              %li= link_to "Register", :register
-      .spacer
+    / Шапка сайта
+    #header
+      #headline
+        %p= link_to "Feedback++", :root
+      #menu
+        %ul
+          %li= text_field(:search, :string, :value => t('layout.searchField'))
+          %li= link_to t('layout.menu.home'), :root
+          %li= link_to t('layout.menu.about'), 'about'
+          %li= link_to t('layout.menu.faq'), :faq
+          - if logged?
+            %li= link_to t('layout.menu.profile'), :profile
+            %li= link_to t('layout.menu.logout'), :logout
+          -else
+            %li= link_to t('layout.menu.register'), :register
+            %li= link_to t('layout.menu.login'), :login
+    / Контент страницы
+    #content-box
       #content
-        =yield
+        = yield
+    / Подвал сайта
+    #footer
+      %p#left-text Feedback++, 2012
+      %p#right-text Евгений, Евгений, Стас и Сергей

@@ -1,0 +1,37 @@
+ru:
+
+  acctypes:
+    student: студент
+    lecturer: преподаватель
+    moderator: модертор
+    admin: администратор
+
+  login: логин
+  password: пароль
+
+  page-title:
+    login: вход в систему
+    register: регистрация
+
+  msg:
+    notLogged: вы не вошли
+
+  reg:
+    passwordConfirmation: подтвердите пароль
+    name: имя
+    surname: фамилия
+    patronymic: отчество
+    birthday: день рождения
+    accType: тип аккаунта
+    submit: создать аккаунт
+
+  layout:
+    searchField: поиск...
+    menu:
+      home: главная
+      about: о проекте
+      faq: справка
+      profile: профиль
+      register: регистрация
+      login: войти
+      logout: выйти

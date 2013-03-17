@@ -11,6 +11,8 @@ Feedback::Application.routes.draw do
   get "logout" => "sessions#logout"
   get "profile" => "sessions#profile"
 
+  get "faq" => "welcome#faq"
+
   get "register" => "users#new"
   post "users/create"
   get "welcome/index"

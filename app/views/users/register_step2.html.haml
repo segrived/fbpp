@@ -1,0 +1,24 @@
+  / Отельные опции для студентов
+  %span#student-options
+    / Курс обучения
+    %p.form-field
+      = label_tag :course, "#{t(:course)}:"
+      = select_tag :course, |
+        options_for_select((1..5).map { |n| ["#{n} #{t(:course).downcase}", n] })
+    / Специальность
+    %p.form-field
+      = label_tag :specialty, "#{t(:specialty)}:"
+      = select_tag :specialty, |
+        options_from_collection_for_select(Specialty.all, :id, :name)
+
+  / Отдельные опции для преподавателей
+  %span#lecturer-options
+    %p.form-field
+      / Научное звание
+      = label_tag :degree, "#{t(:degree)}:"
+      = select_tag :degree, options_for_select((1..10))
+    / Кафедра
+    %p.form-field
+      = label_tag :departament, "#{t(:departament)}:" 
+      = select_tag :departament, |
+        options_from_collection_for_select(Departament.all, :id, :name)

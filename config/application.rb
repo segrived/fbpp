@@ -15,13 +15,12 @@ module Feedback
     config.active_record.whitelist_attributes = true
     config.assets.enabled = true
     config.assets.version = '1.0'
-    
+    config.i18n.default_locale = :ru
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.autoload_paths += %W(#{config.root}/extras)
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
     # config.time_zone = 'Central Time (US & Canada)'
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
     # config.active_record.schema_format = :sql
   end
 end

@@ -1,2 +1,7 @@
-%h1 Sessions#profile
-%p Find me in app/views/sessions/profile.html.haml
+%h1#page-title User Profile
+
+%ul
+    %li= "Login: #{logged_user.login}"
+    %li= "Name: #{logged_user.name}"
+    %li= "Surname: #{logged_user.surname}"
+    %li= "Patronymic: #{logged_user.patronymic}"
