@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_filter :require_not_auth
+
   def new
     @user = User.new
     render 'register'

@@ -3,7 +3,7 @@ ru:
   acctypes:
     student: студент
     lecturer: преподаватель
-    moderator: модертор
+    moderator: модератор
     admin: администратор
 
   login: логин

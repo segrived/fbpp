@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale
  
+  def require_not_auth
+    if logged?
+      redirect_to :root
+    end
+  end
+
   def require_login
     unless logged?
       flash[:notice] = tc('messages.unauthorized')

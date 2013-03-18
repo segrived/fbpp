@@ -1,13 +1,9 @@
 class SessionsController < ApplicationController
 
   before_filter :require_login, :only => [:profile, :logout]
+  before_filter :require_not_auth, :only => :login
 
   def login
-    # Если пользователь уже залогинен
-    if session[:user] then
-      redirect_to :root
-      return false
-    end
     # Если пришел GET-запрос - просто отображаем форму
     if request.get? then
       render 'login'

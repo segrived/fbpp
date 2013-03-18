@@ -18,5 +18,7 @@ Feedback::Application.routes.draw do
   get "register" => "users#new"
   post "register" => "users#create"
 
+  post "search" => "sessions#search"
+
   post "users/create"
 end
