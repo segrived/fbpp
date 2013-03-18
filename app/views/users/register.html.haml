@@ -2,7 +2,7 @@
 %h1#page-title= tc('page-title.register')
 
 - if @user.errors.any?
-  .message-box#red-box
+  .message-box.bred
     %ul
     - @user.errors.full_messages.each do |message|
       %li= message

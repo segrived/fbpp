@@ -17,9 +17,11 @@
         %p= link_to "Feedback++", :root
       #menu
         %ul
-          %li= text_field(:search, :string, :value => t('layout.searchField'))
+          %li
+            = form_tag('/search') do
+              = text_field(:search, :string, :value => t('layout.searchField'))
           %li= link_to t('layout.menu.home'), :root
-          %li= link_to t('layout.menu.about'), 'about'
+          %li= link_to t('layout.menu.about'), :about
           %li= link_to t('layout.menu.faq'), :faq
           - if logged?
             %li= link_to t('layout.menu.profile'), :profile

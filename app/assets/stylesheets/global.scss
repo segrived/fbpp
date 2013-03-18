@@ -20,6 +20,16 @@ ul {
 input {
     padding: 3px;
     font-family: Verdana;
+    border: 1px solid #ddd;
+}
+
+input:hover {
+    border: 1px solid #bbb;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #888;
 }
 
 p {
@@ -149,4 +159,8 @@ form p.form-field {
 .bred {
     background-color: #ffcccc;
     border-color: #ffaaaa;
+}
+
+.field_with_errors > input {
+    background-color: #ffdddd;
 }
