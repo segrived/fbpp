@@ -1,7 +1,9 @@
 %h1#page-title User Profile
 
-%ul
-    %li= "Login: #{logged_user.login}"
-    %li= "Name: #{logged_user.name}"
-    %li= "Surname: #{logged_user.surname}"
-    %li= "Patronymic: #{logged_user.patronymic}"
+-if @user
+  %h2= @user.login
+  %p= "ФИО: #{@user.surname} #{@user.name} #{@user.patronymic}"
+  - acctype = tc("acctypes.#{User::ACCTYPES.index(@user.account_type)}")
+  %p= "Тип аккаунта: #{acctype}"
+-else
+  .message-box.bred= "Пользователь #{params[:login]} не найден"

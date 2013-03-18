@@ -13,8 +13,10 @@ ru:
     login: вход в систему
     register: регистрация
 
-  msg:
+  messages:
     notLogged: вы не вошли
+    badLogin: неверный логин или пароль
+    unauthorized: вы должны войти в систему для совершения данного действия
 
   reg:
     passwordConfirmation: подтвердите пароль

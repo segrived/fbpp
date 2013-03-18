@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       session[:user] = User.authenticate(login, password)
       redirect_to :root
     else
-      redirect_to :back
+      render :register
     end
   end
 

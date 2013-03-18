@@ -1,29 +1,34 @@
 class SessionsController < ApplicationController
+
+  before_filter :require_login, :only => [:profile, :logout]
+
   def login
-    # Если пользователь уже залогинен - перебрасываем его на главную страницу
+    # Если пользователь уже залогинен
     if session[:user] then
-      redirect_to my_path
+      redirect_to :root
       return false
     end
-
-    if request.post? then
-        login, password = params[:login], params[:password]
-        if session[:user] = User.authenticate(login, password) then
-          redirect_to :controller => 'welcome', :action => 'index'
-        else
-          flash.now[:message] = "Invalid login or password"
-          render 'login'
-        end
+    # Если пришел GET-запрос - просто отображаем форму
+    if request.get? then
+      render 'login'
+      return false
+    end
+    # Пытаемся авторизироваться на основе введённых данных
+    login, password = params[:login], params[:password]
+    if session[:user] = User.authenticate(login, password) then
+      redirect_to :root
     else
-        render 'login'
+      redirect_to :login, :notice => tc('messages.badLogin')
     end
   end
 
   def logout
     session[:user] = nil
-    redirect_to index_path
+    redirect_to :root
   end
 
   def profile
+    login = params[:login] || logged_user.login 
+    @user = User.find_by_login(login)
   end
 end
