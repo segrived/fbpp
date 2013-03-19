@@ -4,12 +4,13 @@
 %p.form-field
   = label_tag :specialty, "Специальность"
   = select_tag :specialty, |
-    options_from_collection_for_select(Specialty.all, :id, :name, s.specialty ? s.specialty.id : nil),
+    options_from_collection_for_select(Specialty.all, :id, :name, |
+      s.specialty ? s.specialty.id : nil),
     :prompt => "-- Не указана"
     
 / Курс обучения
 %p.form-field
   = label_tag :course, "Курс обучения"
-  = select_tag :course, |
-    options_for_select((1..5).map { |n| ["#{n} курс", n] }, s.course || nil),
+  - courses_list = (1 .. Student::MAX_COURSE).map { |n| ["#{n} курс", n] }
+  = select_tag :course, options_for_select(courses_list, s.course),
     :prompt => "-- Не указана"
