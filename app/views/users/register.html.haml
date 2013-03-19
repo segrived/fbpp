@@ -24,11 +24,11 @@
     / Преподаватель
     = f.radio_button :account_type, User::ACCTYPES[:lecturer], :checked => true
     = f.label "%s_%d" % [:account_type, User::ACCTYPES[:lecturer]],
-      tm('account_types.lecturer'), :class => 'inline'
+      t('account_types.lecturer'), :class => 'inline'
     / Студент
     = f.radio_button :account_type, User::ACCTYPES[:student]
     = f.label "%s_%d" % [:account_type, User::ACCTYPES[:student]],
-      tm('account_types.student'), :class => 'inline'
+      t('account_types.student'), :class => 'inline'
 
   / Логин
   %p.form-field#flogin
@@ -61,7 +61,7 @@
     = f.text_field :patronymic
 
   / День рождения
-  %p.form-field#fbirtchday
+  %p.form-field#fbirthday
     = f.label :birthday, User.human_attribute_name(:birthday)
     = f.date_select :birthday,
       :start_year => Time.now.year - 90,

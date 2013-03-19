@@ -44,6 +44,7 @@ ru:
     options:
       confirm_button: Подтвердить данные
     profile:
+      fullname: ФИО
       not_specified_f: Не указана
       not_specified_m: Не указан
       edit_options_link: Редактировать дополнительные данные

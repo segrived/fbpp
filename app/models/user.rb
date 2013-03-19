@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
+
   attr_accessible :login, :banned, :disabled, :regdate, :account_type
   attr_accessible :name, :surname, :patronymic, :birthday
   attr_accessible :password_hash, :password_salt, :password, :password_confirmation
 
-  attr_accessor :password
+  attr_accessor :password, :is_logged, :logged_user
 
   ACCTYPES = { :admin => 0, :mod => 1, :student => 2, :lecturer => 3 }
   ACCTYPES.each do |k, v|

@@ -1,14 +1,32 @@
 %h1#page-title= t('titles.profile')
 
 -if @user
-  %h2= @user.login
-  %p= "ФИО: #{@user.surname} #{@user.name} #{@user.patronymic}"
-  - acctype = t("account_types.#{User::ACCTYPES.index(@user.account_type)}")
-  %p= User.human_attribute_name('account_type') << ": " << acctype
+  / Логин пользователя
+  %h3#profile-login
+    Профиль пользователя
+    %b= "#{@user.login}"
+
+  / Полное имя
+  %p.profile-field
+    %b= t('.fullname') << ": "
+    %span= "#{@user.surname} #{@user.name} #{@user.patronymic}"
+
+  / День рождения
+  %p.profile-field
+    %b= User.human_attribute_name('birthday') << ": "
+    %span= "#{@user.birthday}"
+
+  / Тип аккаунта
+  %p.profile-field
+    %b= User.human_attribute_name('account_type') << ": "
+    %span= t("account_types.#{User::ACCTYPES.index(@user.account_type)}")
+
   - if @user.student?
-    = render :partial => 'student_profile', :locals => { :data => Student.get_by_user(@user) }
+    = render :partial => 'student_profile',
+      :locals => { :data => Student.get_by_user(@user) }
   - elsif @user.lecturer?
-    = render :partial => 'lecturer_profile', :locals => { :data => Lecturer.get_by_user(@user) }
+    = render :partial => 'lecturer_profile',
+      :locals => { :data => Lecturer.get_by_user(@user) }
   / Если просматриваемый профиль является профилей пользователя, то добавляется
   / ссылка на его редактирование
   - if logged? && @user.id == logged_user.id
