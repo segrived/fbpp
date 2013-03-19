@@ -12,8 +12,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless logged?
-      flash[:notice] = tc('messages.unauthorized')
-      redirect_to :login
+      redirect_to :login, :notice => tc('messages.unauthorized')
     end
   end
 

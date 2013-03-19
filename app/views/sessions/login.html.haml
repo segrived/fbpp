@@ -1,14 +1,14 @@
 / Заголовок страницы
-%h1#page-title= tm('page-title.login').capitalize
+%h1#page-title= t('titles.login')
 
 - if flash[:notice]
   .message-box.bred= flash[:notice]
 
-= form_tag "/login", :method => "post" do
+= form_tag :login, :method => "post" do
   %p.regform-field
-    %dt= label_tag :login, "#{tc('login')}:"
+    %dt= label_tag :login, User.human_attribute_name(:login)
     %dd= text_field_tag :login
   %p.regform-field
-    %dt= label_tag :password, "#{tc('password')}:"
+    %dt= label_tag :password, User.human_attribute_name(:password)
     %dd= password_field_tag :password
-  = submit_tag "Войти в систему", :id => "login-button"
+  = submit_tag t('.login_button'), :id => "login-button"

@@ -1,34 +1,55 @@
 ru:
 
-  acctypes:
-    student: студент
-    lecturer: преподаватель
-    moderator: модератор
-    admin: администратор
+  activerecord:
+    models:
+      user: Пользователь
+    attributes:
+      user:
+        login: Логин
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        name: Имя
+        surname: Фамилия
+        patronymic: Отчество
+        birthday: День рождения
+        regdate: Дата регистрации
+        account_type: Тип аккаунта
+      student:
+        specialty: Специальность
+        course: Курс
+      lecturer:
+        departament: Кафедра
+        scientific_degree: Ученая степень
 
-  login: логин
-  password: пароль
+  helpers:
+    submit:
+      user:
+        create: Зарегистироваться
 
-  page-title:
-    login: вход в систему
-    register: регистрация
+  account_types:
+    student: Студент
+    lecturer: Преподаватель
+    mod: Модератор
+    admin: Администратор
 
   messages:
-    notLogged: вы не вошли
-    badLogin: неверный логин или пароль
-    unauthorized: вы должны войти в систему для совершения данного действия
+    not_logged: Вы не вошли
+    bad_login: Неверный логин или пароль
+    unauthorized: Вы должны войти в систему для совершения данного действия
+    user_not_found: "Пользователь %{login} не найден"
 
-  reg:
-    passwordConfirmation: подтвердите пароль
-    name: имя
-    surname: фамилия
-    patronymic: отчество
-    birthday: день рождения
-    accType: тип аккаунта
-    submit: создать аккаунт
+  sessions:
+    login:
+      login_button: Войти в систему
+    options:
+      confirm_button: Подтвердить данные
+    profile:
+      not_specified_f: Не указана
+      not_specified_m: Не указан
+      edit_options_link: Редактировать дополнительные данные
 
   layout:
-    searchField: поиск...
+    search_field: поиск...
     menu:
       home: главная
       about: о проекте
@@ -37,3 +58,14 @@ ru:
       register: регистрация
       login: войти
       logout: выйти
+
+  titles:
+    register: Регистрация
+    login: Вход в систему
+    my_options: Дополнительные данные
+    profile: Профиль пользователя
+    about: О сервисе
+    faq: FAQ (Часто задаваемые вопросы)
+
+  login: логин
+  password: пароль

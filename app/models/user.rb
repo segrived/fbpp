@@ -15,13 +15,13 @@ class User < ActiveRecord::Base
   validates :login,
     :length => { :minimum => 3 },
     :uniqueness => true,
-    :format => { :with => /^[a-zA-Z][a-zA-Z_\d]*$/ }
-  # Имя, фамилия, отчество, тип аккаунта - должны быть указаны
-  validates :name, :surname, :patronymic, :account_type,
-    :presence => true
+    :format => { :with => /^[A-Za-z][\w\d]*$/ }
+  validates :name, :surname, :patronymic,
+    :presence => true,
+    :if => Proc.new { |a| a.lecturer? }
   # Тип аккаунта: либо студент, либо преподаватель
   validates :account_type,
-    :inclusion => { :in => [ ACCTYPES[:student], ACCTYPES[:lecturer] ] }
+    :inclusion => { :in => ACCTYPES.values }
   # Пароль должен быть длиной от 6 до 30 символов и совпадать с подтверждением
   validates :password,
     :length => { :in => 6 .. 30 },

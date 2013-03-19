@@ -1,0 +1,8 @@
+/ Кафедра
+%p
+  %span= Lecturer.human_attribute_name('departament') << ": "
+  %span= data.departament ? data.departament.name : t('sessions.profile.not_specified_f')
+/ Ученая степень
+%p
+  %span= Lecturer.human_attribute_name('scientific_degree') << ": "
+  %span= data.scientific_degree ? data.scientific_degree.title : t('sessions.profile.not_specified_f')

@@ -1,21 +1,17 @@
-%h1#page-title Профиль пользователя
+%h1#page-title= t('titles.profile')
 
 -if @user
   %h2= @user.login
   %p= "ФИО: #{@user.surname} #{@user.name} #{@user.patronymic}"
-  - acctype = tc("acctypes.#{User::ACCTYPES.index(@user.account_type)}")
-  %p= "Тип аккаунта: #{acctype}"
+  - acctype = t("account_types.#{User::ACCTYPES.index(@user.account_type)}")
+  %p= User.human_attribute_name('account_type') << ": " << acctype
   - if @user.student?
-    - if st = Student.get_by_user(@user)
-      %p= "Специальность: #{st.specialty ? st.specialty.name : 'Не указана'}"
-      %p= "Курс: #{st.course || 'Не указан'}"
-  - if @user.lecturer?
-    - if l = Lecturer.get_by_user(@user)
-      %p
-        %span Кафедра:
-        %a= link_to(l.departament.name, "info/departament/#{l.departament.id}")
-      %p= "Ученая степень: #{l.scientific_degree.title}"
+    = render :partial => 'student_profile', :locals => { :data => Student.get_by_user(@user) }
+  - elsif @user.lecturer?
+    = render :partial => 'lecturer_profile', :locals => { :data => Lecturer.get_by_user(@user) }
+  / Если просматриваемый профиль является профилей пользователя, то добавляется
+  / ссылка на его редактирование
   - if logged? && @user.id == logged_user.id
-    %a= link_to "Редактировать дополнительные данные", :my_options
+    = link_to t('.edit_options_link'), :my_options
 -else
-  .message-box.bred= "Пользователь #{params[:login]} не найден"
+  .message-box.bred= t('messages.user_not_found', :login => params[:login])

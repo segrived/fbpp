@@ -1,8 +1,10 @@
-%h1#page-title Дополнительные данные
+%h1#page-title= t('titles.my_options')
+
+%p Теперь вы можете заполнить дополнительные данные. Для студентов заполнение данных полей не обязательно, но желательно. Преподавателям для подтверждения аккаунта необходимо запонить эти поля.
 
 = form_tag(:my_options) do
   -if logged_user.student?
     = render :partial => 'student_options'
   -elsif logged_user.lecturer?
     = render :partial => 'lecturer_options'
-  = submit_tag "Подтвердить данные"
+  = submit_tag t('.confirm_button')

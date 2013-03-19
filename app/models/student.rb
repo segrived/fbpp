@@ -1,6 +1,7 @@
 class Student < ActiveRecord::Base
   belongs_to :user
   belongs_to :specialty
+  
   attr_accessible :course, :user_id, :specialty_id
 
   MAX_COURSE = 5

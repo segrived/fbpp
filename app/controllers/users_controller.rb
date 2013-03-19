@@ -4,12 +4,13 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    render 'register'
+    render :register
   end
 
   def create
     @user = User.new(params[:user])
     if @user.save then
+      # Создание записи в дополнительной таблице
       if @user.student? then
         Student.create(:user_id => @user.id)
       elsif @user.lecturer? then

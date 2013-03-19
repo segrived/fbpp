@@ -1,11 +1,17 @@
+- l = Lecturer.get_by_user(logged_user)
+
 / Кафедра
 %p.form-field
-  = label_tag :departament, "Кафедра"
+  = label_tag :departament, Lecturer.human_attribute_name(:departament)
   = select_tag :departament, |
-    options_from_collection_for_select(Departament.all, :id, :name)
+    options_from_collection_for_select(Departament.all, :id, :name, |
+      l.departament ? l.departament.id : nil), |
+    :prompt => "-- Не указана"
     
 / Ученая степень
 %p.form-field
-  = label_tag :degree, "Ученая степень"
-  = select_tag :departament, |
-    options_from_collection_for_select(ScientificDegree.all, :id, :title)
+  = label_tag :degree, Lecturer.human_attribute_name(:scientific_degree)
+  = select_tag :degree, |
+    options_from_collection_for_select(ScientificDegree.all, :id, :title, |
+      l.scientific_degree ? l.scientific_degree.id : nil), |
+    :prompt => "-- Не указана"

@@ -6,7 +6,7 @@
 
 
 / Заголовок страницы
-%h1#page-title= tc('page-title.register')
+%h1#page-title= t('titles.register')
 
 - if @user.errors.any?
   .message-box.bred
@@ -15,57 +15,58 @@
       %li= message
 
 / Форма регистрации
-= form_for @user, :url => { :action => 'create' }, :html=> { :id => 'register-form' } do |f|
+= form_for @user, :url => { :action => 'create' },
+  :html=> { :id => 'register-form' } do |f|
 
   / Тип аккаунта
   %p.form-field#faccountType
-    = f.label tc('reg.accType')
+    = f.label User.human_attribute_name(:account_type)
     / Преподаватель
     = f.radio_button :account_type, User::ACCTYPES[:lecturer], :checked => true
     = f.label "%s_%d" % [:account_type, User::ACCTYPES[:lecturer]],
-      tm('acctypes.lecturer'), :class => 'inline'
+      tm('account_types.lecturer'), :class => 'inline'
     / Студент
     = f.radio_button :account_type, User::ACCTYPES[:student]
     = f.label "%s_%d" % [:account_type, User::ACCTYPES[:student]],
-      tm('acctypes.student'), :class => 'inline'
+      tm('account_types.student'), :class => 'inline'
 
   / Логин
   %p.form-field#flogin
-    = f.label :login, tc('login')
+    = f.label :login, User.human_attribute_name(:login)
     = f.text_field :login
 
   / Пароль
   %p.form-field#fpassword
-    = f.label :password, tc('password')
+    = f.label :password, User.human_attribute_name(:password)
     = f.password_field :password
 
   / Подтверждение пароля
   %p.form-field#fpasswordconfirmation
-    = f.label :password_confirmation, tc('reg.passwordConfirmation')
+    = f.label :password_confirmation, User.human_attribute_name(:password_confirmation)
     = f.password_field :password_confirmation
     
   / Имя
   %p.form-field#fname
-    = f.label :name, tc('reg.name')
+    = f.label :name, User.human_attribute_name(:name)
     = f.text_field :name
 
   / Фамилия
   %p.form-field#fsurname
-    = f.label :surname, tc('reg.surname')
+    = f.label :surname, User.human_attribute_name(:surname)
     = f.text_field :surname
 
   / Отчество
   %p.form-field#fpatronymic
-    = f.label :patronymic, tc('reg.patronymic')
+    = f.label :patronymic, User.human_attribute_name(:patronymic)
     = f.text_field :patronymic
 
   / День рождения
-  %p.form-field
-    = f.label :birthday, tc('reg.birthday')
+  %p.form-field#fbirtchday
+    = f.label :birthday, User.human_attribute_name(:birthday)
     = f.date_select :birthday,
       :start_year => Time.now.year - 90,
       :end_year => Time.now.year - 10,
       :default => { :year => 2000 },
       :order => [:day, :month, :year]
 
-  = f.submit tc('reg.submit'), :id => "register-button"
+  = f.submit :id => "register-button"
