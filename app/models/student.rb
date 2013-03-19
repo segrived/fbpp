@@ -4,7 +4,7 @@ class Student < ActiveRecord::Base
   attr_accessible :course, :user_id, :specialty_id
 
     # Возвращает данные студента по ID пользователя
-  def self.get_by_uid(user)
+  def self.get_by_user(user)
     Student.where(:user_id => user.id).first
   end
 end

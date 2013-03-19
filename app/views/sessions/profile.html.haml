@@ -6,11 +6,11 @@
   - acctype = tc("acctypes.#{User::ACCTYPES.index(@user.account_type)}")
   %p= "Тип аккаунта: #{acctype}"
   - if logged_user.student?
-    - if student = Student.get_by_uid(logged_user)
-      %p= "Специальность: #{student.specialty.name}"
-      %p= "Курс: #{student.course}"
+    - if st = Student.get_by_user(logged_user)
+      %p= "Специальность: #{st.specialty ? st.specialty.name : 'Не указана'}"
+      %p= "Курс: #{st.course || 'Не указан'}"
   - if logged_user.lecturer?
-    - if l = Lecturer.get_by_uid(logged_user)
+    - if l = Lecturer.get_by_user(logged_user)
       %p
         %span Кафедра:
         %a= link_to(l.departament.name, "info/departament/#{l.departament.id}")
