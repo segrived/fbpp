@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130316031309) do
+ActiveRecord::Schema.define(:version => 20130319044046) do
 
   create_table "departaments", :force => true do |t|
     t.string   "name"
@@ -23,13 +23,21 @@ ActiveRecord::Schema.define(:version => 20130316031309) do
   create_table "lecturers", :force => true do |t|
     t.integer  "user_id"
     t.integer  "departament_id"
-    t.integer  "degree"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "scientific_degree_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   add_index "lecturers", ["departament_id"], :name => "index_lecturers_on_departament_id"
+  add_index "lecturers", ["scientific_degree_id"], :name => "index_lecturers_on_scientific_degree_id"
   add_index "lecturers", ["user_id"], :name => "index_lecturers_on_user_id"
+
+  create_table "scientific_degrees", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "specialties", :force => true do |t|
     t.string   "code"

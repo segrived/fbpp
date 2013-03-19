@@ -1,0 +1,11 @@
+/ Кафедра
+%p.form-field
+  = label_tag :departament, "Кафедра"
+  = select_tag :departament, |
+    options_from_collection_for_select(Departament.all, :id, :name)
+    
+/ Ученая степень
+%p.form-field
+  = label_tag :degree, "Ученая степень"
+  = select_tag :departament, |
+    options_from_collection_for_select(ScientificDegree.all, :id, :title)

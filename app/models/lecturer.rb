@@ -1,10 +1,9 @@
 class Lecturer < ActiveRecord::Base
   belongs_to :user
   belongs_to :departament
-  attr_accessible :degree, :user_id, :departament_id
+  belongs_to :scientific_degree
 
-  DEGREELIST = {
-  }
+  attr_accessible :user_id, :scientific_degree_id, :departament_id
 
   # Возвращает данные преподавателя по ID пользователя
   def self.get_by_uid(user)

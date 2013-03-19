@@ -6,10 +6,16 @@
   - acctype = tc("acctypes.#{User::ACCTYPES.index(@user.account_type)}")
   %p= "Тип аккаунта: #{acctype}"
   - if logged_user.student?
-    - if sd = Student.get_by_uid(logged_user)
-      %p= "Специальность: #{sd.specialty.name}"
-      %p= "#{sd.specialty.description}"
-      %p= "Курс: #{sd.course}"
+    - if student = Student.get_by_uid(logged_user)
+      %p= "Специальность: #{student.specialty.name}"
+      %p= "Курс: #{student.course}"
+  - if logged_user.lecturer?
+    - if l = Lecturer.get_by_uid(logged_user)
+      %p
+        %span Кафедра:
+        %a= link_to(l.departament.name, "info/departament/#{l.departament.id}")
+      %p= "Ученая степень: #{lecturer.scientific_degree.title}"
+      
   %a= link_to "Редактировать дополнительные данные", :my_options
 -else
   .message-box.bred= "Пользователь #{params[:login]} не найден"

@@ -33,16 +33,20 @@ class SessionsController < ApplicationController
       render 'options'
       return false
     end
-
     if logged_user.student?
-      obj = Student.new(:course => params[:course],
-        :specialty_id => params[:specialty])
+      obj = Student.find_or_create_by_user_id(logged_user.id)
+      obj.course = params[:course]
+      obj.specialty_id = params[:specialty]
     elsif logged_user.lecturer?
-      obj = Lecturer.new(:departament_id => params[:departament],
-        :degree => params[:degree])
+      obj = Lecturer.find_or_create_by_user_id(logged_user.id)
+      obj.departament_id = params[:departament]
+      obj.scientific_degree_id = params[:degree]
     end
     obj.user_id = logged_user.id
-    obj.save
-    redirect_to :root
+    if obj.save then
+      redirect_to :root
+    else
+      redirect_to :options, :notice => "bad"
+    end
   end
 end
