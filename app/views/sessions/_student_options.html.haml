@@ -5,7 +5,7 @@
   = label_tag :specialty, "Специальность"
   = select_tag :specialty, |
     options_from_collection_for_select(Specialty.all, :id, :name, |
-      s.specialty ? s.specialty.id : nil),
+      s.specialty ? s.specialty.id : nil), |
     :prompt => "-- Не указана"
     
 / Курс обучения
@@ -13,4 +13,4 @@
   = label_tag :course, "Курс обучения"
   - courses_list = (1 .. Student::MAX_COURSE).map { |n| ["#{n} курс", n] }
   = select_tag :course, options_for_select(courses_list, s.course),
-    :prompt => "-- Не указана"
+    :prompt => "-- Не указан"

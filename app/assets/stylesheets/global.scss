@@ -17,13 +17,13 @@ ul {
     list-style-type: none;
 }
 
-input, select {
+input[type="text"], input[type="password"], input[type="submit"], select {
     padding: 3px;
     font-family: Verdana;
     border: 1px solid #ddd;
 }
 
-input {
+input[type="text"], input[type="password"] {
     width: 300px;
 }
 

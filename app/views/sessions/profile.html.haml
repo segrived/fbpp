@@ -5,17 +5,17 @@
   %p= "ФИО: #{@user.surname} #{@user.name} #{@user.patronymic}"
   - acctype = tc("acctypes.#{User::ACCTYPES.index(@user.account_type)}")
   %p= "Тип аккаунта: #{acctype}"
-  - if logged_user.student?
-    - if st = Student.get_by_user(logged_user)
+  - if @user.student?
+    - if st = Student.get_by_user(@user)
       %p= "Специальность: #{st.specialty ? st.specialty.name : 'Не указана'}"
       %p= "Курс: #{st.course || 'Не указан'}"
-  - if logged_user.lecturer?
-    - if l = Lecturer.get_by_user(logged_user)
+  - if @user.lecturer?
+    - if l = Lecturer.get_by_user(@user)
       %p
         %span Кафедра:
         %a= link_to(l.departament.name, "info/departament/#{l.departament.id}")
-      %p= "Ученая степень: #{lecturer.scientific_degree.title}"
-      
-  %a= link_to "Редактировать дополнительные данные", :my_options
+      %p= "Ученая степень: #{l.scientific_degree.title}"
+  - if logged? && @user.id == logged_user.id
+    %a= link_to "Редактировать дополнительные данные", :my_options
 -else
   .message-box.bred= "Пользователь #{params[:login]} не найден"

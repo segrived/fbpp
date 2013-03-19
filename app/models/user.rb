@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates :login,
     :length => { :minimum => 3 },
     :uniqueness => true,
-    :format => { :with => /^[a-zA-Z\d]*$/ }
+    :format => { :with => /^[a-zA-Z][a-zA-Z_\d]*$/ }
   # Имя, фамилия, отчество, тип аккаунта - должны быть указаны
   validates :name, :surname, :patronymic, :account_type,
     :presence => true
