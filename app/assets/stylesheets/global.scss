@@ -17,10 +17,11 @@ ul {
     list-style-type: none;
 }
 
-input {
+input, select {
     padding: 3px;
     font-family: Verdana;
     border: 1px solid #ddd;
+    width: 300px;
 }
 
 input:hover {

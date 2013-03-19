@@ -1,9 +1,15 @@
-%h1#page-title User Profile
+%h1#page-title Профиль пользователя
 
 -if @user
   %h2= @user.login
   %p= "ФИО: #{@user.surname} #{@user.name} #{@user.patronymic}"
   - acctype = tc("acctypes.#{User::ACCTYPES.index(@user.account_type)}")
   %p= "Тип аккаунта: #{acctype}"
+  - if logged_user.student?
+    - if sd = Student.get_by_uid(logged_user)
+      %p= "Специальность: #{sd.specialty.name}"
+      %p= "#{sd.specialty.description}"
+      %p= "Курс: #{sd.course}"
+  %a= link_to "Редактировать дополнительные данные", :my_options
 -else
   .message-box.bred= "Пользователь #{params[:login]} не найден"

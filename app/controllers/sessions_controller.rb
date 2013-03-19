@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  before_filter :require_login, :only => [:profile, :logout]
+  before_filter :require_login, :only => [:profile, :logout, :options]
   before_filter :require_not_auth, :only => :login
 
   def login
@@ -26,5 +26,23 @@ class SessionsController < ApplicationController
   def profile
     login = params[:login] || logged_user.login 
     @user = User.find_by_login(login)
+  end
+
+  def options
+    if request.get? then
+      render 'options'
+      return false
+    end
+
+    if logged_user.student?
+      obj = Student.new(:course => params[:course],
+        :specialty_id => params[:specialty])
+    elsif logged_user.lecturer?
+      obj = Lecturer.new(:departament_id => params[:departament],
+        :degree => params[:degree])
+    end
+    obj.user_id = logged_user.id
+    obj.save
+    redirect_to :root
   end
 end

@@ -12,6 +12,9 @@ Feedback::Application.routes.draw do
   get "profile" => "sessions#profile"
   get "profile/:login" => "sessions#profile"
 
+  get "my/options" => "sessions#options"
+  post "my/options" => "sessions#options"
+
   get "faq" => "welcome#faq"
   get "about" => "welcome#about"
 

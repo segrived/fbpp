@@ -1,7 +1,7 @@
 module ApplicationHelper
     
   def logged?
-    session[:user] != nil
+    session[:user] != nil && User.find_by_id(session[:user].id) != nil
   end
 
   def logged_user

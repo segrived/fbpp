@@ -1,0 +1,22 @@
+%h1#page-title Дополнительные данные
+
+= form_tag(:my_options) do
+  -if logged_user.student?
+    = hidden_field_tag(:type, User::ACCTYPES[:student])
+    %p.form-field
+      = label_tag :specialty, "Специальность"
+      = select_tag :specialty, |
+        options_from_collection_for_select(Specialty.all, :id, :name)
+    %p.form-field
+      = label_tag :course, "Курс обучения"
+      = select_tag :course, options_for_select((1..5).map { |n| ["#{n} курс", n] })
+  -elsif logged_user.lecturer?
+    = hidden_field_tag(:type, User::ACCTYPES[:lecturer])
+    %p.form-field
+      = label_tag :departament, "Кафедра"
+      = select_tag :departament, |
+        options_from_collection_for_select(Departament.all, :id, :name)
+    %p.form-field
+      = label_tag :degree, "Ученая степень"
+      = text_field_tag(:degree)
+  = submit_tag "Подтвердить данные"
