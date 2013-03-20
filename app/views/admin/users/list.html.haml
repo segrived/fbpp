@@ -11,7 +11,7 @@
     - @users.each do |user|
       %tr
         %td= user.id
-        %td= user.login
+        %td= link_to user.login, profile_path(user.login)
         %td= user.birthday
         %td= user.name
         %td= user.surname

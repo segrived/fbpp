@@ -57,6 +57,12 @@ ru:
       not_specified_f: Не указана
       not_specified_m: Не указан
       edit_options_link: Редактировать дополнительные данные
+      change_password_link: Сменить пароль
+    change_password:
+      enter_new_password: Введите новый пароль
+      confirm_new_password: Подтвердите введённый пароль
+      change_password_button: Подтвердить введённый пароль
+      back_to_profile_page: Вернуться на страницу профиля
 
   layout:
     search_field: поиск...
@@ -78,6 +84,7 @@ ru:
     about: О сервисе
     faq: FAQ (Часто задаваемые вопросы)
     index: Добро пожаловать. Снова.
+    change_password: Форма смены пароля
     admin:
       index: Панель администратора
       users: Список пользователей

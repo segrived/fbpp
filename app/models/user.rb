@@ -27,8 +27,7 @@ class User < ActiveRecord::Base
   validates :password,
     :length => { :in => 6 .. 30 },
     :confirmation => true,
-    # Не, ну как так. Как я мог пропустить такую-то важную часть из-за которой одну ошибку полчаса ловил. Совсем не кошерно и не круто, отстойно и тупо, и глупо и глухо, не норм и вообще мне это не понравилось, я думал намного лучше это все будет. #hate #programming
-    :on => :create
+    :unless => Proc.new { |a| a.password.nil? }
 
   # Авторизирует пользователя; в случае удачи возвращает пользователя, иначе возвращает nil
   def self.authenticate(login, password)
@@ -39,7 +38,8 @@ class User < ActiveRecord::Base
   end
 
   # Определяет функции, выполняемые во время создания записи нового пользователя
-  before_create :encrypt_password, :set_register_date, :give_access
+  before_create :set_register_date, :give_access
+  before_save :encrypt_password
 
   # Шифрование пароля
   def encrypt_password

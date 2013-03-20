@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  before_filter :require_login, :only => [:options, :logout]
+  before_filter :require_login, :only => [:options, :change_password, :logout]
   before_filter :require_not_auth, :only => :login
 
   # GET /login
@@ -70,6 +70,21 @@ class SessionsController < ApplicationController
       redirect_to :profile
     else
       redirect_to :options, :notice => "bad"
+    end
+  end
+
+  def change_password
+    @user = User.find(logged_user.id)
+    if request.get? then
+      render :change_password
+      return false
+    end
+    if request.put? then
+      if @user.update_attributes(params[:user]) then
+        redirect_to :profile
+      else
+        render :change_password
+      end
     end
   end
 end

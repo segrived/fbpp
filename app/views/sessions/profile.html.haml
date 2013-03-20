@@ -40,15 +40,20 @@
       :locals => { :data => Lecturer.get_by_user(@user) }
   / Если просматриваемый профиль является профилей пользователя, то добавляется
   / ссылка на его редактирование
-  - if logged? && @user.id == logged_user.id && User::ACCTYPES.slice(:student, :lecturer).include?(logged_user.account_type)
-    %p.profile-field
-      = form_tag :my_set_user_locale do
-        %b= t('.used_locale') << ": "
-        = select_tag :locale, options_for_select(I18n.available_locales, cookies[:locale])
-        = submit_tag t('.set_locale')
-    = link_to t('.edit_options_link'), :my_options
+  - if logged? && @user.id == logged_user.id
+    / Ссылка на страницу изменения пароля
+    = link_to t('.change_password_link'), :my_change_password
+    - if User::ACCTYPES.slice(:student, :lecturer).include?(logged_user.account_type)
+      %p.profile-field
+        = form_tag :my_set_user_locale do
+          %b= t('.used_locale') << ": "
+          = select_tag :locale, options_for_select(I18n.available_locales, cookies[:locale])
+          = submit_tag t('.set_locale')
+      = link_to t('.edit_options_link'), :my_options
 
   - if can_admin?
+    %hr/
+    %h2 Функции администратора
     - link_text = @user.banned? ? "Разбанить" : "Забанить"
     - banned = @user.banned? ? "unban" : "ban"
     = link_to(link_text, { :controller => "admin/users", :action => "ban", :id => @user.id, :banned => banned }, :id => 'ban_user_button', :method => 'put', :remote => true)

@@ -6,9 +6,11 @@ Feedback::Application.routes.draw do
   get "login" => "sessions#login"
   post "login" => "sessions#login"
   get "logout" => "sessions#logout"
-  get "profile/(:login)" => "sessions#profile"
+  get "profile/(:login)" => "sessions#profile", :as => :profile
   get "my/options" => "sessions#options"
   post "my/options" => "sessions#options"
+  get "my/change_password" => "sessions#change_password"
+  put "my/change_password" => "sessions#change_password"
   post "my/set_user_locale" => "sessions#set_user_locale"
 
   # Регистрация

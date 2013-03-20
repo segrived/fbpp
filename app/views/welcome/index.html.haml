@@ -2,11 +2,6 @@
 
 - if logged?
   Вы вошли, какая удача. Все очень рады вас видеть.
-  %br/
-  - chosen_line = nil
-  - File.foreach("/home/segrived/cats.links").each_with_index do |line, number|
-    - chosen_line = line if rand < 1.0 / (number + 1)
-  %img{:src => chosen_line}/
 - else
   Вы не авторизированы в системе. Тем не менее, вы можете
   = link_to "войти", :login
