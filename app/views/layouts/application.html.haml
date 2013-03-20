@@ -16,9 +16,6 @@
         %p= link_to "Feedback++", :root
       #menu
         %ul
-          %li
-            = form_tag(:search) do
-              = text_field(:search, :string, :value => t('layout.search_field'))
           %li= link_to t('layout.menu.home'), :root
           %li= link_to t('layout.menu.about'), :about
           %li= link_to t('layout.menu.faq'), :faq
@@ -37,4 +34,6 @@
     / Подвал сайта
     #footer
       %p#left-text Feedback++, 2013
-      %p#right-text Евгений (разработчик)
+      %p#right-text
+        Команда разработчиков
+        %b «Quart»
