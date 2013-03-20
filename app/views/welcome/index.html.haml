@@ -1,14 +1,14 @@
 %h1#page-title= t('titles.index')
 
 - if logged?
-  %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula tortor, congue sit amet aliquam non, lobortis vel velit. Quisque tempor pellentesque felis eget commodo. Mauris mollis convallis ligula, ac ultricies enim venenatis ut. Sed eu massa dui, nec facilisis lorem. Nam vulputate lorem arcu, nec semper felis. Mauris vitae felis eu elit cursus fringilla vulputate et enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam eu pulvinar mi.
-
-  %p Donec non urna orci, quis porttitor massa. Quisque venenatis semper nisi at rhoncus. Cras laoreet, felis pulvinar egestas malesuada, sapien nunc laoreet nibh, in lacinia ipsum orci vel mauris. Ut porta augue ac risus dictum sit amet tempor felis blandit. Vivamus ullamcorper, arcu sit amet semper pharetra, neque nibh rutrum odio, quis molestie dui metus vitae nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas luctus dignissim augue nec convallis.
-
-  %p Cras rhoncus lacus consequat sem euismod non tempus lectus tincidunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse rutrum mi vel sem lacinia non blandit dui mattis. In vel metus est, in feugiat sapien. Donec vehicula nisi nec elit vestibulum non varius massa suscipit. Maecenas mattis sem eget odio auctor tempor. Vivamus fermentum elit ut dolor vehicula egestas. Sed iaculis mauris at justo lobortis semper. Aliquam quis nulla orci.
-
-  %p Nam interdum porttitor purus. Donec lacinia tortor vitae risus posuere aliquam. Praesent odio eros, lobortis vitae placerat lacinia, pretium eget elit. Integer at tortor erat. Aliquam condimentum vestibulum enim sed vehicula. Ut non augue quam, ullamcorper condimentum arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et ligula id libero volutpat semper. Fusce aliquam dignissim nisi non gravida. Nulla porttitor porttitor nunc.
-
-  %p Donec dignissim turpis id elit interdum sed malesuada diam bibendum. Aenean ac urna sit amet magna tincidunt fermentum. Donec lectus purus, malesuada non volutpat nec, aliquam eget neque. Quisque vel malesuada arcu. In id est ligula. Nunc eu lectus id lacus tincidunt dictum. Cras eu sodales diam.
+  Вы вошли, какая удача. Все очень рады вас видеть.
+  %br/
+  - chosen_line = nil
+  - File.foreach("/home/segrived/cats.links").each_with_index do |line, number|
+    - chosen_line = line if rand < 1.0 / (number + 1)
+  %img{:src => chosen_line}/
 - else
-  %div Вы не вошли
+  Вы не авторизированы в системе. Тем не менее, вы можете
+  = link_to "войти", :login
+  %span или
+  = link_to "зарегистрироваться", :register
