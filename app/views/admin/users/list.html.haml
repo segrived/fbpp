@@ -1,13 +1,13 @@
-%h1#page-title Список пользователей
+%h1#page-title= t('titles.admin.users')
 
 %table{:style => 'width: 100%'}
   %tr
     %th ID
-    %th Логин
-    %th День рождения
-    %th Имя
-    %th Фамилия
-    %th Отчество
+    %th= User.human_attribute_name(:login)
+    %th= User.human_attribute_name(:birthday)
+    %th= User.human_attribute_name(:name)
+    %th= User.human_attribute_name(:surname)
+    %th= User.human_attribute_name(:patronymic)
     - @users.each do |user|
       %tr
         %td= user.id
