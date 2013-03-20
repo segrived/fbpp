@@ -33,6 +33,11 @@ class SessionsController < ApplicationController
     @user = User.find_by_login(login)
   end
 
+  def set_user_locale
+     cookies[:locale] = params[:locale]
+     redirect_to :profile
+  end
+
   def options
     if request.get? then
       render 'options'

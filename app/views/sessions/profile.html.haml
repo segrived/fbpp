@@ -30,6 +30,11 @@
   / Если просматриваемый профиль является профилей пользователя, то добавляется
   / ссылка на его редактирование
   - if logged? && @user.id == logged_user.id && !can_admin?
+    %p
+      = form_tag :my_set_user_locale do
+        %b= t('.used_locale') << ": "
+        = select_tag :locale, options_for_select(I18n.available_locales, cookies[:locale])
+        = submit_tag t('.set_locale')
     = link_to t('.edit_options_link'), :my_options
 -else
   .message-box.bred= t('messages.user_not_found', :login => params[:login])

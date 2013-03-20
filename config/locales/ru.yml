@@ -45,6 +45,8 @@ ru:
       confirm_button: Подтвердить данные
     profile:
       fullname: ФИО
+      used_locale: Язык интерфейса
+      set_locale: Выбрать язык
       not_specified_f: Не указана
       not_specified_m: Не указан
       edit_options_link: Редактировать дополнительные данные
@@ -72,6 +74,3 @@ ru:
     admin:
       index: Панель администратора
       users: Список пользователей
-
-  login: логин
-  password: пароль
