@@ -1,3 +1,8 @@
+:coffee
+  jQuery ->
+    $('#ban_user_button').bind 'ajax:success', (evt, data, status, xhr) ->
+      alert xhr.responseText
+
 %h1#page-title= t('titles.profile')
 
 -if @user
@@ -27,10 +32,11 @@
   - elsif @user.lecturer?
     = render :partial => 'lecturer_profile',
       :locals => { :data => Lecturer.get_by_user(@user) }
+  = link_to("Забанить данного товарища", { :controller => "admin/users", :action => "ban", :id => @user.id}, :id => 'ban_user_button', :method => 'post', :remote => true)
   / Если просматриваемый профиль является профилей пользователя, то добавляется
   / ссылка на его редактирование
   - if logged? && @user.id == logged_user.id && !can_admin?
-    %p
+    %p.profile-field
       = form_tag :my_set_user_locale do
         %b= t('.used_locale') << ": "
         = select_tag :locale, options_for_select(I18n.available_locales, cookies[:locale])

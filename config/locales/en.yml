@@ -24,7 +24,7 @@ en:
   helpers:
     submit:
       user:
-        create: Register
+        create: Sign up
 
   account_types:
     student: Student
@@ -33,9 +33,9 @@ en:
     admin: Administarator
 
   messages:
-    not_logged: Вы не вошли
+    not_logged: You are not logged in
     bad_login: Invalid login or password
-    unauthorized: Вы должны войти в систему для совершения данного действия
+    unauthorized: Please login first
     user_not_found: "User %{login} not found"
 
   sessions:
@@ -59,7 +59,7 @@ en:
       faq: help
       admin: admin
       profile: profile
-      register: register
+      register: sign up
       login: login
       logout: logout
 

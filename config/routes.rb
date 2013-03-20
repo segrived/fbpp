@@ -22,5 +22,6 @@ Feedback::Application.routes.draw do
   namespace :admin do
     root :to => "start#index"
     get "users" => "users#list"
+    post "users/ban/:id" => "users#ban"
   end
 end
