@@ -1,0 +1,8 @@
+%h1#page-title Админ-панель
+
+%p
+  %span Всего пользователей в базе данных:
+  = link_to "#{User.count}", :admin_users
+
+%ul
+  %li= link_to "Список всех пользователей", :admin_users

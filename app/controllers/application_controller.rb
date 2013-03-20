@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale
  
+  private
+
   def require_not_auth
     if logged?
       redirect_to :root

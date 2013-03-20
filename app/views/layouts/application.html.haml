@@ -9,7 +9,6 @@
       I18n.defaultLocale = "#{I18n.default_locale}"
       I18n.locale = "#{I18n.locale}"
     = csrf_meta_tags
-
   %body
     / Шапка сайта
     #header
@@ -24,6 +23,8 @@
           %li= link_to t('layout.menu.about'), :about
           %li= link_to t('layout.menu.faq'), :faq
           - if logged?
+            - if can_admin?
+              %li= link_to t('layout.menu.admin'), :admin_root, :style => 'color: green'
             %li= link_to t('layout.menu.profile'), :profile
             %li= link_to t('layout.menu.logout'), :logout
           -else

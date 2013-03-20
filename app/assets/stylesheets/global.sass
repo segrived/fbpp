@@ -8,10 +8,22 @@ $content-width: 950px
 
 .inline
   display: inline
-
-*
+  
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+pre, a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s,
+samp,small, strike, strong, sub, sup, tt, var,b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside,
+canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section,
+summary, time, mark, audio, video
   margin: 0
   padding: 0
+  border: 0
+  font-size: 100%
+  vertical-align: baseline
+
+article, aside, details, figcaption, figure, footer, header,
+hgroup, menu, nav, section
+  display: block
 
 h1, h2, h3, h4, h5, h6
   font-weight: normal
@@ -21,9 +33,44 @@ body
   font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana
   font-size: 100%
 
-ul
+ol, ul
   list-style-type: none
   padding-left: 20px
+
+q
+  quotes: none
+
+blockquote:before, blockquote:after,q:before, q:after
+  content: ''
+  content: none
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+  background-color: whiteSmoke
+  border-radius: 6px
+
+table th, table td
+  font-size: 14px
+  padding-left: 20px
+  padding: 3px
+
+table th
+  color: #666
+  font-style: normal
+  font-weight: bold
+  text-align: left
+  background-color: #eee
+
+table td
+  line-height: 20px
+  color: #0084B4
+  border-bottom: 1px solid #fff
+  background-color: #f2f2f2
+  border-top: 1px solid #fff
+
+table td:hover
+  background-color: #fff
 
 .square-list
   list-style-type: square

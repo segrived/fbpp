@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319044046) do
+ActiveRecord::Schema.define(:version => 20130320005221) do
 
   create_table "departaments", :force => true do |t|
     t.string   "name"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(:version => 20130319044046) do
     t.integer  "user_id"
     t.integer  "departament_id"
     t.integer  "scientific_degree_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.integer  "confirm_level",        :default => 0
   end
 
   add_index "lecturers", ["departament_id"], :name => "index_lecturers_on_departament_id"

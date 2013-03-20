@@ -1,0 +1,18 @@
+%h1#page-title Список пользователей
+
+%table{:style => 'width: 100%'}
+  %tr
+    %th ID
+    %th Логин
+    %th День рождения
+    %th Имя
+    %th Фамилия
+    %th Отчество
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= user.login
+        %td= user.birthday
+        %td= user.name
+        %td= user.surname
+        %td= user.patronymic

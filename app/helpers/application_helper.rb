@@ -8,6 +8,10 @@ module ApplicationHelper
     session[:user]
   end
 
+  def can_admin?
+    logged_user.admin? || logged_user.mod?
+  end
+
   def tm(elem)
     t(elem).mb_chars
   end
