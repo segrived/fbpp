@@ -8,6 +8,13 @@ $content-width: 950px
 
 .inline
   display: inline
+
+.center
+  margin-right: auto
+  margin-left: auto
+
+.tcenter
+  text-align: center
   
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s,
@@ -64,13 +71,10 @@ table th
 
 table td
   line-height: 20px
-  color: #0084B4
+  color: #555
   border-bottom: 1px solid #fff
   background-color: #f2f2f2
   border-top: 1px solid #fff
-
-table td:hover
-  background-color: #fff
 
 .square-list
   list-style-type: square
@@ -144,8 +148,7 @@ form p.form-field
 
 #content-box
   width: $content-width
-  margin-right: auto
-  margin-left: auto
+  @extend .center
   min-height: 500px
   border-left: 1px solid #ddd
   border-right: 1px solid #ddd
@@ -162,8 +165,7 @@ form p.form-field
 
 #footer
   width: $content-width
-  margin-right: auto
-  margin-left: auto
+  @extend .center
   height: 30px
   background-color: #eee
   border: 1px solid #ddd
@@ -205,3 +207,51 @@ form p.form-field
 
 .profile-field
   padding: 5px
+
+
+.pagination
+  background: white
+  cursor: default
+  margin: 10px
+  a, span, em
+    padding: 0.2em 0.5em
+    display: block
+    float: left
+    margin-right: 1px
+  .disabled
+    color: #999999
+    border: 1px solid #dddddd
+  .current
+    font-style: normal
+    font-weight: bold
+    background: #2e6ab1
+    color: white
+    border: 1px solid #2e6ab1
+  a
+    text-decoration: none
+    color: #105cb6
+    border: 1px solid #9aafe5
+    &:hover, &:focus
+      color: #000033
+      border-color: #000033
+  .page_info 
+    background: #2e6ab1
+    color: white
+    padding: 0.4em 0.6em
+    width: 22em
+    margin-bottom: 0.3em
+    text-align: center
+    b
+      color: #000033
+      background: #6aa6ed
+      padding: 0.1em 0.25em
+  &:after
+    content: "."
+    display: block
+    height: 0
+    clear: both
+    visibility: hidden
+  * html &
+    height: 1%
+  *:first-child + html &
+    overflow: hidden

@@ -2,7 +2,7 @@
 
 %p
   %span Всего пользователей в базе данных:
-  = link_to "#{User.count}", :admin_users
+  = link_to "#{User.count}", admin_users_path
 %p
   %span Из них преподавателей:
   %span= "#{Lecturer.count}"

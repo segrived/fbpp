@@ -6,22 +6,22 @@ Feedback::Application.routes.draw do
   get "login" => "sessions#login"
   post "login" => "sessions#login"
   get "logout" => "sessions#logout"
-  get "profile" => "sessions#profile"
-  get "profile/:login" => "sessions#profile"
+  get "profile/(:login)" => "sessions#profile"
   get "my/options" => "sessions#options"
   post "my/options" => "sessions#options"
   post "my/set_user_locale" => "sessions#set_user_locale"
 
-  get "faq" => "welcome#faq"
-  get "about" => "welcome#about"
+  # Регистрация
   get "register" => "users#new"
   post "register" => "users#create"
-  post "search" => "sessions#search"
-  post "users/create"
+
+  get "faq" => "welcome#faq"
+  get "about" => "welcome#about"
+  
 
   namespace :admin do
     root :to => "start#index"
-    get "users" => "users#list"
-    post "users/ban/:id" => "users#ban"
+    get "users/(:page)" => "users#list", :as => :users
+    put "users/ban/:id/*banned" => "users#ban"
   end
 end

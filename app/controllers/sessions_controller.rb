@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
   before_filter :require_login, :only => [:options, :logout]
   before_filter :require_not_auth, :only => :login
 
+  # GET /login
+  # POST /login
   def login
     # Если пришел GET-запрос - просто отображаем форму
     if request.get? then
@@ -11,19 +13,28 @@ class SessionsController < ApplicationController
     end
     # Пытаемся авторизироваться на основе введённых данных
     login, password = params[:login], params[:password]
-    if session[:user] = User.authenticate(login, password) then
-      # В случае удачной авторизации перебрасываем юзера на главную страницу
-      redirect_to :root
-    else
+
+    unless user = User.authenticate(login, password)
       redirect_to :login, :notice => t('messages.bad_login')
+      return false
     end
+
+    if user.banned then
+      redirect_to :login, :notice => t('messages.banned')
+      return false
+    end
+
+    session[:user] = user
+    redirect_to :root
   end
 
+  # GET /logout
   def logout
     session[:user] = nil
     redirect_to :root
   end
 
+  # GET /profile/(:id)
   def profile
     if params[:login] == nil && !logged? then
       redirect_to :root
@@ -33,11 +44,13 @@ class SessionsController < ApplicationController
     @user = User.find_by_login(login)
   end
 
+  # GET /my/set_user_locale
   def set_user_locale
      cookies[:locale] = params[:locale]
      redirect_to :profile
   end
 
+  # GET /my/options
   def options
     if request.get? then
       render 'options'
