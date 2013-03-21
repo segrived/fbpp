@@ -52,6 +52,11 @@ class SessionsController < ApplicationController
 
   # GET /my/options
   def options
+    # Дополнительные опции доступны только для студентов и преподавателей
+    unless logged_user.student? || logged_user.lecturer? then
+      redirect_to :profile
+      return false
+    end
     if request.get? then
       render 'options'
       return false
