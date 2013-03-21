@@ -84,8 +84,13 @@ class SessionsController < ApplicationController
       render :change_password
       return false
     end
+
     if request.put? then
-      if @user.update_attributes(params[:user]) then
+      attributes = {
+        :password => params[:user][:password],
+        :password_confirmation => params[:user][:password_confirmation]
+      }
+      if @user.update_attributes(attributes) then
         redirect_to :profile
       else
         render :change_password
