@@ -18,9 +18,10 @@
     %b= "#{@user.login}"
 
   / Полное имя
-  %p.profile-field
-    %b= t('.fullname') << ": "
-    %span= "#{@user.surname} #{@user.name} #{@user.patronymic}"
+  - if @user.lecturer?
+    %p.profile-field
+      %b= t('.fullname') << ": "
+      %span= "#{@user.surname} #{@user.name} #{@user.patronymic}"
 
   / День рождения
   %p.profile-field
@@ -43,12 +44,7 @@
   - if logged? && @user.id == logged_user.id
     / Ссылка на страницу изменения пароля
     = link_to t('.change_password_link'), :my_change_password
-    - if User::ACCTYPES.slice(:student, :lecturer).include?(logged_user.account_type)
-      %p.profile-field
-        = form_tag :my_set_user_locale do
-          %b= t('.used_locale') << ": "
-          = select_tag :locale, options_for_select(I18n.available_locales, cookies[:locale])
-          = submit_tag t('.set_locale')
+    - if User::ACCTYPES.slice(:student, :lecturer).value?(@user.account_type)
       = link_to t('.edit_options_link'), :my_options
 
   - if can_admin?
