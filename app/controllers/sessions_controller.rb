@@ -62,11 +62,11 @@ class SessionsController < ApplicationController
       return false
     end
     if logged_user.student?
-      obj = Student.find_or_create_by_user_id(logged_user.id)
+      obj = Student.find_by_user_id(logged_user.id)
       obj.course = params[:course]
       obj.specialty_id = params[:specialty]
     elsif logged_user.lecturer?
-      obj = Lecturer.find_or_create_by_user_id(logged_user.id)
+      obj = Lecturer.find_by_user_id(logged_user.id)
       obj.departament_id = params[:departament]
       obj.scientific_degree_id = params[:degree]
     end
