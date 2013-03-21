@@ -37,6 +37,14 @@ class User < ActiveRecord::Base
     if ph == BCrypt::Engine.hash_secret(password, ps) then user else nil end
   end
 
+  def self.in_admin_group?
+    return ACCTYPES.slice(:admin, :mode).value?(user.account_type)
+  end
+
+  def self.in_user_group?(user)
+    return ACCTYPES.slice(:student, :lecturer).value?(user.account_type)
+  end
+
   # Определяет функции, выполняемые во время создания записи нового пользователя
   before_create :set_register_date, :give_access
   before_save :encrypt_password

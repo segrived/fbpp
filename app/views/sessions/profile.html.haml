@@ -44,7 +44,7 @@
   - if logged? && @user.id == logged_user.id
     / Ссылка на страницу изменения пароля
     = link_to t('.change_password_link'), :my_change_password
-    - if User::ACCTYPES.slice(:student, :lecturer).value?(@user.account_type)
+    - if User.in_user_group?(@user)
       = link_to t('.edit_options_link'), :my_options
 
   - if can_admin?
