@@ -78,6 +78,8 @@ class SessionsController < ApplicationController
     end
   end
 
+  # GET /my/change_password
+  # PUT /my/change_password
   def change_password
     @user = User.find(logged_user.id)
     if request.get? then
