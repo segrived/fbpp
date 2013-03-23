@@ -26,4 +26,10 @@ Feedback::Application.routes.draw do
     get "users/(:page)" => "users#list", :as => :users
     put "users/ban/:id/*banned" => "users#ban"
   end
+
+  namespace :api do
+    get "users/get_all"
+    get "users/get_user_by_id/:id" => "users#get_user_by_id"
+    get "users/get_lecturer_by_id/:id" => "users#get_lecturer_by_id"
+  end
 end

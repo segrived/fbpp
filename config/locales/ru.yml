@@ -88,3 +88,6 @@ ru:
     admin:
       index: Панель администратора
       users: Список пользователей
+
+  api_messages:
+    user_not_found: Пользователь не найден

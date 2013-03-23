@@ -1,12 +1,12 @@
 :coffeescript
   jQuery ->
     $('#ban_user_button').bind 'ajax:success', (evt, data, status, xhr) ->
-      answer = data[0]
-      if answer.success
+      resp = data[0]
+      if resp.success
         alert 'Пользователь был успешно забанен / разбанен'
         $('#ban_user_button').hide()
       else
-        alert answer.error
+        alert resp.error
 
 
 %h1#page-title= t('titles.profile')
