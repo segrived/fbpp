@@ -2,8 +2,15 @@ class Admin::UsersController < Admin::AdminController
 
   # GET /admin/users/:page
   def list
+    filter = params[:filter] ? params[:filter].to_sym : :all
+    unless User::ACCTYPES.include?(filter) || filter == :all then
+      redirect_to admin_users_path(:all)
+    end
     page = params[:page] || 1
-    @users = User.paginate(:page => page, :per_page => 10).order('id DESC')
+    @users = User.paginate(:page => page, :per_page => 10)
+    if filter != :all
+      @users = @users.where("account_type = ?", User::ACCTYPES[filter])
+    end
   end
 
   # PUT /admin/users/ban/:id/:banned

@@ -23,7 +23,7 @@ Feedback::Application.routes.draw do
 
   namespace :admin do
     root :to => "start#index"
-    get "users/(:page)" => "users#list", :as => :users
+    get "users/:filter/(:page)" => "users#list", :as => :users, :page => /[0-9]+/
     put "users/ban/:id/*banned" => "users#ban"
   end
 

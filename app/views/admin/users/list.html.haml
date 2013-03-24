@@ -1,5 +1,12 @@
 %h1#page-title= t('titles.admin.users')
 
+%ul#account-type-filter
+  %li= link_to "Все пользователи", admin_users_path(:all)
+  %li= link_to "Администраторы", admin_users_path(:admin)
+  %li= link_to "Модераторы", admin_users_path(:mod)
+  %li= link_to "Студенты", admin_users_path(:student)
+  %li= link_to "Преподаватели", admin_users_path(:lecturer)
+
 %table{:style => 'width: 100%'}
   %tr
     %th ID
@@ -8,13 +15,13 @@
     %th= User.human_attribute_name(:name)
     %th= User.human_attribute_name(:surname)
     %th= User.human_attribute_name(:patronymic)
-    - @users.each do |user|
-      %tr
-        %td= user.id
-        %td= link_to user.login, profile_path(user.login)
-        %td= user.birthday
-        %td= user.name
-        %td= user.surname
-        %td= user.patronymic
+  - @users.each do |user|
+    %tr
+      %td= user.id
+      %td= link_to user.login, profile_path(user.login)
+      %td= user.birthday
+      %td= user.name
+      %td= user.surname
+      %td= user.patronymic
 
 = will_paginate @users
