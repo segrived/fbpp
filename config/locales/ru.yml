@@ -32,6 +32,11 @@ ru:
     mod: Модератор
     admin: Администратор
 
+  confirm_levels:
+    unconfirmed: Неподтверждённый
+    existence: Подтверждено существование
+    real: Подтверждена личность
+
   messages:
     not_logged: Вы не вошли
     bad_login: Неверный логин или пароль

@@ -2,11 +2,14 @@
 %p.profile-field
   %b= Lecturer.human_attribute_name('departament') << ": "
   %span= data.departament ? data.departament.name : t('sessions.profile.not_specified_f')
+  
 / Ученая степень
 %p.profile-field
   %b= Lecturer.human_attribute_name('scientific_degree') << ": "
   %span= data.scientific_degree ? data.scientific_degree.title : t('sessions.profile.not_specified_f')
 
+/ Уровень подтверждения аккаунта
 %p.profile-field
   %b Уровень подтверждения аккаунта:
-  %span= data.confirm_level || 0
+  - clvl = Lecturer::CONFIRM_LEVELS.key(data.confirm_level || 0).to_s
+  %span= t("confirm_levels.#{clvl}")
