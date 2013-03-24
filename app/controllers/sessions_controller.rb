@@ -69,6 +69,11 @@ class SessionsController < ApplicationController
       obj = Lecturer.find_by_user_id(logged_user.id)
       obj.departament_id = params[:departament]
       obj.scientific_degree_id = params[:degree]
+      # Сброс статуса подтверждения аккаунта, если преподаватель изменяет свои
+      # персональные данные (для аккаунтов с подтверждённой личностью это не касается)
+      unless obj.confirm_level == Lecturer::CONFIRM_LEVELS[:real] then
+        obj.confirm_level = Lecturer::CONFIRM_LEVELS[:unconfirmed]
+      end
     end
     obj.user_id = logged_user.id
     if obj.save then
