@@ -25,6 +25,7 @@ Feedback::Application.routes.draw do
     root :to => "start#index"
     get "users/:filter/(:page)" => "users#list", :as => :users, :page => /[0-9]+/
     put "users/ban/:id/*banned" => "users#ban"
+    put "lecturers/set_confirmation_level" => "lecturers#set_confirmation_level"
   end
 
   namespace :api do

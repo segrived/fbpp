@@ -14,7 +14,8 @@
   - clvl = Lecturer::CONFIRM_LEVELS.key(data.confirm_level || 0).to_s
   %span= t("confirm_levels.#{clvl}")
   -if logged? && can_admin?
-    = form_tag '/admin/users/lecturer/set_confirm_level'  do
+    = form_tag '/admin/lecturers/set_confirmation_level', :method => 'put'  do
+      = hidden_field_tag :lecturer_id, data.id
       - options = options_for_select(Lecturer::CONFIRM_LEVELS.map {|k, v| [t("confirm_levels.#{k}"), v]}, data.confirm_level)
-      = select_tag :new_confirm_level, options
+      = select_tag :confirm_level, options
       = submit_tag "Подтвердить изменение уровня подтверждения аккаунта"

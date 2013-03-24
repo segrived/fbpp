@@ -11,6 +11,7 @@ group :assets do
   gem 'i18n-js'
 end
 
+gem 'validates_existence'
 gem 'will_paginate'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'

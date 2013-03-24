@@ -17,7 +17,9 @@ class UsersController < ApplicationController
       if @user.student? then
         Student.create(:user_id => @user.id)
       elsif @user.lecturer? then
-        Lecturer.create(:user_id => @user.id)
+        Lecturer.create!(
+          :user_id => @user.id,
+          :confirm_level => Lecturer::CONFIRM_LEVELS[:unconfirmed])
       end
       login, password = params[:user][:login], params[:user][:password]
       session[:user] = User.authenticate(login, password)

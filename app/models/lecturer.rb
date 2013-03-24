@@ -10,6 +10,13 @@ class Lecturer < ActiveRecord::Base
     define_method("#{k}?") { confirm_level == CONFIRM_LEVELS[k] }
   end
 
+  validates :user_id,
+    :presence => true
+  validates :scientific_degree_id, :departament_id,
+    :existence => { :allow_nil => true }
+  validates :confirm_level,
+    :inclusion => { :in => CONFIRM_LEVELS.values }
+
   # Возвращает данные преподавателя по ID пользователя
   def self.get_by_user(user)
     Lecturer.where(:user_id => user.id).first
