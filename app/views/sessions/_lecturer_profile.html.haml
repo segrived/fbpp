@@ -2,7 +2,7 @@
 %p.profile-field
   %b= Lecturer.human_attribute_name('departament') << ": "
   %span= data.departament ? data.departament.name : t('sessions.profile.not_specified_f')
-  
+
 / Ученая степень
 %p.profile-field
   %b= Lecturer.human_attribute_name('scientific_degree') << ": "
@@ -13,3 +13,8 @@
   %b Уровень подтверждения аккаунта:
   - clvl = Lecturer::CONFIRM_LEVELS.key(data.confirm_level || 0).to_s
   %span= t("confirm_levels.#{clvl}")
+  -if logged? && can_admin?
+    = form_tag '/admin/users/lecturer/set_confirm_level'  do
+      - options = options_for_select(Lecturer::CONFIRM_LEVELS.map {|k, v| [t("confirm_levels.#{k}"), v]}, data.confirm_level)
+      = select_tag :new_confirm_level, options
+      = submit_tag "Подтвердить изменение уровня подтверждения аккаунта"

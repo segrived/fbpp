@@ -47,7 +47,7 @@
     - if User.in_user_group?(@user)
       = link_to t('.edit_options_link'), :my_options
 
-  - if can_admin?
+  - if logged? && can_admin?
     %hr/
     %h2 Функции администратора
     - link_text = @user.banned? ? "Разбанить" : "Забанить"
