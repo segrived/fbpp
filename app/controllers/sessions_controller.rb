@@ -74,7 +74,7 @@ class SessionsController < ApplicationController
     if obj.save then
       redirect_to :profile
     else
-      redirect_to :my_options, :notice => "bad"
+      redirect_to :my_options, :notice => t('messages.invalid_operation')
     end
   end
 

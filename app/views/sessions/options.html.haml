@@ -1,5 +1,8 @@
 %h1#page-title= t('titles.my_options')
 
+- if flash[:notice]
+  .message-box.bred= flash[:notice]
+
 = form_tag(:my_options) do
   -if logged_user.student?
     = render :partial => 'student_options'
