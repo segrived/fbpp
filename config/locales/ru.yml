@@ -62,7 +62,7 @@ ru:
       set_locale: Выбрать язык
       not_specified_f: Не указана
       not_specified_m: Не указан
-      edit_options_link: Редактировать дополнительные данные
+      edit_options_link: Редактировать данные
       change_password_link: Сменить пароль
     change_password:
       enter_new_password: Введите новый пароль
