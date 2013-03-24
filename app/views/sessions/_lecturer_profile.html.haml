@@ -6,3 +6,7 @@
 %p.profile-field
   %b= Lecturer.human_attribute_name('scientific_degree') << ": "
   %span= data.scientific_degree ? data.scientific_degree.title : t('sessions.profile.not_specified_f')
+
+%p.profile-field
+  %b Уровень подтверждения аккаунта:
+  %span= data.confirm_level || 0

@@ -4,8 +4,6 @@ class Admin::AdminController < ApplicationController
   private
 
   def require_admin_rights
-    unless logged? && can_admin? then
-      redirect_to :root
-    end
+    redirect_to :root unless logged? && can_admin?
   end
 end
