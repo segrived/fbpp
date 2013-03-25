@@ -3,63 +3,46 @@ class SessionsController < ApplicationController
   before_filter :require_login, :only => [:options, :change_password, :logout]
   before_filter :require_not_auth, :only => :login
 
-  # GET /login
-  # POST /login
+  # [GET, POST] /login
   def login
     # Если пришел GET-запрос - просто отображаем форму
-    if request.get? then
-      render 'login'
-      return false
-    end
+    render 'login' and return if request.get?
     # Пытаемся авторизироваться на основе введённых данных
     login, password = params[:login], params[:password]
-
+    # Если логин или пароль не совпали с правильными значениями
     unless user = User.authenticate(login, password)
-      redirect_to :login, :notice => t('messages.bad_login')
-      return false
+      redirect_to :login, :notice => t('messages.bad_login') and return
     end
-
+    # Ели пользователь забанен
     if user.banned then
-      redirect_to :login, :notice => t('messages.banned')
-      return false
+      redirect_to :login, :notice => t('messages.banned') and return
     end
-
+    # В случае успешной авторизации запоминаем пользователя и перебрасываем его на главную страницу
     session[:user] = user
     redirect_to :root
   end
 
-  # GET /logout
+  # [GET] /logout
   def logout
     session[:user] = nil
     redirect_to :root
   end
 
-  # GET /profile/(:id)
+  # [GET] /profile/(:id)
   def profile
-    if params[:login] == nil && !logged? then
-      redirect_to :root
-      return false
-    end
+    redirect_to :root and return unless (params[:login] || logged?)
     login = params[:login] || logged_user.login
     @user = User.find_by_login(login)
   end
 
-  # GET /my/set_user_locale
-  def set_user_locale
-     cookies[:locale] = params[:locale]
-     redirect_to :profile
-  end
-
-  # GET /my/options
+  # [GET] /my/options
   def options
     # Дополнительные опции доступны только для студентов и преподавателей
-    unless logged_user.student? || logged_user.lecturer? then
-      redirect_to :profile
-      return false
+    unless User.in_user_group?(logged_user) then
+      redirect_to :profile and return
     end
     if request.get? then
-      render 'options'
-      return false
+      render 'options' and return
     end
     if logged_user.student?
       obj = Student.find_by_user_id(logged_user.id)
@@ -83,26 +66,19 @@ class SessionsController < ApplicationController
     end
   end
 
-  # GET /my/change_password
-  # PUT /my/change_password
+  # [GET, PUT] /my/change_password
   def change_password
     @user = User.find(logged_user.id)
-    current_password = params[:current_password]
-    if request.get? then
-      render :change_password
-      return false
-    end
-
+    render :change_password and return if request.get?
     if request.put? then
+      current_password = params[:current_password]
       unless User.authenticate(@user.login, current_password) then
-        @user.errors[:base] << t('.invalid_current_password')
-        render :change_password
-        return false
+        @user.errors[:base] << t('messages.invalid_current_password')
+        render :change_password and return
       end
-      attributes = {
-        :password => params[:user][:password],
-        :password_confirmation => params[:user][:password_confirmation]
-      }
+      attributes = { :password => params[:user][:password],
+        :password_confirmation => params[:user][:password_confirmation] }
+      # В случае успешного обновления пароля
       if @user.update_attributes(attributes) then
         redirect_to :profile
       else

@@ -40,8 +40,8 @@ class User < ActiveRecord::Base
     if ph == BCrypt::Engine.hash_secret(password, ps) then user else nil end
   end
 
-  def self.in_admin_group?
-    return ACCTYPES.slice(:admin, :mode).value?(user.account_type)
+  def self.in_admin_group?(user)
+    return ACCTYPES.slice(:admin, :mod).value?(user.account_type)
   end
 
   def self.in_user_group?(user)
