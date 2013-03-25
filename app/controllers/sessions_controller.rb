@@ -95,7 +95,7 @@ class SessionsController < ApplicationController
 
     if request.put? then
       unless User.authenticate(@user.login, current_password) then
-        @user.errors[:base] << "Текущий пароль неправильный"
+        @user.errors[:base] << t('.invalid_current_password')
         render :change_password
         return false
       end
