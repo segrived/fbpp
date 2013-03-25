@@ -12,6 +12,7 @@ class UsersController < ApplicationController
       redirect_to :root
       return false
     end
+    
     if @user.save then
       # Создание записи в дополнительной таблице
       if @user.student? then
