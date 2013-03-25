@@ -1,0 +1,19 @@
+%h1#page-title Форма отправки личного сообщения
+
+- if @private_message.errors.any?
+  .message-box.bred
+    %ul
+    - @private_message.errors.full_messages.each do |message|
+      %li= message
+
+%p= "Логин получателя: #{@receiver.login}"
+= form_for @private_message, :url => { :action => 'new' }, :method => 'post' do |f|
+  = f.hidden_field :receiver_id, :value => @receiver.id
+  %p.form-field
+  = f.label :title, PrivateMessage.human_attribute_name(:title)
+  = f.text_field :title
+  %p.form-field
+  = f.label :body, PrivateMessage.human_attribute_name(:body)
+  = f.text_area :body, :size => "60x9"
+  %p.form-field
+  = f.submit "Отправить сообщение"

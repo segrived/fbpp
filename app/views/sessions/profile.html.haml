@@ -39,19 +39,20 @@
   - elsif @user.lecturer?
     = render :partial => 'lecturer_profile',
       :locals => { :data => Lecturer.get_by_user(@user) }
-  / Если просматриваемый профиль является профилей пользователя, то добавляется
-  / ссылка на его редактирование
-  - if logged? && @user.id == logged_user.id
-    / Ссылка на страницу изменения пароля
-    = link_to t('.change_password_link'), :my_change_password, :class => 'btn'
-    - if User.in_user_group?(@user)
-      = link_to t('.edit_options_link'), :my_options, :class => 'btn'
 
-  - if logged? && can_admin?
-    %hr/
-    %h2 Функции администратора
-    - link_text = @user.banned? ? "Разбанить" : "Забанить"
-    - banned = @user.banned? ? "unban" : "ban"
-    = link_to(link_text, { :controller => "admin/users", :action => "ban", :id => @user.id, :banned => banned }, :id => 'ban_user_button', :method => 'put', :remote => true, :class => 'btn')
+  - if logged?
+    - if @user.id != logged_user.id
+      = link_to t('.send_private_message'), message_new_path(@user.id), :class => 'btn'
+    - else
+      / Ссылка на страницу изменения пароля
+      = link_to t('.change_password_link'), :my_change_password, :class => 'btn'
+      - if User.in_user_group?(@user)
+        = link_to t('.edit_options_link'), :my_options, :class => 'btn'
+    - if can_admin?
+      %hr/
+      %h2 Функции администратора
+      - link_text = @user.banned? ? "Разбанить" : "Забанить"
+      - banned = @user.banned? ? "unban" : "ban"
+      = link_to(link_text, { :controller => "admin/users", :action => "ban", :id => @user.id, :banned => banned }, :id => 'ban_user_button', :method => 'put', :remote => true, :class => 'btn')
 -else
   .message-box.bred= t('messages.user_not_found', :login => params[:login])

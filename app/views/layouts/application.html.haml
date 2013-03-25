@@ -22,6 +22,10 @@
           - if logged?
             - if can_admin?
               %li= link_to t('layout.menu.admin'), :admin_root
+            %li
+              = link_to t('layout.menu.messages'), :messages_inbox
+              -if (messages = unread_messages_count) > 0
+                %span#unread-messages-count= "(#{unread_messages_count})"
             %li= link_to t('layout.menu.profile'), :profile
             %li= link_to t('layout.menu.logout'), :logout
           -else

@@ -20,6 +20,9 @@ ru:
       lecturer:
         departament: Кафедра
         scientific_degree: Ученая степень
+      private_message:
+        title: Заголовок сообщения
+        body: Тело сообщения
 
   helpers:
     submit:
@@ -65,6 +68,7 @@ ru:
       not_specified_m: Не указан
       edit_options_link: Редактировать данные
       change_password_link: Сменить пароль
+      send_private_message: Отправить личное сообщение
     change_password:
       enter_current_password: Введите текущий пароль
       enter_new_password: Введите новый пароль
@@ -80,6 +84,7 @@ ru:
       faq: справка
       admin: админка
       profile: профиль
+      messages: личные сообщения
       register: регистрация
       login: войти
       logout: выйти

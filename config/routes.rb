@@ -20,6 +20,11 @@ Feedback::Application.routes.draw do
   get "faq" => "welcome#faq"
   get "about" => "welcome#about"
   
+  get "message/new/:receiver_id" => "private_messages#new", :as => :message_new
+  post "message/new/:receiver_id" => "private_messages#new"
+  get "message/read/:message_id" => "private_messages#read"
+  get "messages/inbox" => "private_messages#inbox"
+  get "messages/outbox" => "private_messages#outbox"
 
   namespace :admin do
     root :to => "start#index"

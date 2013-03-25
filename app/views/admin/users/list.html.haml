@@ -1,6 +1,6 @@
 %h1#page-title= t('titles.admin.users')
 
-%ul#account-type-filter
+%ul#filter
   %li= link_to "Все пользователи", admin_users_path(:all)
   %li= link_to "Администраторы", admin_users_path(:admin)
   %li= link_to "Модераторы", admin_users_path(:mod)

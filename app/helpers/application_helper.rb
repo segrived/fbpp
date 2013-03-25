@@ -12,6 +12,10 @@ module ApplicationHelper
     logged_user.admin? || logged_user.mod?
   end
 
+  def unread_messages_count
+    PrivateMessage.where(:receiver_id => logged_user.id, :read => false).count
+  end
+
   def tm(elem)
     t(elem).mb_chars
   end

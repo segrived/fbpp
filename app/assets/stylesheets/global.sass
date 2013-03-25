@@ -201,8 +201,8 @@ form p.form-field
   background-color: #ffdddd
   border-color: #ffaaaa
 
-.field_with_errors > input
-  background-color: #ffdddd
+.field_with_errors > label
+  color: #ff3333
 
 #profile-login
   font-size: 24px
@@ -262,7 +262,7 @@ form p.form-field
   *:first-child + html &
     overflow: hidden
 
-ul#account-type-filter
+ul#filter
   border: 1px solid #ccc
   padding: 4px
   margin-bottom: 15px
@@ -283,3 +283,13 @@ a.btn
   &:hover
     background-color: #aaaaff
     border: 1px solid #4444ff
+
+tr.message
+  &#unread > td
+    background-color: #E8BB6D
+  &#read > td
+    background-color: #BAB6AF
+
+#unread-messages-count
+  color: #aa2222
+  font-weight: bold

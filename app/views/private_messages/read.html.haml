@@ -1,0 +1,6 @@
+%h1#page-title= "Личное сообщение от #{@message.sender.login}"
+
+%p
+  Заголовок сообщения:
+  %b= @message.title
+%p= @message.body

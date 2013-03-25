@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       if @user.student? then
         Student.create(:user_id => @user.id)
       elsif @user.lecturer? then
-        Lecturer.create!(
+        Lecturer.create(
           :user_id => @user.id,
           :confirm_level => Lecturer::CONFIRM_LEVELS[:unconfirmed])
       end
