@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130320005221) do
+ActiveRecord::Schema.define(:version => 20130325074700) do
 
   create_table "departaments", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,20 @@ ActiveRecord::Schema.define(:version => 20130320005221) do
   add_index "lecturers", ["departament_id"], :name => "index_lecturers_on_departament_id"
   add_index "lecturers", ["scientific_degree_id"], :name => "index_lecturers_on_scientific_degree_id"
   add_index "lecturers", ["user_id"], :name => "index_lecturers_on_user_id"
+
+  create_table "private_messages", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.string   "title"
+    t.text     "body"
+    t.datetime "sendtime"
+    t.boolean  "read"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "private_messages", ["receiver_id"], :name => "index_private_messages_on_receiver_id"
+  add_index "private_messages", ["sender_id"], :name => "index_private_messages_on_sender_id"
 
   create_table "scientific_degrees", :force => true do |t|
     t.string   "title"

@@ -6,8 +6,7 @@ class Admin::UsersController < Admin::AdminController
     unless User::ACCTYPES.include?(filter) || filter == :all then
       redirect_to admin_users_path(:all)
     end
-    page = params[:page] || 1
-    @users = User.paginate(:page => page, :per_page => 10)
+    @users = User.paginate(:page => (params[:page] || 1), :per_page => 10)
     if filter != :all
       @users = @users.where("account_type = ?", User::ACCTYPES[filter])
     end

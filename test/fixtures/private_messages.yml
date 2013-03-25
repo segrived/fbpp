@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sender: 
+  receiver: 
+  title: MyString
+  body: MyText
+  sendtime: 2013-03-25 09:47:00
+  read: false
+
+two:
+  sender: 
+  receiver: 
+  title: MyString
+  body: MyText
+  sendtime: 2013-03-25 09:47:00
+  read: false

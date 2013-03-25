@@ -1,9 +1,16 @@
 :coffeescript
   jQuery ->
-    $('input[id^="user_account_type"]').change ->
+    # Устанавливает порядок поле для ввода имени и фамилии
+    set_name_fileds_position = (account_type) ->
+      if account_type == "#{User::ACCTYPES[:student]}"
+        $('#fname').insertBefore('#fsurname')
+      else if account_type == "#{User::ACCTYPES[:lecturer]}"
+        $('#fsurname').insertBefore('#fname')
+
+    $('input[name^="user[account_type]"]').bind 'change', () ->
         $('#fpatronymic').toggle("#{User::ACCTYPES[:student]}" != @value)
         $('#fpatronymic input').val("")
-
+        set_name_fileds_position @value
 
 / Заголовок страницы
 %h1#page-title= t('titles.register')
@@ -21,14 +28,12 @@
   / Тип аккаунта
   %p.form-field#faccountType
     = f.label User.human_attribute_name(:account_type)
-    / Преподаватель
-    = f.radio_button :account_type, User::ACCTYPES[:lecturer], :checked => true
-    = f.label "%s_%d" % [:account_type, User::ACCTYPES[:lecturer]],
-      t('account_types.lecturer'), :class => 'inline'
     / Студент
-    = f.radio_button :account_type, User::ACCTYPES[:student]
-    = f.label "%s_%d" % [:account_type, User::ACCTYPES[:student]],
-      t('account_types.student'), :class => 'inline'
+    = f.radio_button :account_type, User::ACCTYPES[:student], :id => 'user_student', :selected => true 
+    = f.label 'student', t('account_types.student'), :class => 'inline'
+    / Преподаватель
+    = f.radio_button :account_type, User::ACCTYPES[:lecturer], :id => 'user_lecturer'
+    = f.label 'lecturer', t('account_types.lecturer'), :class => 'inline'
 
   / Логин
   %p.form-field#flogin
@@ -44,19 +49,19 @@
   %p.form-field#fpasswordconfirmation
     = f.label :password_confirmation, User.human_attribute_name(:password_confirmation)
     = f.password_field :password_confirmation
+   
+  / Имя
+  %p.form-field#fname
+    = f.label :name, User.human_attribute_name(:name)
+    = f.text_field :name
     
   / Фамилия
   %p.form-field#fsurname
     = f.label :surname, User.human_attribute_name(:surname)
     = f.text_field :surname
-    
-  / Имя
-  %p.form-field#fname
-    = f.label :name, User.human_attribute_name(:name)
-    = f.text_field :name
 
   / Отчество
-  %p.form-field#fpatronymic
+  %p.form-field.hidden#fpatronymic
     = f.label :patronymic, User.human_attribute_name(:patronymic)
     = f.text_field :patronymic
 
