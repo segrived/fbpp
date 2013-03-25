@@ -45,15 +45,15 @@
     = f.label :password_confirmation, User.human_attribute_name(:password_confirmation)
     = f.password_field :password_confirmation
     
-  / Имя
-  %p.form-field#fname
-    = f.label :name, User.human_attribute_name(:name)
-    = f.text_field :name
-
   / Фамилия
   %p.form-field#fsurname
     = f.label :surname, User.human_attribute_name(:surname)
     = f.text_field :surname
+    
+  / Имя
+  %p.form-field#fname
+    = f.label :name, User.human_attribute_name(:name)
+    = f.text_field :name
 
   / Отчество
   %p.form-field#fpatronymic

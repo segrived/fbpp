@@ -87,12 +87,18 @@ class SessionsController < ApplicationController
   # PUT /my/change_password
   def change_password
     @user = User.find(logged_user.id)
+    current_password = params[:current_password]
     if request.get? then
       render :change_password
       return false
     end
 
     if request.put? then
+      unless User.authenticate(@user.login, current_password) then
+        @user.errors[:base] << "Текущий пароль неправильный"
+        render :change_password
+        return false
+      end
       attributes = {
         :password => params[:user][:password],
         :password_confirmation => params[:user][:password_confirmation]

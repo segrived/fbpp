@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
     :length => { :minimum => 3 },
     :uniqueness => true,
     :format => { :with => /^[A-Za-z][\w\d]*$/ }
+  validates :login,
+    :exclusion => { :in => %w{ administrator admin mod moderator } },
+    :if => Proc.new { |a| a.student? || a.lecturer? }
   validates :name, :surname, :patronymic,
     :presence => true,
     :if => Proc.new { |a| a.lecturer? }
