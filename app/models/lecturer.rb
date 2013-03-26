@@ -11,7 +11,7 @@ class Lecturer < ActiveRecord::Base
   end
 
   def get_full_name
-    user.name << " " << user.surname << " " << user.patronymic
+    user.surname << " " user.name << " " << user.patronymic
   end
 
   validates :user_id,

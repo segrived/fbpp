@@ -17,22 +17,22 @@
       #menu
         %ul
           - unless exists_admin_account?
-            = nav_link t('layout.menu.create_admin'), :create_admin, 'create_admin_account_link'
-          = nav_link t('layout.menu.home'), :root
-          = nav_link t('layout.menu.about'), :about
-          = nav_link t('layout.menu.faq'), :faq
+            %li= nav_link t('layout.menu.create_admin'), :create_admin, 'create_admin_account_link'
+          %li= nav_link t('layout.menu.home'), :root
+          %li= nav_link t('layout.menu.about'), :about
+          %li= nav_link t('layout.menu.faq'), :faq
           - if logged?
-            = nav_link t('layout.menu.messages'), :inbox
+            %li= nav_link t('layout.menu.messages'), :inbox
             -if (messages = unread_messages_count) > 0
               %span#unread-messages-count= "(#{unread_messages_count})"
             - if can_admin?
-              = nav_link t('layout.menu.admin'), :admin_root
-            = nav_link t('layout.menu.departaments'), :departaments
-            = nav_link t('layout.menu.profile'), :profile
-            = nav_link t('layout.menu.logout'), :logout
+              %li= nav_link t('layout.menu.admin'), :admin_root
+            %li= nav_link t('layout.menu.departaments'), :departaments
+            %li= nav_link t('layout.menu.profile'), :profile
+            %li= nav_link t('layout.menu.logout'), :logout
           -else
-            = nav_link t('layout.menu.register'), :register
-            = nav_link t('layout.menu.login'), :login
+            %li= nav_link t('layout.menu.register'), :register
+            %li= nav_link t('layout.menu.login'), :login
     / Контент страницы
     #content-box
       #content
