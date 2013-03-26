@@ -22,9 +22,10 @@
           %li= nav_link t('layout.menu.about'), :about
           %li= nav_link t('layout.menu.faq'), :faq
           - if logged?
-            %li= nav_link t('layout.menu.messages'), :inbox
-            -if (messages = unread_messages_count) > 0
-              %span#unread-messages-count= "(#{unread_messages_count})"
+            %li
+              nav_link t('layout.menu.messages'), :inbox
+              -if (messages = unread_messages_count) > 0
+                %span#unread-messages-count= "(#{unread_messages_count})"
             - if can_admin?
               %li= nav_link t('layout.menu.admin'), :admin_root
             %li= nav_link t('layout.menu.departaments'), :departaments
