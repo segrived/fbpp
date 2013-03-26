@@ -1,5 +1,12 @@
 $content-width: 950px
 
+@mixin transition($transition-property, $transition-time, $method)
+  -webkit-transition: $transition-property $transition-time $method
+  -moz-transition: $transition-property $transition-time $method
+  -ms-transition: $transition-property $transition-time $method
+  -o-transition: $transition-property $transition-time $method
+  transition: $transition-property $transition-time $method
+
 .left
   float: left
 
@@ -137,8 +144,9 @@ form p.form-field
       text-transform: uppercase
       text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #00ff00
       letter-spacing: 5px
+      @include transition(all, 0.3s, linear)
       &:hover
-        text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #ff0000
+        text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #ff0000, 0 0 6px #ff0000, 0 0 8px #ff0000
       a
         color: #eeffee
 
@@ -155,13 +163,13 @@ form p.form-field
         padding-top: 6px
         a
           text-decoration: none
-          color: #cccccc
+          color: #ddd
+          @include transition(all, 0.1s, linear)
           &.active
             color: #aaffaa !important
           &:hover
-            color: #ccc
-            color: #eee
-            text-shadow: 0 0 2px #fff
+            color: #f2f2f2
+            text-shadow: 0 0 9px #fff
 
 #content-box
   width: $content-width
