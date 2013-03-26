@@ -1,7 +1,10 @@
 / Кафедра
 %p.profile-field
   %b= Lecturer.human_attribute_name('departament') << ": "
-  %span= data.departament ? data.departament.name : t('sessions.profile.not_specified_f')
+  - if data.departament
+    %span= link_to data.departament.name, departament_path(data.departament.id)
+  -else
+    %span= t('sessions.profile.not_specified_f')
 
 / Ученая степень
 %p.profile-field

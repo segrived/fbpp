@@ -20,6 +20,15 @@ module ApplicationHelper
     PrivateMessage.where(:receiver_id => logged_user.id, :read => false).count
   end
 
+def nav_link(link_text, link_path)
+  class_name = current_page?(link_path) ? 'active' : nil
+
+  content_tag(:li) do
+    link_to link_text, link_path, :class => class_name
+  end
+end
+
+
   def tm(elem)
     t(elem).mb_chars
   end

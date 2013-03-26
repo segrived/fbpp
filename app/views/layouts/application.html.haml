@@ -13,28 +13,26 @@
     / Шапка сайта
     #header
       #headline
-        %p= link_to "Feedback++", :root
+        %p= link_to "Feedback", :root
       #menu
         %ul
           - unless exists_admin_account?
-            %li= link_to t('layout.menu.create_admin'), :create_admin,
-              :id => 'create_admin_account_link'
-          %li= link_to t('layout.menu.home'), :root
-          %li= link_to t('layout.menu.about'), :about
-          %li= link_to t('layout.menu.faq'), :faq
+            = nav_link t('layout.menu.create_admin'), :create_admin, :id => 'create_admin_account_link'
+          = nav_link t('layout.menu.home'), :root
+          = nav_link t('layout.menu.about'), :about
+          = nav_link t('layout.menu.faq'), :faq
           - if logged?
             - if can_admin?
-              %li= link_to t('layout.menu.admin'), :admin_root
-            %li
-              = link_to t('layout.menu.messages'), :inbox
+              = nav_link t('layout.menu.admin'), :admin_root
+              = nav_link t('layout.menu.messages'), :inbox
               -if (messages = unread_messages_count) > 0
                 %span#unread-messages-count= "(#{unread_messages_count})"
-            %li= link_to t('layout.menu.departaments'), :info_departaments
-            %li= link_to t('layout.menu.profile'), :profile
-            %li= link_to t('layout.menu.logout'), :logout
+            = nav_link t('layout.menu.departaments'), :departaments
+            = nav_link t('layout.menu.profile'), :profile
+            = nav_link t('layout.menu.logout'), :logout
           -else
-            %li= link_to t('layout.menu.register'), :register
-            %li= link_to t('layout.menu.login'), :login
+            = nav_link t('layout.menu.register'), :register
+            = nav_link t('layout.menu.login'), :login
     / Контент страницы
     #content-box
       #content

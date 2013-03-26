@@ -21,7 +21,7 @@
   - if @user.lecturer?
     %p.profile-field
       %b= t('.fullname') << ": "
-      %span= "#{@user.surname} #{@user.name} #{@user.patronymic}"
+      %span= Lecturer.get_by_user(@user).get_full_name
 
   / День рождения
   %p.profile-field
@@ -33,21 +33,24 @@
     %b= User.human_attribute_name('account_type') << ": "
     %span= t("account_types.#{User::ACCTYPES.index(@user.account_type)}")
 
+  / Дполнительный блок с информацией
   - if @user.student?
-    = render :partial => 'student_profile',
-      :locals => { :data => Student.get_by_user(@user) }
+    = render :partial => 'student_profile', :locals => { :data => Student.get_by_user(@user) }
   - elsif @user.lecturer?
-    = render :partial => 'lecturer_profile',
-      :locals => { :data => Lecturer.get_by_user(@user) }
+    = render :partial => 'lecturer_profile', :locals => { :data => Lecturer.get_by_user(@user) }
 
+  / Если пользователь авторизирован
   - if logged?
+    / Если он просматривает чужой профиль - отобразить кнопку отправки личного сообщения
     - if @user.id != logged_user.id
       = link_to t('.send_private_message'), message_new_path(@user.id), :class => 'btn'
     - else
       / Ссылка на страницу изменения пароля
       = link_to t('.change_password_link'), :my_change_password, :class => 'btn'
+      / Если пользователь студент или преподаватель - показать ссылку на редактирование доп. данных
       - if User.in_user_group?(@user)
         = link_to t('.edit_options_link'), :my_options, :class => 'btn'
+    / Если авторизированные пользователь имеет права администратора
     - if can_admin?
       %hr/
       %h2 Функции администратора
