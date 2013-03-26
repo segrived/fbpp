@@ -90,6 +90,7 @@ ru:
       admin: админка
       profile: профиль
       create_admin: создайте аккаунт администратора
+      departaments: кафедры
       messages: личные сообщения
       register: регистрация
       login: войти

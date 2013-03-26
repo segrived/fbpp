@@ -29,6 +29,7 @@
               = link_to t('layout.menu.messages'), :inbox
               -if (messages = unread_messages_count) > 0
                 %span#unread-messages-count= "(#{unread_messages_count})"
+            %li= link_to t('layout.menu.departaments'), :info_departaments
             %li= link_to t('layout.menu.profile'), :profile
             %li= link_to t('layout.menu.logout'), :logout
           -else
