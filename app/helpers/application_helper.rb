@@ -8,6 +8,10 @@ module ApplicationHelper
     session[:user]
   end
 
+  def exists_admin_account?
+    User.exists?(:account_type => User::ACCTYPES[:admin])
+  end
+
   def can_admin?
     logged_user.admin? || logged_user.mod?
   end

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_filter :shouldnt_have_admin_account, :only => :create_admin_account
+
   def new
     @user = User.new
     render :register
@@ -25,6 +27,16 @@ class UsersController < ApplicationController
       redirect_to :my_options
     else
       render :register
+    end
+  end
+
+  def create_admin_account
+    if request.get? then
+      @user = User.new
+    elsif request.post? then
+      @user = User.new(params[:user])
+      @user.account_type = User::ACCTYPES[:admin]
+      redirect_to :root and return if @user.save
     end
   end
 

@@ -1,12 +1,10 @@
-%h1#page-title Форма отправки личного сообщения
+%h1#page-title= t("titles.send_message")
 
-- if @private_message.errors.any?
-  .message-box.bred
-    %ul
-    - @private_message.errors.full_messages.each do |message|
-      %li= message
+= render :partial => "shared/errors", :locals => { :obj => @private_message }
 
-%p= "Логин получателя: #{@receiver.login}"
+%p
+  %b= t(".receiver_login") << ": "
+  %span= @receiver.login
 = form_for @private_message, :url => { :action => 'new' }, :method => 'post' do |f|
   = f.hidden_field :receiver_id, :value => @receiver.id
   %p.form-field
@@ -16,4 +14,4 @@
   = f.label :body, PrivateMessage.human_attribute_name(:body)
   = f.text_area :body, :size => "60x9"
   %p.form-field
-  = f.submit "Отправить сообщение"
+  = f.submit t(".send_message_button")

@@ -11,7 +11,11 @@ Feedback::Application.routes.draw do
   post "my/options" => "sessions#options"
   get "my/change_password" => "sessions#change_password"
   put "my/change_password" => "sessions#change_password"
-  post "my/set_user_locale" => "sessions#set_user_locale"
+
+  get "create_admin" => "users#create_admin_account"
+  post "create_admin" => "users#create_admin_account"
+
+
 
   # Регистрация
   get "register" => "users#new"
@@ -23,8 +27,8 @@ Feedback::Application.routes.draw do
   get "message/new/:receiver_id" => "private_messages#new", :as => :message_new
   post "message/new/:receiver_id" => "private_messages#new"
   get "message/read/:message_id" => "private_messages#read"
-  get "messages/inbox" => "private_messages#inbox"
-  get "messages/outbox" => "private_messages#outbox"
+  get "inbox" => "private_messages#inbox"
+  get "outbox" => "private_messages#outbox"
 
   namespace :admin do
     root :to => "start#index"

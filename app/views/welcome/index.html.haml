@@ -1,5 +1,8 @@
 %h1#page-title= t('titles.index')
 
+- if flash[:notice]
+  .message-box.bred= flash[:notice]
+
 - if logged?
   Вы вошли, какая удача. Все очень рады вас видеть.
 - else

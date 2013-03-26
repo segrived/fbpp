@@ -15,11 +15,7 @@
 / Заголовок страницы
 %h1#page-title= t('titles.register')
 
-- if @user.errors.any?
-  .message-box.bred
-    %ul
-    - @user.errors.full_messages.each do |message|
-      %li= message
+= render :partial => "shared/errors", :locals => { :obj => @user }
 
 / Форма регистрации
 = form_for @user, :url => { :action => 'create' },

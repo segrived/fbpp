@@ -75,6 +75,11 @@ ru:
       confirm_new_password: Подтвердите введённый пароль
       change_password_button: Подтвердить введённый пароль
       back_to_profile_page: Вернуться на страницу профиля
+  private_messages:
+    new:
+      receiver_login: Логин получателя
+      send_message_button: Отправить сообщение
+
 
   layout:
     search_field: поиск...
@@ -84,6 +89,7 @@ ru:
       faq: справка
       admin: админка
       profile: профиль
+      create_admin: создайте аккаунт администратора
       messages: личные сообщения
       register: регистрация
       login: войти
@@ -98,6 +104,7 @@ ru:
     faq: FAQ (Часто задаваемые вопросы)
     index: Добро пожаловать. Снова.
     change_password: Форма смены пароля
+    send_message: Форма отправки личного сообщения
     admin:
       index: Панель администратора
       users: Список пользователей

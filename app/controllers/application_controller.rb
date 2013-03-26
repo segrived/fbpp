@@ -6,15 +6,17 @@ class ApplicationController < ActionController::Base
  
   private
 
+  def shouldnt_have_admin_account
+    redirect_to :root, :notice => t('messages.invalid_operation') if exists_admin_account?
+  end
+
   def require_not_auth
-    if logged?
-      redirect_to :root
-    end
+    redirect_to :root, :notice => t('messages.invalid_operation') if logged?
   end
 
   def require_login
     unless logged?
-      redirect_to :login, :notice => tc('messages.unauthorized')
+      redirect_to :login, :notice => t('messages.unauthorized')
     end
   end
 
