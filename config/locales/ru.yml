@@ -23,6 +23,8 @@ ru:
       private_message:
         title: Заголовок сообщения
         body: Тело сообщения
+        receiver: Получатель
+        sender: Отправитель
 
   helpers:
     submit:
@@ -73,12 +75,16 @@ ru:
       enter_current_password: Введите текущий пароль
       enter_new_password: Введите новый пароль
       confirm_new_password: Подтвердите введённый пароль
-      change_password_button: Подтвердить введённый пароль
-      back_to_profile_page: Вернуться на страницу профиля
+      change_password_button: Подтвердить пароль
+      back_to_profile_page: Вернуться назад
   private_messages:
     new:
       receiver_login: Логин получателя
       send_message_button: Отправить сообщение
+    messages:
+      received_messages: Принятные
+      sended_messages: Отправленные
+      create_new_message: Написать новое
 
 
   layout:
@@ -91,6 +97,7 @@ ru:
       profile: профиль
       create_admin: создайте аккаунт администратора
       departaments: кафедры
+      users: пользователи
       messages: личные сообщения
       register: регистрация
       login: войти
@@ -107,6 +114,7 @@ ru:
     change_password: Форма смены пароля
     send_message: Форма отправки личного сообщения
     departament_lecturers: Список преподавателей на кафедре
+    private_messages: Личные сообщения
     admin:
       index: Панель администратора
       users: Список пользователей

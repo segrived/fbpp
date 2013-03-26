@@ -43,13 +43,13 @@
   - if logged?
     / Если он просматривает чужой профиль - отобразить кнопку отправки личного сообщения
     - if @user.id != logged_user.id
-      = link_to t('.send_private_message'), message_new_path(@user.id), :class => 'btn'
+      = link_to t('.send_private_message'), message_new_path(@user.id), :class => 'button'
     - else
       / Ссылка на страницу изменения пароля
-      = link_to t('.change_password_link'), :my_change_password, :class => 'btn'
+      = link_to t('.change_password_link'), :my_change_password, :class => 'button'
       / Если пользователь студент или преподаватель - показать ссылку на редактирование доп. данных
       - if User.in_user_group?(@user)
-        = link_to t('.edit_options_link'), :my_options, :class => 'btn'
+        = link_to t('.edit_options_link'), :my_options, :class => 'button'
     / Если авторизированные пользователь имеет права администратора
     - if can_admin?
       %hr/

@@ -29,12 +29,7 @@ class PrivateMessagesController < ApplicationController
 
   def new
     @receiver = User.find_by_id(params[:receiver_id])
-    # Если указанный пользователь не найден - редирект в инбокс
-    unless @receiver then
-      redirect_to :inbox and return
-    end
-    # Если пользователь пытается отправить сообщение сам себе - редирект в инбокс
-    if @receiver.id == logged_user.id
+    if @receiver == nil || @receiver.id == logged_user.id then
       redirect_to :inbox and return
     end
     # В случае GET-запроса

@@ -1,11 +1,11 @@
 %h1#page-title= t('titles.admin.users')
 
 %ul#filter
-  %li= link_to "Все пользователи", admin_users_path(:all)
-  %li= link_to "Администраторы", admin_users_path(:admin)
-  %li= link_to "Модераторы", admin_users_path(:mod)
-  %li= link_to "Студенты", admin_users_path(:student)
-  %li= link_to "Преподаватели", admin_users_path(:lecturer)
+  %li= nav_link "Все пользователи", users_path(:all)
+  %li= nav_link "Администраторы", users_path(:admin)
+  %li= nav_link "Модераторы", users_path(:mod)
+  %li= nav_link "Студенты", users_path(:student)
+  %li= nav_link "Преподаватели", users_path(:lecturer)
 
 %table{:style => 'width: 100%'}
   %tr

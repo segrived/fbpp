@@ -14,7 +14,8 @@ Feedback::Application.routes.draw do
 
   get "create_admin" => "users#create_admin_account"
   post "create_admin" => "users#create_admin_account"
-
+  
+  get "users/:filter/(:page)" => "users#list", :as => :users, :page => /[0-9]+/
 
 
   # Регистрация
@@ -27,15 +28,16 @@ Feedback::Application.routes.draw do
   get "departament/:id" => "departaments#info", :as => :departament
   get "departament/:id/lecturers" => "departaments#lecturers", :as => :departament_lecturers
 
+  # Приватные сообщения
   get "message/new/:receiver_id" => "private_messages#new", :as => :message_new
   post "message/new/:receiver_id" => "private_messages#new"
+
   get "message/read/:message_id" => "private_messages#read"
+
   get "inbox" => "private_messages#inbox"
   get "outbox" => "private_messages#outbox"
 
   namespace :admin do
-    root :to => "start#index"
-    get "users/:filter/(:page)" => "users#list", :as => :users, :page => /[0-9]+/
     put "users/ban/:id/*banned" => "users#ban"
     put "lecturers/set_confirmation_level" => "lecturers#set_confirmation_level"
   end
