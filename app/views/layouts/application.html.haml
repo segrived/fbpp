@@ -23,7 +23,7 @@
           %li= nav_link t('layout.menu.faq'), :faq
           - if logged?
             %li
-              nav_link t('layout.menu.messages'), :inbox
+              = nav_link t('layout.menu.messages'), :inbox
               -if (messages = unread_messages_count) > 0
                 %span#unread-messages-count= "(#{unread_messages_count})"
             - if can_admin?
