@@ -1,0 +1,8 @@
+%h1#page-title Список преподавателей на кафедре
+
+- unless @lecturers.empty?
+  %ul
+  - @lecturers.each do |lecturer|
+    %li= link_to lecturer.get_full_name, profile_path(lecturer.user.login)
+- else
+  .message-box.bred Преподавателей на данной кафедре не зарегистрированно.

@@ -15,4 +15,8 @@ class WelcomeController < ApplicationController
   def departament
     @departament = Departament.find(params[:id])
   end
+
+  def departament_lecturers
+    @lecturers = Departament.find(params[:id]).lecturers
+  end
 end

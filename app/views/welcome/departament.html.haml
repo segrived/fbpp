@@ -1,3 +1,4 @@
 %h1#page-title= @departament.name
 
+= link_to "Список преподавателей на этой кафедре", departament_lecturers_path(@departament.id)
 %p= simple_format @departament.description

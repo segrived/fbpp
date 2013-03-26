@@ -10,6 +10,10 @@ class Lecturer < ActiveRecord::Base
     define_method("#{k}?") { confirm_level == CONFIRM_LEVELS[k] }
   end
 
+  def get_full_name
+    user.name << " " << user.surname << " " << user.patronymic
+  end
+
   validates :user_id,
     :presence => true
   validates :scientific_degree_id, :departament_id,
