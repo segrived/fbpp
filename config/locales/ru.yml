@@ -29,6 +29,9 @@ ru:
     submit:
       user:
         create: Зарегистироваться
+      departament:
+        create: Добавить новую кафедру
+        update: Сохранить изменения
 
   account_types:
     student: Студент
@@ -94,7 +97,7 @@ ru:
     menu:
       home: главная
       about: о проекте
-      faq: справка
+      faq: FAQ
       admin: админка
       profile: профиль
       create_admin: создайте аккаунт администратора

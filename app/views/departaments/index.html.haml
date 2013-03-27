@@ -1,0 +1,12 @@
+%h1#page-title Список кафедр
+
+- unless @departaments.empty?
+  %ul
+  - @departaments.each do |departament|
+    %li= link_to departament.name, departament_path(departament.id)
+- else
+  .message-box.bred Информация о кафедрах ещё не была загружена в систему.
+
+- if can_admin?
+  %hr/
+  = link_to "Добавить кафедру", :new_departament

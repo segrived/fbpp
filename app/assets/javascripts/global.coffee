@@ -1,5 +1,5 @@
 jQuery ->
-  $('#unread-messages-count').visible = 
+  
   $('#search_string')
     .focus ->
       @value = "" if @value == I18n.t('layout.search_field')

@@ -2,7 +2,6 @@
 
 = render :partial => "shared/errors", :locals => { :obj => @private_message }
 
-%p
 = form_for @private_message, :url => { :action => 'new' }, :method => 'post' do |f|
   %p.form-field
     = label_tag :login, PrivateMessage.human_attribute_name(:receiver)

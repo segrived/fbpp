@@ -24,9 +24,9 @@ Feedback::Application.routes.draw do
 
   get "faq" => "welcome#faq"
   get "about" => "welcome#about"
-  get "departaments" => "departaments#list"
-  get "departament/:id" => "departaments#info", :as => :departament
-  get "departament/:id/lecturers" => "departaments#lecturers", :as => :departament_lecturers
+
+  resources :departaments
+  get "departaments/:id/lecturers" => "departaments#show_lecturers", :as => :departament_lecturers
 
   # Приватные сообщения
   get "message/new/(:login)" => "private_messages#new", :as => :message_new

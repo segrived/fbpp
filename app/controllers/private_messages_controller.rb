@@ -3,13 +3,13 @@ class PrivateMessagesController < ApplicationController
 
   # [GET] /inbox
   def inbox
-    @messages = logged_user.received_messages
+    @messages = logged_user.received_messages.order('sendtime DESC')
     render 'messages'
   end
 
   # [GET] /outbox
   def outbox
-    @messages = logged_user.sended_messages
+    @messages = logged_user.sended_messages.order('sendtime DESC')
     render 'messages'
   end
 

@@ -1,0 +1,11 @@
+= render :partial => 'shared/errors', :locals => { :obj => @departament }
+
+= form_for @departament do |f|
+  %p.form-field
+    = f.label :name, "Название"
+    = f.text_field :name
+  %p.form-field
+    = f.label :description, "Описание"
+    = f.text_area :description, :size => "60x9"
+  %p.form-field
+    = f.submit
