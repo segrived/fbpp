@@ -1,11 +1,11 @@
 module ApplicationHelper
     
   def logged?
-    session[:user] != nil && User.find_by_id(session[:user].id) != nil
+    session[:user_id] != nil && User.find_by_id(session[:user_id]) != nil
   end
 
   def logged_user
-    session[:user]
+    User.find(session[:user_id])
   end
 
   def exists_admin_account?

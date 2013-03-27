@@ -3,13 +3,13 @@ class PrivateMessagesController < ApplicationController
 
   # [GET] /inbox
   def inbox
-    @messages = PrivateMessage.where('receiver_id = ?', logged_user.id)
+    @messages = logged_user.received_messages
     render 'messages'
   end
 
   # [GET] /outbox
   def outbox
-    @messages = PrivateMessage.where('sender_id = ?', logged_user.id)
+    @messages = logged_user.sended_messages
     render 'messages'
   end
 
@@ -41,7 +41,7 @@ class PrivateMessagesController < ApplicationController
       @private_message.sender_id = logged_user.id
       @private_message.read = false
       if @private_message.save then
-        redirect_to :inbox and return
+        redirect_to :outbox and return
       else
         @receiver = User.find_by_id(params[:private_message][:receiver_id])
       end

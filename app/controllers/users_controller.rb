@@ -23,7 +23,7 @@ class UsersController < ApplicationController
           :confirm_level => Lecturer::CONFIRM_LEVELS[:unconfirmed])
       end
       login, password = params[:user][:login], params[:user][:password]
-      session[:user] = User.authenticate(login, password)
+      session[:user_id] = User.authenticate(login, password).id
       redirect_to :my_options
     else
       render :register
@@ -36,6 +36,8 @@ class UsersController < ApplicationController
     elsif request.post? then
       @user = User.new(params[:user])
       @user.account_type = User::ACCTYPES[:admin]
+      login, password = params[:user][:login], params[:user][:password]
+      session[:user_id] = User.authenticate(login, password)
       redirect_to :root and return if @user.save
     end
   end

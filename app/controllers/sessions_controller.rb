@@ -18,13 +18,13 @@ class SessionsController < ApplicationController
       redirect_to :login, :notice => t('messages.banned') and return
     end
     # В случае успешной авторизации запоминаем пользователя и перебрасываем его на главную страницу
-    session[:user] = user
+    session[:user_id] = user.id
     redirect_to :root
   end
 
   # [GET] /logout
   def logout
-    session[:user] = nil
+    session[:user_id] = nil
     redirect_to :root
   end
 

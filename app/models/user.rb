@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
 
+  has_many :sended_messages,
+    :class_name => 'PrivateMessage', :foreign_key => 'sender_id'
+  has_many :received_messages, 
+    :class_name => 'PrivateMessage', :foreign_key => 'receiver_id'
+
   ACCTYPES = { :admin => 0, :mod => 1, :student => 2, :lecturer => 3 }
   ACCTYPES.each do |k, v|
     define_method("#{k}?") { account_type == ACCTYPES[k] }
