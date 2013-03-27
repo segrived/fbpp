@@ -34,7 +34,7 @@ class PrivateMessagesController < ApplicationController
     elsif request.post?
       @private_message = PrivateMessage.new(params[:private_message])
       unless receiver = User.find_by_login(request[:login]) then
-        @private_message.errors[:base] << "Указанного пользователя не существует"
+        @private_message.errors[:base] << t('messages.selected_user_not_exists')
         @login = request[:login]
         render 'new' and return
       end

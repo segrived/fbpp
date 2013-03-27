@@ -53,6 +53,7 @@ ru:
     invalid_current_password: Текущий пароль введён неверно
     changed_confirm_level_mail_title: Статус аккаунта был изменен
     changed_confirm_level_mail_body: Статуc вашего аккаунта был изменен
+    selected_user_not_exists: Указанного пользователя не существует
 
   will_paginate:
     previous_label: <<
