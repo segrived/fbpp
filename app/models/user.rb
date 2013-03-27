@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   attr_accessible :login, :banned, :disabled, :regdate, :account_type
-  attr_accessible :name, :surname, :patronymic, :birthday
+  attr_accessible :name, :surname, :patronymic
   attr_accessible :password_hash, :password_salt, :password, :password_confirmation
 
   attr_accessor :password

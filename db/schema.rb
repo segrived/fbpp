@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130327003245) do
+ActiveRecord::Schema.define(:version => 20130327075228) do
 
   create_table "departaments", :force => true do |t|
     t.string   "name"
@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(:version => 20130327003245) do
     t.string   "name"
     t.string   "surname"
     t.string   "patronymic"
-    t.date     "birthday"
     t.datetime "regdate"
     t.boolean  "banned"
     t.boolean  "disabled"

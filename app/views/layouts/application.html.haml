@@ -28,7 +28,8 @@
                 %span#unread-messages-count= "(#{unread_messages_count})"
             %li= nav_link t('layout.menu.departaments'), :departaments
             %li= nav_link t('layout.menu.users'), users_path(:all)
-            %li= nav_link t('layout.menu.profile'), :profile
+            %li
+              = nav_link t('layout.menu.profile'), :profile
             %li= nav_link t('layout.menu.logout'), :logout
           -else
             %li= nav_link t('layout.menu.register'), :register

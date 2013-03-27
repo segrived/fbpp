@@ -23,11 +23,6 @@
       %b= t('.fullname') << ": "
       %span= Lecturer.get_by_user(@user).get_full_name
 
-  / День рождения
-  %p.profile-field
-    %b= User.human_attribute_name('birthday') << ": "
-    %span= "#{@user.birthday}"
-
   / Тип аккаунта
   %p.profile-field
     %b= User.human_attribute_name('account_type') << ": "

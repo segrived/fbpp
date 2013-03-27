@@ -61,13 +61,4 @@
     = f.label :patronymic, User.human_attribute_name(:patronymic)
     = f.text_field :patronymic
 
-  / День рождения
-  %p.form-field#fbirthday
-    = f.label :birthday, User.human_attribute_name(:birthday)
-    = f.date_select :birthday,
-      :start_year => Time.now.year - 90,
-      :end_year => Time.now.year - 10,
-      :default => { :year => 2000 },
-      :order => [:day, :month, :year]
-
   = f.submit :id => "register-button"

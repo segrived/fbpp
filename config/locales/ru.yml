@@ -11,7 +11,6 @@ ru:
         name: Имя
         surname: Фамилия
         patronymic: Отчество
-        birthday: День рождения
         regdate: Дата регистрации
         account_type: Тип аккаунта
       student:
