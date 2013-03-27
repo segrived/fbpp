@@ -28,24 +28,22 @@ class PrivateMessagesController < ApplicationController
   end
 
   def new
-    @receiver = User.find_by_id(params[:receiver_id])
-    if @receiver == nil || @receiver.id == logged_user.id then
-      redirect_to :inbox and return
-    end
-    # В случае GET-запроса
     if request.get? then
       @private_message = PrivateMessage.new
-    # В случае POST-запроса
-    elsif request.post? then
+      @login = params[:login] if params[:login]
+    elsif request.post?
       @private_message = PrivateMessage.new(params[:private_message])
-      @private_message.sender_id = logged_user.id
-      @private_message.read = false
-      if @private_message.save then
-        redirect_to :outbox and return
-      else
-        @receiver = User.find_by_id(params[:private_message][:receiver_id])
+      unless receiver = User.find_by_login(request[:login]) then
+        @private_message.errors[:base] << "Указанного пользователя не существует"
+        @login = request[:login]
+        render 'new' and return
       end
+      @private_message.sender_id = logged_user.id
+      @private_message.receiver_id = receiver.id
+      @private_message.read = false
+      redirect_to :outbox and return if @private_message.save
     end
+
   end
 
 end

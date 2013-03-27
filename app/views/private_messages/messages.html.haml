@@ -3,6 +3,6 @@
 %ul#filter
   %li= link_to t('.received_messages'), :inbox
   %li= link_to t('.sended_messages'), :outbox
-  %li= link_to t('.create_new_message'), message_new_path(1)
+  %li= link_to t('.create_new_message'), message_new_path
 
 = render :partial => 'message_list', :locals => { :messages => @messages }

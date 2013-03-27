@@ -4,15 +4,14 @@
 
 %p
 = form_for @private_message, :url => { :action => 'new' }, :method => 'post' do |f|
-  = f.hidden_field :receiver_id, :value => @receiver.id
   %p.form-field
-  = label_tag :login, PrivateMessage.human_attribute_name(:receiver)
-  = text_field_tag :login, @receiver.login
+    = label_tag :login, PrivateMessage.human_attribute_name(:receiver)
+    = text_field_tag :login, @login
   %p.form-field
-  = f.label :title, PrivateMessage.human_attribute_name(:title)
-  = f.text_field :title
+    = f.label :title, PrivateMessage.human_attribute_name(:title)
+    = f.text_field :title
   %p.form-field
-  = f.label :body, PrivateMessage.human_attribute_name(:body)
-  = f.text_area :body, :size => "60x9"
+    = f.label :body, PrivateMessage.human_attribute_name(:body)
+    = f.text_area :body, :size => "60x9"
   %p.form-field
-  = f.submit t(".send_message_button")
+    = f.submit t(".send_message_button")

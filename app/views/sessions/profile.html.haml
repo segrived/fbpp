@@ -38,7 +38,7 @@
   - if logged?
     / Если он просматривает чужой профиль - отобразить кнопку отправки личного сообщения
     - if @user.id != logged_user.id
-      = link_to t('.send_private_message'), message_new_path(@user.id), :class => 'button'
+      = link_to t('.send_private_message'), message_new_path(@user.login), :class => 'button'
     - else
       / Ссылка на страницу изменения пароля
       = link_to t('.change_password_link'), :my_change_password, :class => 'button'

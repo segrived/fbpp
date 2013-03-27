@@ -4,4 +4,4 @@
   Заголовок сообщения:
   %b= @message.title
 %p= @message.body
-= link_to "Ответить на это сообщение", message_new_path(@message.sender_id)
+= link_to "Ответить на это сообщение", message_new_path(@message.sender.login)

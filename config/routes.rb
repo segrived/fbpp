@@ -29,8 +29,8 @@ Feedback::Application.routes.draw do
   get "departament/:id/lecturers" => "departaments#lecturers", :as => :departament_lecturers
 
   # Приватные сообщения
-  get "message/new/:receiver_id" => "private_messages#new", :as => :message_new
-  post "message/new/:receiver_id" => "private_messages#new"
+  get "message/new/(:login)" => "private_messages#new", :as => :message_new
+  post "message/new/" => "private_messages#new"
 
   get "message/read/:message_id" => "private_messages#read"
 
