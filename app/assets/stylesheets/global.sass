@@ -44,7 +44,6 @@ hgroup, menu, nav, section
 
 h1, h2, h3, h4, h5, h6
   font-weight: normal
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.3)
 
 body
   font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana
@@ -91,7 +90,8 @@ a
   text-decoration: none
   color: #0000ff
   &.active
-    color: #55ff55 !important
+    color: #448888 !important
+    font-weight: bold
 
 .square-list
   list-style-type: square
@@ -161,10 +161,8 @@ form p.form-field
       text-shadow: 0 0 2px #fff, 0 0 3px #aaa
       letter-spacing: 5px
       @include transition(all, 0.3s, linear)
-      &:hover
       a
         color: #eeffee
-
 
   #menu
     float: right
@@ -183,6 +181,9 @@ form p.form-field
           &:hover
             color: #f2f2f2
             text-shadow: 0 0 9px #fff
+          &.active
+            color: #77ff77 !important
+            font-weight: normal
 
 #content-box
   width: $content-width
@@ -315,9 +316,20 @@ tr.message
     background-color: #BAB6AF
 
 #unread-messages-count
-  color: #aa2222
+  color: #ffff00
   font-weight: bold
 
 #create_admin_account_link
   color: #ff0000 !important
   font-weight: bold
+
+#faq-block
+  .question
+    font-size: 18px
+    font-weight: bold
+    color: #555
+  .answer
+    margin-bottom: 20px
+    color: #777
+    text-align: left
+    font-size: 14px

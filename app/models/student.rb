@@ -5,7 +5,7 @@ class Student < ActiveRecord::Base
   attr_accessible :course, :user_id, :specialty_id
 
   # Максимально доступный курс
-  MAX_COURSE = 5
+  MAX_COURSE = 6
 
   validates :user_id,
     :presence => true

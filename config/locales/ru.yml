@@ -20,8 +20,8 @@ ru:
         departament: Кафедра
         scientific_degree: Ученая степень
       private_message:
-        title: Заголовок сообщения
-        body: Тело сообщения
+        title: Заголовок
+        body: Сообщение
         receiver: Получатель
         sender: Отправитель
 
@@ -63,7 +63,7 @@ ru:
     login:
       login_button: Войти в систему
     options:
-      confirm_button: Подтвердить данные
+      confirm_button: Сохранить
     profile:
       fullname: ФИО
       used_locale: Язык интерфейса

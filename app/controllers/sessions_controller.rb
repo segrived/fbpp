@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
-  before_filter :require_login, :only => [:options, :change_password, :logout]
+  before_filter :require_login,
+    :only => [:options, :change_password, :unread_messages_count, :logout]
   before_filter :require_not_auth, :only => :login
 
   # [GET, POST] /login
@@ -86,4 +87,10 @@ class SessionsController < ApplicationController
       end
     end
   end
+
+  def unread_messages_count
+    msg_count = logged_user.received_messages.where(:read => false).count
+    render :json => { :count => msg_count }
+  end
+
 end

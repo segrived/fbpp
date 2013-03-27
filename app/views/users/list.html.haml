@@ -2,7 +2,6 @@
 
 %ul#filter
   %li= nav_link "Все пользователи", users_path(:all)
-  %li= nav_link "Администраторы", users_path(:admin)
   %li= nav_link "Модераторы", users_path(:mod)
   %li= nav_link "Студенты", users_path(:student)
   %li= nav_link "Преподаватели", users_path(:lecturer)
@@ -11,15 +10,15 @@
   %tr
     %th ID
     %th= User.human_attribute_name(:login)
-    %th= User.human_attribute_name(:name)
     %th= User.human_attribute_name(:surname)
+    %th= User.human_attribute_name(:name)
     %th= User.human_attribute_name(:patronymic)
   - @users.each do |user|
     %tr
       %td= user.id
       %td= link_to user.login, profile_path(user.login)
-      %td= user.name
       %td= user.surname
+      %td= user.name
       %td= user.patronymic
 
 = will_paginate @users

@@ -37,6 +37,9 @@ Feedback::Application.routes.draw do
   get "inbox" => "private_messages#inbox"
   get "outbox" => "private_messages#outbox"
 
+  # json responses
+  get "unread_messages_count" => "sessions#unread_messages_count"
+
   namespace :admin do
     put "users/ban/:id/*banned" => "users#ban"
     put "lecturers/set_confirmation_level" => "lecturers#set_confirmation_level"
