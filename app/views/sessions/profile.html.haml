@@ -9,13 +9,9 @@
         alert resp.error
 
 
-%h1#page-title= t('titles.profile')
 
 -if @user
-  / Логин пользователя
-  %h3#profile-login
-    Профиль пользователя
-    %b= "#{@user.login}"
+  %h1#page-title= t('titles.profile', :login => @user.login)
 
   / Полное имя
   - if @user.lecturer?

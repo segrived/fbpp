@@ -30,7 +30,7 @@
               %span#unread-messages-count= text
             %li= nav_link t('layout.menu.users'), users_path(:all)
             %li
-              = nav_link t('layout.menu.profile'), :profile
+              = nav_link t('layout.menu.profile'), profile_path(logged_user.login)
             %li= nav_link t('layout.menu.logout'), :logout
           -else
             %li= nav_link t('layout.menu.register'), :register
