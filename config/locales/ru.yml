@@ -24,6 +24,13 @@ ru:
         body: Сообщение
         receiver: Получатель
         sender: Отправитель
+      specialty:
+        code: Номер
+        name: Название
+        description: Описание
+      departament:
+        name: Название
+        description: Описание
 
   helpers:
     submit:
@@ -31,6 +38,9 @@ ru:
         create: Зарегистироваться
       departament:
         create: Добавить новую кафедру
+        update: Сохранить изменения
+      specialty:
+        create: Добавить специальность
         update: Сохранить изменения
 
   account_types:
@@ -91,7 +101,6 @@ ru:
       sended_messages: Отправленные
       create_new_message: Написать новое
 
-
   layout:
     search_field: поиск...
     menu:
@@ -118,8 +127,11 @@ ru:
     index: Добро пожаловать. Снова.
     change_password: Форма смены пароля
     send_message: Форма отправки личного сообщения
-    departament_lecturers: Список преподавателей на кафедре
     private_messages: Личные сообщения
+    departament_edit: Редактирование кафедры
+    departament_index: Список кафедр
+    departament_new: Добавление кафедры
+    departament_lecturers: Список преподавателей на кафедре
     admin:
       index: Панель администратора
       users: Список пользователей

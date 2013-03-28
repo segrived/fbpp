@@ -1,0 +1,12 @@
+%h1#page-title Список специальностей
+
+- unless @specialties.empty?
+  %ul
+  - @specialties.each do |specialty|
+    %li= link_to specialty.name, specialty_path(specialty.id)
+- else
+  .message-box.bred Информация о специальностях ещё не была загружена в систему.
+
+- if can_admin?
+  %hr/
+  = link_to "Добавить специальность", :new_specialty

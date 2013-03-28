@@ -35,12 +35,14 @@ class DepartamentsController < ApplicationController
     end
   end
 
+  # DELETE /departaments/1
   def destroy
     @departament = Departament.find(params[:id])
     @departament.destroy
     redirect_to :departaments
   end
 
+  # GET /departaments/1/lecturers
   def show_lecturers
     @lecturers = Departament.find(params[:id]).lecturers
   end

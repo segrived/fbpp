@@ -28,6 +28,8 @@ Feedback::Application.routes.draw do
   resources :departaments
   get "departaments/:id/lecturers" => "departaments#show_lecturers", :as => :departament_lecturers
 
+  resources :specialties
+
   # Приватные сообщения
   get "message/new/(:login)" => "private_messages#new", :as => :message_new
   post "message/new/" => "private_messages#new"

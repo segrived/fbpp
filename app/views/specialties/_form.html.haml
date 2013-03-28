@@ -1,0 +1,14 @@
+= render :partial => 'shared/errors', :locals => { :obj => @specialty }
+
+= form_for @specialty do |f|
+  %p.form-field
+    = f.label :code, Specialty.human_attribute_name("code")
+    = f.text_field :code
+  %p.form-field
+    = f.label :name, Specialty.human_attribute_name("name")
+    = f.text_field :name
+  %p.form-field
+    = f.label :description, Specialty.human_attribute_name("description")
+    = f.text_area :description, :size => "60x9"
+  %p.form-field
+    = f.submit
