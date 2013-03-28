@@ -30,14 +30,12 @@ Feedback::Application.routes.draw do
 
   resources :specialties
 
-  # Приватные сообщения
+  # Личные сообщения
   get "message/new/(:login)" => "private_messages#new", :as => :message_new
   post "message/new/" => "private_messages#new"
-
-  get "message/read/:message_id" => "private_messages#read"
-
   get "inbox" => "private_messages#inbox"
   get "outbox" => "private_messages#outbox"
+  get "message/read/:message_id" => "private_messages#read"
 
   # json responses
   get "unread_messages_count" => "sessions#unread_messages_count"
