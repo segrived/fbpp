@@ -1,7 +1,6 @@
 Feedback::Application.routes.draw do
   # Main page
   root :to => "welcome#index"
-  get "index" => "welcome#index"
   # Session
   get "login" => "sessions#login"
   post "login" => "sessions#login"
@@ -22,6 +21,7 @@ Feedback::Application.routes.draw do
   get "register" => "users#new"
   post "register" => "users#create"
 
+  get "index" => "welcome#index"
   get "faq" => "welcome#faq"
   get "about" => "welcome#about"
 
@@ -35,7 +35,7 @@ Feedback::Application.routes.draw do
   post "message/new/" => "private_messages#new"
   get "inbox" => "private_messages#inbox"
   get "outbox" => "private_messages#outbox"
-  get "message/read/:message_id" => "private_messages#read"
+  get "message/read/:message_id" => "private_messages#read", :as => :read_message
 
   # json responses
   get "unread_messages_count" => "sessions#unread_messages_count"

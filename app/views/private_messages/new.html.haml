@@ -5,7 +5,7 @@
 = form_for @private_message, :url => { :action => 'new' }, :method => 'post' do |f|
   %p.form-field
     = label_tag :login, PrivateMessage.human_attribute_name(:receiver)
-    = text_field_tag :login, @login
+    = text_field_tag :login, @login, :size => 30
   %p.form-field
     = f.label :title, PrivateMessage.human_attribute_name(:title)
     = f.text_field :title

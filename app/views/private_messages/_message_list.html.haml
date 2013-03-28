@@ -1,10 +1,10 @@
 %table{:style => 'width: 100%'}
   %tr
+    %th{:width => '60%'} Заголовок
     %th{:width => '20%'} Отправитель
-    %th Заголовок
     %th{:width => '20%'} Дата отправления
   - @messages.each do |message|
     %tr.message{:id => message.read ? 'read' : 'unread'}
+      %td= link_to(message.title, read_message_path(message.id))
       %td= link_to(message.sender.login, profile_path(message.sender.login))
-      %td= link_to(message.title, :controller => "private_messages", :action => "read", :message_id => message.id)
-      %td= message.sendtime.to_formatted_s(:short)
+      %td= message.sendtime.strftime('%e.%m.%Y, %H:%M')
