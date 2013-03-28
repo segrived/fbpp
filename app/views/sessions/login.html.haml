@@ -11,4 +11,5 @@
   %p.regform-field
     %dt= label_tag :password, User.human_attribute_name(:password)
     %dd= password_field_tag :password
-  = submit_tag t('.login_button'), :id => "login-button"
+  %p.regform-field
+    = submit_tag t('.login_button'), :id => "login-button"

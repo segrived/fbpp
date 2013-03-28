@@ -1,7 +1,7 @@
 %h1#page-title Список специальностей
 
 - unless @specialties.empty?
-  %ul.square-list
+  %ul
     - @specialties.each do |specialty|
       %li= link_to specialty.name, specialty_path(specialty.id)
 - else

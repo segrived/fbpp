@@ -15,8 +15,8 @@
   - @users.each do |user|
     %tr
       %td= link_to user.login, profile_path(user.login)
-      %td= user.surname
-      %td= user.name
-      %td= user.patronymic
+      %td= user.surname.blank? ? "—" : user.surname
+      %td= user.name.blank? ? "—" : user.name
+      %td= user.patronymic.blank? ? "—" : user.patronymic
 
 = will_paginate @users

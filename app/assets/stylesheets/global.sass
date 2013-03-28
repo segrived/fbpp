@@ -51,8 +51,10 @@ body
   background-image: image-url("pattern.png")
 
 ol, ul
-  list-style-type: none
   padding-left: 20px
+
+ul
+  list-style-type: square
 
 q
   quotes: none
@@ -92,9 +94,6 @@ a
   &.active
     color: #448888 !important
     font-weight: bold
-
-.square-list
-  list-style-type: square
 
 .form-element
   @include transition(all, 0.1s, linear)
