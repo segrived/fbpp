@@ -1,4 +1,8 @@
 class SpecialtiesController < ApplicationController
+
+  before_filter :require_admin_rights,
+    :only => [:new, :edit, :create, :update, :destroy]
+
   # GET /specialties
   def index
     @specialties = Specialty.order('name ASC').all

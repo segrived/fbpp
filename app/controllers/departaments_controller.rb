@@ -1,4 +1,8 @@
 class DepartamentsController < ApplicationController
+
+  before_filter :require_admin_rights,
+    :only => [:new, :edit, :create, :update, :destroy]
+
   # GET /departaments
   def index
     @departaments = Departament.order('name ASC').all

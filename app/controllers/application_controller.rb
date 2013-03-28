@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin_rights
+    redirect_to :root unless logged? && can_admin?
+  end
+
   def set_locale
     locale = I18n.default_locale
     if cookies[:locale] then

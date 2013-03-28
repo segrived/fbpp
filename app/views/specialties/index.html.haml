@@ -7,6 +7,6 @@
 - else
   .message-box.bred Информация о специальностях ещё не была загружена в систему.
 
-- if can_admin?
+- if logged? && can_admin?
   %hr/
   = link_to "Добавить специальность", :new_specialty

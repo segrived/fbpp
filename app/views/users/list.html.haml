@@ -8,14 +8,12 @@
 
 %table{:style => 'width: 100%'}
   %tr
-    %th ID
     %th= User.human_attribute_name(:login)
     %th= User.human_attribute_name(:surname)
     %th= User.human_attribute_name(:name)
     %th= User.human_attribute_name(:patronymic)
   - @users.each do |user|
     %tr
-      %td= user.id
       %td= link_to user.login, profile_path(user.login)
       %td= user.surname
       %td= user.name

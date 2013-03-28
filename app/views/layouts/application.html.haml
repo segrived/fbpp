@@ -21,12 +21,13 @@
           %li= nav_link t('layout.menu.home'), :root
           %li= nav_link t('layout.menu.about'), :about
           %li= nav_link t('layout.menu.faq'), :faq
+          %li= nav_link t('layout.menu.specialties'), :specialties
+          %li= nav_link t('layout.menu.departaments'), :departaments
           - if logged?
             %li
               = nav_link t('layout.menu.messages'), :inbox
               - text = (unread_messages_count > 0) ? "(#{unread_messages_count})" : ""
               %span#unread-messages-count= text
-            %li= nav_link t('layout.menu.departaments'), :departaments
             %li= nav_link t('layout.menu.users'), users_path(:all)
             %li
               = nav_link t('layout.menu.profile'), :profile
