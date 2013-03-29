@@ -11,12 +11,11 @@ jQuery ->
     setInterval fn, t
 
   show_new_messages= ->
-    $.get '/unread_messages_count', (data) ->
+    $.get '/ajax/unread_messages_count', (data) ->
       count = data.count
       if count == 0
         $('#unread-messages-count').hide()
       else
-        $('#unread-messages-count').show()
-        $('#unread-messages-count').text('(' + data.count + ')')
+        $('#unread-messages-count').show().text('(' + data.count + ')')
 
   setIntervalAndExecute(show_new_messages, 10000)

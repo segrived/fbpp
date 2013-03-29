@@ -1,34 +1,34 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include ApplicationHelper
-
-  before_filter :set_locale
  
   private
 
+  # Необходимо не иметь аккаунта администратора
   def shouldnt_have_admin_account
-    redirect_to :root, :notice => t('messages.invalid_operation') if exists_admin_account?
+    if exists_admin_account? then
+      redirect_to :root, :notice => t('messages.invalid_operation')
+    end
   end
 
+  # Необходимо быть неавторизированным
   def require_not_auth
-    redirect_to :root, :notice => t('messages.invalid_operation') if logged?
+    if logged? then
+      redirect_to :root, :notice => t('messages.invalid_operation')
+    end
   end
 
-  def require_login
-    unless logged?
+  # Необходима авторизация
+  def require_auth
+    unless logged? then
       redirect_to :login, :notice => t('messages.unauthorized')
     end
   end
 
+  # Необходимо наличие прав администратора
   def require_admin_rights
-    redirect_to :root unless logged? && can_admin?
-  end
-
-  def set_locale
-    locale = I18n.default_locale
-    if cookies[:locale] then
-      locale = cookies[:locale] if I18n.available_locales.include?(cookies[:locale].to_sym)
+    unless can_admin? then
+      redirect_to :root, :notice => t('messages.invalid_operation')
     end
-    I18n.locale = locale
   end
 end

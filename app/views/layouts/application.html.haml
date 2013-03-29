@@ -19,14 +19,12 @@
           - unless exists_admin_account?
             %li= nav_link t('layout.menu.create_admin'), :create_admin, 'create_admin_account_link'
           %li= nav_link t('layout.menu.home'), :root
-          %li= nav_link t('layout.menu.about'), :about
-          %li= nav_link t('layout.menu.faq'), :faq
           %li= nav_link t('layout.menu.specialties'), :specialties
           %li= nav_link t('layout.menu.departaments'), :departaments
           - if logged?
             %li
               = nav_link t('layout.menu.messages'), :inbox
-              - text = (unread_messages_count > 0) ? "(#{unread_messages_count})" : ""
+              - text = (unread_messages > 0) ? "(#{unread_messages})" : ""
               %span#unread-messages-count= text
             %li= nav_link t('layout.menu.users'), users_path(:all)
             %li
@@ -43,6 +41,9 @@
     #footer
       %p#left-text
         Feedback++, 2013
+        %span#links
+          = nav_link t('layout.menu.about'), :about
+          = nav_link t('layout.menu.faq'), :faq
       %p#right-text
         Команда разработчиков
         %b «Quart»

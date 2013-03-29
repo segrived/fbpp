@@ -1,13 +1,16 @@
 %table{:style => 'width: 100%'}
   %tr
     %th{:width => '60%'} Заголовок
-    %th{:width => '20%'} Отправитель
+    - if @type == 'inbox'
+      %th{:width => '20%'} Отправитель
+    - elsif @type == 'outbox'
+      %th{:width => '20%'} Получатель
     %th{:width => '20%'} Дата отправления
   - @messages.each do |message|
     %tr.message{:id => message.read ? 'read' : 'unread'}
       %td= link_to(message.title, read_message_path(message.id))
-      - if message.sender_id == User::SYSTEM_ACCOUNT_ID
-        %td Система
-      -else
-        %td= link_to(message.sender.login, profile_path(message.sender.login))
+      - if @type == 'inbox'
+        %td= user_login(message.sender_id)
+      - elsif @type == 'outbox'
+        %td= user_login(message.receiver_id)
       %td= message.sendtime.strftime('%e.%m.%Y, %H:%M')

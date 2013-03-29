@@ -1,54 +1,86 @@
 class DepartamentsController < ApplicationController
 
-  before_filter :require_admin_rights,
-    :only => [:new, :edit, :create, :update, :destroy]
+  before_filter :require_admin_rights, :except => [:index, :show, :show_lecturers]
 
   # GET /departaments
+  # Отображает страницу со списком кафедр
   def index
     @departaments = Departament.order('name ASC').all
   end
 
   # GET /departaments/1
+  # Отображат информацию по выбранной кафедре
   def show
-    @departament = Departament.find_by_id(params[:id])
-    redirect_to :departaments and return unless @departament
+    begin
+      @departament = Departament.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to :departaments
+    end
   end
 
   # GET /departamnets/new
+  # Отображает форму добавления кафедры
   def new
     @departament = Departament.new
   end
 
   # GET /departaments/1/edit
+  # Отображает форму редактирования кафедры
   def edit
-    @departament = Departament.find(params[:id])
-  end
-
-  # POST /departaments
-  def create
-    @departament = Departament.new(params[:departament])
-    redirect_to :departaments and return if @departament.save
-    render 'new'
-  end
-
-  # PUT /departaments/1
-  def update
-    @departament = Departament.find(params[:id])
-    if @departament.update_attributes(params[:departament]) then
+    begin
+      @departament = Departament.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
       redirect_to :departaments
     end
   end
 
+  # POST /departaments
+  # Добавляет информацию о новой кафедре в БД
+  def create
+    @departament = Departament.new(params[:departament])
+    if @departament.save then
+      redirect_to :departaments and return
+    else
+      render 'new'
+    end
+  end
+
+  # PUT /departaments/1
+  # Обновляет информацию о кафедре
+  def update
+    begin
+      @departament = Departament.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to :departaments and return
+    end
+    if @departament.update_attributes(params[:departament]) then
+      redirect_to :departaments and return
+    else
+      render 'edit'
+    end
+  end
+
   # DELETE /departaments/1
+  # Удаляет информию о кафедре
   def destroy
-    @departament = Departament.find(params[:id])
+    begin
+      @departament = Departament.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to :departaments and return
+    end
     @departament.destroy
     redirect_to :departaments
   end
 
   # GET /departaments/1/lecturers
+  # Выводит информацию о преподавателях, работающих на кафедре
   def show_lecturers
-    @lecturers = Departament.find(params[:id]).lecturers
+    begin
+      departament = Departament.find(params[:id])
+      @lecturers = departament.lecturers
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to :departaments
+    end
   end
 
 end

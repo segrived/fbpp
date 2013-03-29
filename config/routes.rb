@@ -34,13 +34,13 @@ Feedback::Application.routes.draw do
   get "message/new/(:login)" => "private_messages#new", :as => :message_new, :login => /[A-Za-z][\w\d]+/
   get "message/new/(:mid)" => "private_messages#new", :as => :message_new, :mid => /[\d]+/
   post "message/new/" => "private_messages#new"
-  delete "message/delete/:message_id" => "private_messages#delete", :as => :message_delete
+  delete "message/:message_id/delete" => "private_messages#delete", :as => :message_delete
   get "inbox" => "private_messages#inbox"
   get "outbox" => "private_messages#outbox"
-  get "message/read/:message_id" => "private_messages#read", :as => :read_message
+  get "message/:message_id" => "private_messages#read", :as => :read_message
 
-  # json responses
-  get "unread_messages_count" => "sessions#unread_messages_count"
+  # AJAX ответы
+  get "ajax/unread_messages_count" => "ajax#unread_messages_count"
 
   namespace :admin do
     put "users/ban/:id/*banned" => "users#ban"

@@ -1,17 +1,20 @@
 class SessionsController < ApplicationController
 
-  before_filter :require_login,
-    :only => [:options, :change_password, :unread_messages_count, :logout]
+  before_filter :require_auth, :except => [:login, :profile]
   before_filter :require_not_auth, :only => :login
 
-  # [GET, POST] /login
+  # GET /login
+  # Отоборажает форму авторизации пользователя
+  #
+  # POST /login
+  # Пытается авторизировать пользователя на основе введённых данных
   def login
     # Если пришел GET-запрос - просто отображаем форму
     render 'login' and return if request.get?
     # Пытаемся авторизироваться на основе введённых данных
     login, password = params[:login], params[:password]
     # Если логин или пароль не совпали с правильными значениями
-    unless user = User.authenticate(login, password)
+    unless user = User.authenticate(login, password) then
       redirect_to :login, :notice => t('messages.bad_login') and return
     end
     # Ели пользователь забанен
@@ -23,20 +26,22 @@ class SessionsController < ApplicationController
     redirect_to :root
   end
 
-  # [GET] /logout
+  # GET /logout
   def logout
     session[:user_id] = nil
     redirect_to :root
   end
 
-  # [GET] /profile/(:id)
+  # GET /profile/(login)
+  # Отображает профиль указанного пользователя
   def profile
     redirect_to :root and return unless (params[:login] || logged?)
     login = params[:login] || logged_user.login
     @user = User.find_by_login(login)
   end
 
-  # [GET] /my/options
+  # GET /my/options
+  # Отображает личный кабинет
   def options
     # Дополнительные опции доступны только для студентов и преподавателей
     unless User.in_user_group?(logged_user) then
@@ -67,16 +72,22 @@ class SessionsController < ApplicationController
     end
   end
 
-  # [GET, PUT] /my/change_password
+  # GET /my/change_password
+  # Отображает форму смены пароля
+  #
+  # PUT /my/change_password
+  # Меняет пароль для текущего пользователя
   def change_password
-    @user = User.find(logged_user.id)
     render :change_password and return if request.get?
     if request.put? then
       current_password = params[:current_password]
+      @user = User.find(logged_user.id)
+      # Если текущий пароль не совпадает с введённым
       unless User.authenticate(@user.login, current_password) then
         @user.errors[:base] << t('messages.invalid_current_password')
         render :change_password and return
       end
+      # Обновляемые атрибуты
       attributes = { :password => params[:user][:password],
         :password_confirmation => params[:user][:password_confirmation] }
       # В случае успешного обновления пароля
@@ -86,11 +97,6 @@ class SessionsController < ApplicationController
         render :change_password
       end
     end
-  end
-
-  def unread_messages_count
-    msg_count = logged_user.received_messages.where(:read => false).count
-    render :json => { :count => msg_count }
   end
 
 end

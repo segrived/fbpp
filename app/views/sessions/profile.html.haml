@@ -44,9 +44,13 @@
     / Если авторизированные пользователь имеет права администратора
     - if can_admin?
       %hr/
-      %h2 Функции администратора
+      %p Функции администратора
       - link_text = @user.banned? ? "Разбанить" : "Забанить"
       - banned = @user.banned? ? "unban" : "ban"
-      = link_to(link_text, { :controller => "admin/users", :action => "ban", :id => @user.id, :banned => banned }, :id => 'ban_user_button', :method => 'put', :remote => true, :class => 'btn')
+      = link_to(link_text, { :controller => "admin/users", :action => "ban", :id => @user.id, :banned => banned }, :id => 'ban_user_button', :method => 'put', :remote => true, :class => 'button')
+  - else
+    %p
+      Чтобы отправить этому пользователю сообщение, вам необходимо
+      = link_to "авторизироваться", :login
 -else
   .message-box.bred= t('messages.user_not_found', :login => params[:login])

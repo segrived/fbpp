@@ -1,23 +1,51 @@
 module ApplicationHelper
-    
+
+  # Возвращает статус авторизации пользователя
+  # * *Returns* :
+  # Булевое значение, определяющее, авторизировал пользователь или нет
   def logged?
-    session[:user_id] != nil && User.find_by_id(session[:user_id]) != nil
+    (session[:user_id] != nil) && (User.where(id: session[:user_id]).count > 0)
   end
 
+  # Возвращает объект текущего авторизированного пользователя. Рекомендуется использовать
+  # в связке с функцией logged?, так как данная функция, в случае, если пользователь
+  # не найден, выбрасывает исключение
+  # * *Returns* :
+  # Объект, представляющий авторизированного пользователя
   def logged_user
     User.find(session[:user_id])
   end
 
+  # Проверяет наличие аккаунта администратора в системе
+  # * *Returns* :
+  # Булевое значение, определяющее, создан ли уже аккаунт администратора или нет
   def exists_admin_account?
-    User.exists?(:account_type => User::ACCTYPES[:admin])
+    User.exists?(account_type: User::ACCTYPES[:admin])
   end
 
+  # Проверяет аккаунт авторизированного пользователя на наличие администраторских полномочий
+  # * *Returns* :
+  # Булевое значение, определяющее, может ли авторизированный пользователь администрировать систему
   def can_admin?
-    logged_user.admin? || logged_user.mod?
+    logged? && (logged_user.admin? || logged_user.mod?)
   end
 
-  def unread_messages_count
-    PrivateMessage.where(:receiver_id => logged_user.id, :read => false).count
+  # Возвращает логин пользователя по ID
+  def user_login(id, add_link = true)
+    return t("common.system_account_name") if id == User::SYSTEM_ACCOUNT_ID
+    user = User.where(id: id)
+    return t("common.unknown_account_name") if user.count == 0
+    if add_link
+      return link_to user.first.login, profile_path(user.first.login)
+    else
+      return user.first.login
+    end
+  end
+
+  # Возвращает количество непрочитанных сообщений для текущего пользователя
+  def unread_messages
+    return nil unless logged?
+    logged_user.received_messages.where(read: false).count
   end
 
   def nav_link(link_text, link_path, link_id = nil)
@@ -35,14 +63,6 @@ module ApplicationHelper
 
   def tc(elem)
     tm(elem).capitalize
-  end
-
-  def tu(elem)
-    tm(elem).upcase
-  end
-
-  def td(elem)
-    tm(elem).downcase
   end
 
 end

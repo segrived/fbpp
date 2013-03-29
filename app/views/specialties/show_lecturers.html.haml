@@ -5,4 +5,4 @@
   - @lecturers.each do |lecturer|
     %li= link_to lecturer.get_full_name, profile_path(lecturer.user.login)
 - else
-  .message-box.bred Преподавателей на данной кафедре не зарегистрированно.
+  .message-box.bred= t("messages.departament_havnt_lecturers")

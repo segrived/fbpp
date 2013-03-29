@@ -54,6 +54,10 @@ ru:
     existence: Подтверждено существование
     real: Подтверждена личность
 
+  common:
+    system_account_name: Система
+    unknown_account_name: Неизвестный
+
   messages:
     not_logged: Вы не вошли
     bad_login: Неверный логин или пароль
@@ -67,6 +71,8 @@ ru:
     changed_confirm_level_mail_title: Статус аккаунта был изменен
     changed_confirm_level_mail_body: "Статуc вашего аккаунта был изменен на «%{status}»."
     selected_user_not_exists: Указанного пользователя не существует
+    send_message_self: Нельзя отправить сообщение самому себе
+    departament_havnt_lecturers: Преподавателей на данной кафедре не зарегистрированно
 
   will_paginate:
     previous_label: <<
@@ -106,14 +112,14 @@ ru:
     menu:
       home: главная
       about: о сервисе
-      faq: FAQ
+      faq: faq
       admin: админка
       profile: профиль
       create_admin: создайте аккаунт администратора
       departaments: кафедры
       specialties: специальности
       users: пользователи
-      messages: личные сообщения
+      messages: лс
       register: регистрация
       login: войти
       logout: выйти
@@ -133,6 +139,10 @@ ru:
     departament_index: Список кафедр
     departament_new: Добавление кафедры
     departament_lecturers: Список преподавателей на кафедре
+    specialty_new: Добавление специальности
+    specialty_index: Список специальностей
+    specialty_edit: Редактирование специальности
+    create_admin_account: Создание аккаунта администратора
     admin:
       index: Панель администратора
       users: Список пользователей

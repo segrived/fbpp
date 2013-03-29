@@ -50,13 +50,21 @@ body
   background-image: image-url("pattern.png")
 
 ol, ul
-  padding-left: 20px
+  list-style-position: inside
 
 ul
   list-style-type: square
 
 q
   quotes: none
+
+hr
+  margin-top: 10px
+  margin-bottom: 10px
+  color: #aaa
+  background-color: #aaa
+  height: 1px
+  border: 0
 
 blockquote:before, blockquote:after,q:before, q:after
   content: ''
@@ -145,7 +153,7 @@ form p.form-field
 #header
   width: 100%
   height: 30px
-  background-color: #444
+  background-color: #222
   border-bottom: 1px solid #ddd
   box-shadow: 0 6px 6px -2px #aaa
   #headline 
@@ -216,6 +224,10 @@ form p.form-field
       float: left
       padding-left: 5px
       font-weight: bold
+      #links a
+        font-weight: normal
+        color: #aaa
+        padding-left: 8px
     &#right-text
       float: right
       padding-right: 5px
@@ -333,7 +345,7 @@ tr.message
     font-weight: bold
     color: #444
   .answer
-    margin-bottom: 20px
+    padding-bottom: 20px
     color: #555
     text-align: left
     font-size: 14px
