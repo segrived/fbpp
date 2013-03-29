@@ -25,6 +25,9 @@ module ApplicationHelper
     link_to link_text, link_path, :class => class_name, :id => link_id
   end
 
+  def confirm_level_text(sym)
+    t("confirm_levels.#{Lecturer::CONFIRM_LEVELS.key(sym).to_s}")
+  end
 
   def tm(elem)
     t(elem).mb_chars

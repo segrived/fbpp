@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130327075228) do
+ActiveRecord::Schema.define(:version => 20130329120616) do
 
   create_table "departaments", :force => true do |t|
     t.string   "name"
@@ -40,8 +40,10 @@ ActiveRecord::Schema.define(:version => 20130327075228) do
     t.text     "body"
     t.datetime "sendtime"
     t.boolean  "read"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.boolean  "sender_delete_flag",   :default => false
+    t.boolean  "receiver_delete_flag", :default => false
   end
 
   add_index "private_messages", ["receiver_id"], :name => "index_private_messages_on_receiver_id"

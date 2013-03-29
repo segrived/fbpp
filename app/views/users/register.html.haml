@@ -25,11 +25,13 @@
   %p.form-field#faccountType
     = f.label User.human_attribute_name(:account_type)
     / Студент
-    = f.radio_button :account_type, User::ACCTYPES[:student], :id => 'user_student', :checked => true 
+    = f.radio_button :account_type, User::ACCTYPES[:student], :id => 'user_student',
+      :checked => (@user[:account_type] == User::ACCTYPES[:student]) 
     = f.label 'student', t('account_types.student'), :class => 'inline'
     / Преподаватель
     = f.radio_button :account_type, User::ACCTYPES[:lecturer], :id => 'user_lecturer'
-    = f.label 'lecturer', t('account_types.lecturer'), :class => 'inline'
+    = f.label 'lecturer', t('account_types.lecturer'), :class => 'inline',
+      :checked => (@user[:account_type] == User::ACCTYPES[:lecturer]) 
 
   / Логин
   %p.form-field#flogin
