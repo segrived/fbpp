@@ -16,10 +16,12 @@ class PrivateMessage < ActiveRecord::Base
 
   private
 
+  # Устанавливает дату отправления
   def set_sendtime
     self.sendtime = Time.now
   end
 
+  # Помечает сообщение непрочитанным
   def mark_unread
     self.read = false
     true
