@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   has_many :received_messages, 
     :class_name => 'PrivateMessage', :foreign_key => 'receiver_id'
 
+  # ID системного акаунта (не должен пересекаться с данными созданных аккаунтов)
+  SYSTEM_ACCOUNT_ID = 0
+
   ACCTYPES = { :admin => 0, :mod => 1, :student => 2, :lecturer => 3 }
   ACCTYPES.each do |k, v|
     define_method("#{k}?") { account_type == ACCTYPES[k] }
@@ -21,7 +24,7 @@ class User < ActiveRecord::Base
   validates :login,
     :length => { :minimum => 3 },
     :uniqueness => true,
-    :format => { :with => /^[A-Za-z][\w\d]*$/ }
+    :format => { :with => /^[A-Za-z][\w\d]+$/ }
   validates :login,
     :exclusion => { :in => %w{ administrator admin mod moderator } },
     :if => Proc.new { |a| a.student? || a.lecturer? }

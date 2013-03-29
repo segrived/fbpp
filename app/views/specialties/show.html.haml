@@ -2,10 +2,11 @@
 
 %p= simple_format @specialty.description
 
-%p
-  = link_to "Редактировать информацию о специальности",
-    edit_specialty_path(@specialty.id)
-%p
-  = link_to "Удалить информацию о специальности", specialty_path(@specialty.id),
-    :method => :delete,
-    :confirm => "Вы уверены, что хотите удалить информацию об этой специальности?"
+- if logged? && can_admin?
+  %p
+    = link_to "Редактировать информацию о специальности",
+      edit_specialty_path(@specialty.id)
+  %p
+    = link_to "Удалить информацию о специальности", specialty_path(@specialty.id),
+      :method => :delete,
+      :confirm => "Вы уверены, что хотите удалить информацию об этой специальности?"

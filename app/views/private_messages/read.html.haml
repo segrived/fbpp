@@ -1,7 +1,12 @@
-%h1#page-title= "Личное сообщение от #{@message.sender.login}"
+- if @message.sender_id == User::SYSTEM_ACCOUNT_ID
+  %h1#page-title= "Сообщение от системы"
+-else
+  %h1#page-title= "Сообщение от пользователя #{@message.sender.login}"
 
 %p
   Заголовок сообщения:
   %b= @message.title
 %p= @message.body
-= link_to "Ответить на это сообщение", message_new_path(@message.sender.login)
+- if @message.sender_id != User::SYSTEM_ACCOUNT_ID
+  = link_to "Ответить на это сообщение", message_new_path(@message.id), :class => 'button'
+= link_to "Удалить это сообщение", message_delete_path(@message.id), :method => :delete, :class => 'button'

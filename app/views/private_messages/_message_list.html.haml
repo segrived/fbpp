@@ -6,5 +6,8 @@
   - @messages.each do |message|
     %tr.message{:id => message.read ? 'read' : 'unread'}
       %td= link_to(message.title, read_message_path(message.id))
-      %td= link_to(message.sender.login, profile_path(message.sender.login))
+      - if message.sender_id == User::SYSTEM_ACCOUNT_ID
+        %td Система
+      -else
+        %td= link_to(message.sender.login, profile_path(message.sender.login))
       %td= message.sendtime.strftime('%e.%m.%Y, %H:%M')
