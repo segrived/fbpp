@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130329120616) do
+ActiveRecord::Schema.define(:version => 20130330033550) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "posttime"
+    t.boolean  "anonymously"
+    t.integer  "mark"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "departaments", :force => true do |t|
     t.string   "name"
@@ -19,6 +31,16 @@ ActiveRecord::Schema.define(:version => 20130329120616) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "lecturer_comments", :force => true do |t|
+    t.integer  "comment_id"
+    t.integer  "lecturer_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "lecturer_comments", ["comment_id"], :name => "index_lecturer_comments_on_comment_id"
+  add_index "lecturer_comments", ["lecturer_id"], :name => "index_lecturer_comments_on_lecturer_id"
 
   create_table "lecturers", :force => true do |t|
     t.integer  "user_id"

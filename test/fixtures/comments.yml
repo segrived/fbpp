@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  text: MyString
+  posttime: 2013-03-30 05:23:13
+  anonymously: false
+  mark: 1
+
+two:
+  user_id: 
+  text: MyString
+  posttime: 2013-03-30 05:23:13
+  anonymously: false
+  mark: 1

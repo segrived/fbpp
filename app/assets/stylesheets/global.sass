@@ -349,3 +349,34 @@ tr.message
     color: #555
     text-align: left
     font-size: 14px
+
+#add-comment-form
+  display: none
+
+#comment-block
+  h1#title
+    font-size: 18px
+    font-weight: bold
+  div.comment
+    border: 1px solid #ccc
+    padding: 7px
+    margin-bottom: 10px
+    p.title
+      span.left-c
+        float: left
+        font-weight: bold
+        color: #555
+        a
+          color: #222
+      span.right-c
+        float: right
+        font-weight: normal
+        color: #aaa
+    p.body
+      border-top: 1px dotted #ccc
+      padding-top: 5px
+      margin-top: 3px
+    &.positive
+      background-color: #e5ffe5
+    &.negative
+      background-color: #ffe5e5

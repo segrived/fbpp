@@ -78,10 +78,10 @@ class SessionsController < ApplicationController
   # PUT /my/change_password
   # Меняет пароль для текущего пользователя
   def change_password
+    @user = User.find(logged_user.id)
     render :change_password and return if request.get?
     if request.put? then
       current_password = params[:current_password]
-      @user = User.find(logged_user.id)
       # Если текущий пароль не совпадает с введённым
       unless User.authenticate(@user.login, current_password) then
         @user.errors[:base] << t('messages.invalid_current_password')

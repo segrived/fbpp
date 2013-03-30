@@ -17,6 +17,8 @@ Feedback::Application.routes.draw do
   get "users/:filter/(:page)" => "users#list", :as => :users, :page => /\d+/
 
 
+  post "add_lecturer_comment" => "comments#add_lecturer_comment"
+
   # Регистрация
   get "register" => "users#new"
   post "register" => "users#create"

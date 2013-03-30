@@ -53,6 +53,14 @@ module ApplicationHelper
     link_to link_text, link_path, :class => class_name, :id => link_id
   end
 
+  def comment_class_by_mark(mark)
+    case mark
+      when Comment::MARKS[:good] then 'positive'
+      when Comment::MARKS[:bad] then 'negative'
+      when Comment::MARKS[:neutral] then 'neutral'
+    end
+  end
+
   def confirm_level_text(sym)
     t("confirm_levels.#{Lecturer::CONFIRM_LEVELS.key(sym).to_s}")
   end
