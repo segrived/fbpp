@@ -70,24 +70,25 @@
         %div.comment{class: cls}
           %p.title
             %span.left-c= link_to lc.comment.user.login, profile_path(lc.comment.user.login)
-            %span.right-c= lc.comment.posttime
+            %span.right-c= lc.comment.posttime.strftime('%e.%m.%Y, %H:%M')
           %div{style: "clear: both;"}
           %p.body
             ="#{lc.comment.body}"
     
-    %p.button#show-comment-form Добавить комментарий
+    -if logged_user.student?
+      %p.button#show-comment-form Добавить комментарий
 
-    = form_tag :add_lecturer_comment, id: "add-comment-form" do
-      = hidden_field_tag :lecturer_id, Lecturer.get_by_user(@user).id
-      %p.regform-field
-        - mark_list = [['Негативный', 0], ['Нейтральный', 1], ['Позитивный', 2]]
-        = label_tag :mark, "Оттенок комментария", class: "inline"
-        = select_tag :mark, options_for_select(mark_list, Comment::MARKS[:neutral])
-      %p.regform-field
-        = text_area_tag :body, "", size: "60x9"
-      %p.regform-field
-        = submit_tag "Оставить комментарий преподавателю"
-        %span.button#cancel-add-comment Отменить
+      = form_tag :add_lecturer_comment, id: "add-comment-form" do
+        = hidden_field_tag :lecturer_id, Lecturer.get_by_user(@user).id
+        %p.regform-field
+          - mark_list = [['Негативный', 0], ['Нейтральный', 1], ['Позитивный', 2]]
+          = label_tag :mark, "Оттенок комментария", class: "inline"
+          = select_tag :mark, options_for_select(mark_list, Comment::MARKS[:neutral])
+        %p.regform-field
+          = text_area_tag :body, "", size: "60x9"
+        %p.regform-field
+          = submit_tag "Оставить комментарий преподавателю"
+          %span.button#cancel-add-comment Отменить
 
 -else
   .message-box.bred= t('messages.user_not_found', :login => params[:login])

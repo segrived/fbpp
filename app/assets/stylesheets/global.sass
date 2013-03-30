@@ -153,23 +153,25 @@ form p.form-field
 #header
   width: 100%
   height: 30px
-  background-color: #222
+  background-color: #000
   border-bottom: 1px solid #ddd
   box-shadow: 0 6px 6px -2px #aaa
   #headline 
     float: left
+    padding-left: 10px
     p
-      padding-left: 10px
       font-size: 24px
       font-weight: bold
-      font-family: "Verdana"
+      font-family: "Calibri"
       text-transform: uppercase
-      text-shadow: 0 0 2px #fff, 0 0 3px #aaa
       letter-spacing: 5px
-      @include transition(all, 0.3s, linear)
       a
-        color: #eeffee
-
+        text-shadow: 0 0 1px #9999ff, 0 0 2px #6666ff
+        color: #9999ff
+        @include transition(all, 0.3s, linear)
+        &:hover
+          text-shadow: 0 0 1px #99ff99, 0 0 2px #66ff66
+          color: #99ff99
   #menu
     float: right
     padding-right: 10px
