@@ -116,7 +116,7 @@ class SessionsController < ApplicationController
     end
     # Выход из системы
     clear_user_session
-    redirect_to :root, :notice => "Ваш аккаунт был успешно удалён"
+    redirect_to :root, :notice => t('messages.account_has_been_removed_succ')
   end
 
 end
