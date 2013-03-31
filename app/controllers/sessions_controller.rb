@@ -105,6 +105,9 @@ class SessionsController < ApplicationController
 
   # DELETE /remove_account
   def remove
+    if logged_user.admin? then
+      redirect_to :root, :notice => t('messages.cant_delete_admin_account') and return
+    end
     user = User.find(logged_user.id)
     # Удаление дополнительных данных
     if user.student? then

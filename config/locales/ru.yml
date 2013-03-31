@@ -76,6 +76,7 @@ ru:
     departament_havnt_lecturers: Преподавателей на данной кафедре не зарегистрированно
     confirm_remove_account: Вы действительно хотите удалить этот аккаунт? Удалённый аккаунт невозможно будет восстановить
     account_has_been_removed_succ: Ваш аккаунт был успешно удалён
+    cant_delete_admin_account: Нельзя удалить аккаунт администратора
 
   will_paginate:
     previous_label: <<

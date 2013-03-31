@@ -14,8 +14,8 @@ Feedback::Application.routes.draw do
   get "create_admin" => "users#create_admin_account"
   post "create_admin" => "users#create_admin_account"
   
-  get "users/:filter/(:page)" => "users#list", :as => :users, :page => /\d+/
 
+  get "users/:filter/(:page)" => "users#list", :as => :users, :page => /\d+/
 
   post "add_lecturer_comment" => "comments#add_lecturer_comment"
 
