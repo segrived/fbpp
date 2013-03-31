@@ -32,6 +32,8 @@ Feedback::Application.routes.draw do
 
   resources :specialties
 
+  delete "remove_account" => "sessions#remove"
+
   # Личные сообщения
   get "message/new/(:login)" => "private_messages#new", :as => :message_new, :login => /[A-Za-z][\w\d]+/
   get "message/new/(:mid)" => "private_messages#new", :as => :message_new, :mid => /[\d]+/

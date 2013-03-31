@@ -16,6 +16,10 @@ module ApplicationHelper
     User.find(session[:user_id])
   end
 
+  def clear_user_session
+    session[:user_id] = nil
+  end
+
   # Проверяет наличие аккаунта администратора в системе
   # * *Returns* :
   # Булевое значение, определяющее, создан ли уже аккаунт администратора или нет

@@ -35,6 +35,7 @@ class PrivateMessagesController < ApplicationController
       unless @message.read then
         @message.update_attributes({read: true})
       end
+    # Елси сообщение исходящее
     elsif logged_user.id == @message.sender_id
       @type = 'outbox'
     else
@@ -76,19 +77,21 @@ class PrivateMessagesController < ApplicationController
           redirect_to :inbox and return
         end
         @login = pm.sender.login
-        # В случае ответа на существующее сообщение подставляется заголовок
-        @private_message.title = "Re: #{pm.title}"
+        m = /(Re: )*(?<topic>.*)/.match(pm.title)
+        @private_message.title = "Re: #{m[:topic]}"
       end
     elsif request.post?
       @private_message = PrivateMessage.new(params[:private_message])
+      # Получатель сообщения
+      receiver = User.where(login: request[:login]).first
       # Нельзя отправить сообщение несуществующему пользователю
-      unless receiver = User.find_by_login(request[:login]) then
+      if ! receiver || receiver.removed  then
         @private_message.errors[:base] << t('messages.selected_user_not_exists')
         @login = request[:login]
         render 'new' and return
       end
-      # Нельзя отправиль сообщение самому себе
-      if(receiver.id == logged_user.id) then
+      # Нельзя отправить сообщение самому себе
+      if receiver.id == logged_user.id then
         @private_message.errors[:base] << t('messages.send_message_self')
         render 'new' and return
       end

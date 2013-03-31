@@ -61,6 +61,7 @@ class UsersController < ApplicationController
     if filter != :all
       @users = @users.where("account_type = ?", User::ACCTYPES[filter])
     end
+    @users = @users.where(removed: false)
   end
 
 end

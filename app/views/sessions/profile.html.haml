@@ -18,77 +18,85 @@
 
 
 
--if @user
+- if @user
   %h1#page-title= t('titles.profile', login: @user.login)
 
-  / Полное имя
-  - if @user.lecturer?
+  - unless @user.removed
+
+    / Полное имя
+    - if @user.lecturer?
+      %p.profile-field
+        %b= t('.fullname') << ": "
+        %span= Lecturer.get_by_user(@user).get_full_name
+
+    / Тип аккаунта
     %p.profile-field
-      %b= t('.fullname') << ": "
-      %span= Lecturer.get_by_user(@user).get_full_name
+      %b= User.human_attribute_name('account_type') << ": "
+      %span= t("account_types.#{User::ACCTYPES.index(@user.account_type)}")
 
-  / Тип аккаунта
-  %p.profile-field
-    %b= User.human_attribute_name('account_type') << ": "
-    %span= t("account_types.#{User::ACCTYPES.index(@user.account_type)}")
+    / Дполнительный блок с информацией
+    - if @user.student?
+      = render partial: 'student_profile', locals: { data: Student.get_by_user(@user) }
+    - elsif @user.lecturer?
+      = render partial: 'lecturer_profile', locals: { data: Lecturer.get_by_user(@user) }
 
-  / Дполнительный блок с информацией
-  - if @user.student?
-    = render partial: 'student_profile', locals: { data: Student.get_by_user(@user) }
-  - elsif @user.lecturer?
-    = render partial: 'lecturer_profile', locals: { data: Lecturer.get_by_user(@user) }
+    / Если пользователь авторизирован
+    - if logged?
+      / Если он просматривает чужой профиль - отобразить кнопку отправки личного сообщения
+      - if @user.id != logged_user.id
+        = link_to t('.send_private_message'), message_new_path(@user.login), :class => 'button'
+      - else
+        / Ссылка на страницу изменения пароля
+        = link_to t('.change_password_link'), :my_change_password, class: 'button'
+        / Если пользователь студент или преподаватель - показать ссылку на редактирование доп. данных
+        - if User.in_user_group?(@user)
+          = link_to t('.edit_options_link'), :my_options, class: 'button'
 
-  / Если пользователь авторизирован
-  - if logged?
-    / Если он просматривает чужой профиль - отобразить кнопку отправки личного сообщения
-    - if @user.id != logged_user.id
-      = link_to t('.send_private_message'), message_new_path(@user.login), :class => 'button'
+        = link_to t('.remove_account'), :remove_account, class: 'button bg-lred',
+          method: 'delete', confirm: t("messages.confirm_remove_account")
+      / Если авторизированные пользователь имеет права администратора
+      - if can_admin?
+        %hr/
+        %p Функции администратора
+        - link_text = @user.banned? ? "Разбанить" : "Забанить"
+        - banned = @user.banned? ? "unban" : "ban"
+        = link_to(link_text, { :controller => "admin/users", :action => "ban", :id => @user.id, :banned => banned }, :id => 'ban_user_button', :method => 'put', :remote => true, :class => 'button')
     - else
-      / Ссылка на страницу изменения пароля
-      = link_to t('.change_password_link'), :my_change_password, class: 'button'
-      / Если пользователь студент или преподаватель - показать ссылку на редактирование доп. данных
-      - if User.in_user_group?(@user)
-        = link_to t('.edit_options_link'), :my_options, class: 'button'
-    / Если авторизированные пользователь имеет права администратора
-    - if can_admin?
+      %p
+        Чтобы отправить этому пользователю сообщение, вам необходимо
+        = link_to "авторизироваться", :login
+
+    - if @user.lecturer?
       %hr/
-      %p Функции администратора
-      - link_text = @user.banned? ? "Разбанить" : "Забанить"
-      - banned = @user.banned? ? "unban" : "ban"
-      = link_to(link_text, { :controller => "admin/users", :action => "ban", :id => @user.id, :banned => banned }, :id => 'ban_user_button', :method => 'put', :remote => true, :class => 'button')
+      %div#comment-block
+        %h1#title Последние коммментарии
+        - Lecturer.get_by_user(@user).lecturer_comments.joins(:comment).order('comments.posttime DESC').limit(5).each do |lc|
+          - cls = comment_class_by_mark(lc.comment.mark)
+          %div.comment{class: cls}
+            %p.title
+              %span.left-c= link_to lc.comment.user.login, profile_path(lc.comment.user.login)
+              %span.right-c= lc.comment.posttime.strftime('%e.%m.%Y, %H:%M')
+            %div{style: "clear: both;"}
+            %p.body
+              ="#{lc.comment.body}"
+      
+      -if logged_user.student?
+        %p.button#show-comment-form Добавить комментарий
+
+        = form_tag :add_lecturer_comment, id: "add-comment-form" do
+          = hidden_field_tag :lecturer_id, Lecturer.get_by_user(@user).id
+          %p.regform-field
+            - mark_list = [['Негативный', 0], ['Нейтральный', 1], ['Позитивный', 2]]
+            = label_tag :mark, "Тип комментария", class: "inline"
+            = select_tag :mark, options_for_select(mark_list, Comment::MARKS[:neutral])
+          %p.regform-field
+            = text_area_tag :body, "", size: "60x9"
+          %p.regform-field
+            = submit_tag "Оставить комментарий преподавателю"
+            %span.button#cancel-add-comment Отменить
+
   - else
-    %p
-      Чтобы отправить этому пользователю сообщение, вам необходимо
-      = link_to "авторизироваться", :login
-
-  - if @user.lecturer?
-    %hr/
-    %div#comment-block
-      %h1#title Последние коммментарии
-      - Lecturer.get_by_user(@user).lecturer_comments.joins(:comment).order('comments.posttime DESC').limit(5).each do |lc|
-        - cls = comment_class_by_mark(lc.comment.mark)
-        %div.comment{class: cls}
-          %p.title
-            %span.left-c= link_to lc.comment.user.login, profile_path(lc.comment.user.login)
-            %span.right-c= lc.comment.posttime.strftime('%e.%m.%Y, %H:%M')
-          %div{style: "clear: both;"}
-          %p.body
-            ="#{lc.comment.body}"
-    
-    -if logged_user.student?
-      %p.button#show-comment-form Добавить комментарий
-
-      = form_tag :add_lecturer_comment, id: "add-comment-form" do
-        = hidden_field_tag :lecturer_id, Lecturer.get_by_user(@user).id
-        %p.regform-field
-          - mark_list = [['Негативный', 0], ['Нейтральный', 1], ['Позитивный', 2]]
-          = label_tag :mark, "Оттенок комментария", class: "inline"
-          = select_tag :mark, options_for_select(mark_list, Comment::MARKS[:neutral])
-        %p.regform-field
-          = text_area_tag :body, "", size: "60x9"
-        %p.regform-field
-          = submit_tag "Оставить комментарий преподавателю"
-          %span.button#cancel-add-comment Отменить
+    .message-box.bred= t("Этот аккаунт был удалён")
 
 -else
   .message-box.bred= t('messages.user_not_found', :login => params[:login])

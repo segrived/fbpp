@@ -15,7 +15,11 @@ class SessionsController < ApplicationController
     login, password = params[:login], params[:password]
     # Если логин или пароль не совпали с правильными значениями
     unless user = User.authenticate(login, password) then
-      redirect_to :login, :notice => t('messages.bad_login') and return
+      redirect_to :login, notice: t('messages.bad_login') and return
+    end
+    # Если аккаунт пользователя удалён
+    if user.removed then
+      redirect_to :login, notice: t('messages.removed_account') and return
     end
     # Ели пользователь забанен
     if user.banned then
@@ -28,7 +32,7 @@ class SessionsController < ApplicationController
 
   # GET /logout
   def logout
-    session[:user_id] = nil
+    clear_user_session
     redirect_to :root
   end
 
@@ -76,7 +80,7 @@ class SessionsController < ApplicationController
   # Отображает форму смены пароля
   #
   # PUT /my/change_password
-  # Меняет пароль для текущего пользователя
+  # Меняет пароль для авторизированного пользователя
   def change_password
     @user = User.find(logged_user.id)
     render :change_password and return if request.get?
@@ -97,6 +101,22 @@ class SessionsController < ApplicationController
         render :change_password
       end
     end
+  end
+
+  # DELETE /remove_account
+  def remove
+    user = User.find(logged_user.id)
+    user.removed = true
+    user.save
+    # Удаление дополнительных данных
+    if user.student? then
+      Student.get_by_user(user).destroy
+    elsif user.lecturer? then
+      Lecturer.get_by_user(user).destroy
+    end
+    # Выход из системы
+    clear_user_session
+    redirect_to :root, :notice => "Ваш аккаунт был успешно удалён"
   end
 
 end

@@ -61,6 +61,7 @@ ru:
   messages:
     not_logged: Вы не вошли
     bad_login: Неверный логин или пароль
+    removed_account: Этот аккаунт был удален из системы
     unauthorized: Вы должны войти в систему для совершения данного действия
     user_not_found: "Пользователь %{login} не найден"
     banned: Данный аккаунт был отключен. За дополнительной информацией обратитесь к администрации ресурса.
@@ -73,6 +74,7 @@ ru:
     selected_user_not_exists: Указанного пользователя не существует
     send_message_self: Нельзя отправить сообщение самому себе
     departament_havnt_lecturers: Преподавателей на данной кафедре не зарегистрированно
+    confirm_remove_account: Вы действительно хотите удалить этот аккаунт? Удалённый аккаунт невозможно будет восстановить
 
   will_paginate:
     previous_label: <<
@@ -90,6 +92,7 @@ ru:
       not_specified_f: Не указана
       not_specified_m: Не указан
       edit_options_link: Редактировать данные
+      remove_account: Удалить аккаунт
       change_password_link: Сменить пароль
       send_private_message: Отправить личное сообщение
     change_password:
@@ -119,7 +122,7 @@ ru:
       departaments: кафедры
       specialties: специальности
       users: пользователи
-      messages: лс
+      messages: сообщения
       register: регистрация
       login: войти
       logout: выйти
