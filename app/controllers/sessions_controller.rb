@@ -106,16 +106,13 @@ class SessionsController < ApplicationController
   # DELETE /remove_account
   def remove
     user = User.find(logged_user.id)
-    user.removed = true
-    user.account_type = nil
-    user.password_hash = user.password_salt = nil
-    user.save
     # Удаление дополнительных данных
     if user.student? then
       Student.get_by_user(user).destroy
     elsif user.lecturer? then
       Lecturer.get_by_user(user).destroy
     end
+    user.update_attributes({ removed: true, account_type: nil })
     # Выход из системы
     clear_user_session
     redirect_to :root, :notice => t('messages.account_has_been_removed_succ')

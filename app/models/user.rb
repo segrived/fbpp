@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :login, :banned, :disabled, :regdate, :account_type
+  attr_accessible :login, :banned, :disabled, :regdate, :account_type, :removed
   attr_accessible :name, :surname, :patronymic
   attr_accessible :password_hash, :password_salt, :password, :password_confirmation
 
@@ -33,7 +33,8 @@ class User < ActiveRecord::Base
     :if => Proc.new { |a| a.lecturer? }
   # Тип аккаунта: либо студент, либо преподаватель
   validates :account_type,
-    :inclusion => { :in => ACCTYPES.values }
+    :inclusion => { :in => ACCTYPES.values },
+    :allow_nil => true
   # Пароль должен быть длиной от 6 до 30 символов и совпадать с подтверждением
   validates :password,
     :length => { :in => 6 .. 30 },
