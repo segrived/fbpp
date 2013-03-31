@@ -107,6 +107,8 @@ class SessionsController < ApplicationController
   def remove
     user = User.find(logged_user.id)
     user.removed = true
+    user.account_type = nil
+    user.password_hash = user.password_salt = nil
     user.save
     # Удаление дополнительных данных
     if user.student? then

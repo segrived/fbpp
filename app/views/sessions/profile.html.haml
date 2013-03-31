@@ -80,7 +80,7 @@
             %p.body
               ="#{lc.comment.body}"
       
-      -if logged_user.student?
+      - if logged? && logged_user.student?
         %p.button#show-comment-form Добавить комментарий
 
         = form_tag :add_lecturer_comment, id: "add-comment-form" do
