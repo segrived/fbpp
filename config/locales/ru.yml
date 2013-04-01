@@ -77,6 +77,7 @@ ru:
     confirm_remove_account: Вы действительно хотите удалить этот аккаунт? Удалённый аккаунт невозможно будет восстановить
     account_has_been_removed_succ: Ваш аккаунт был успешно удалён
     cant_delete_admin_account: Нельзя удалить аккаунт администратора
+    comment_has_been_removed: Комментарий был успешно удалён
 
   will_paginate:
     previous_label: <<

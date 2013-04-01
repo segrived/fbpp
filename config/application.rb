@@ -21,7 +21,7 @@ module Feedback
     # config.autoload_paths += %W(#{config.root}/extras)
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-    # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'Pacific Time (US & Canada)'
     # config.active_record.schema_format = :sql
   end
 end
