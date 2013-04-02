@@ -1,0 +1,11 @@
+= form_tag :add_lecturer_comment, id: "add-comment-form", :method => 'post' do
+  = hidden_field_tag :lecturer_id, Lecturer.get_by_user(@user).id
+  %p.regform-field
+    - mark_list = [['Негативный', 0], ['Нейтральный', 1], ['Позитивный', 2]]
+    = label_tag :mark, "Тип комментария", class: "inline"
+    = select_tag :mark, options_for_select(mark_list, Comment::MARKS[:neutral])
+  %p.regform-field
+    = text_area_tag :body, "", size: "60x9"
+  %p.regform-field
+    = submit_tag "Оставить комментарий преподавателю"
+    %span.button#cancel-add-comment Отменить

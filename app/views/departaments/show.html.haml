@@ -4,11 +4,7 @@
 
 %p= simple_format @departament.description
 
--if logged? && can_admin?
-  %p
-    = link_to "Редактировать информацию о кафедре",
-      edit_departament_path(@departament.id)
-  %p
-    = link_to "Удалить информацию о кафедре", departament_path(@departament.id),
-      :method => :delete,
-      :confirm => "Вы уверены, что хотите удалить информацию об этой кафедре?"
+-if can_admin?
+  = link_to "Редактировать информацию о кафедре", edit_departament_path(@departament.id), class: 'button'
+  = link_to "Удалить информацию о кафедре", departament_path(@departament.id),
+    method: :delete, confirm: "Вы уверены, что хотите удалить информацию об этой кафедре?", class: 'button'

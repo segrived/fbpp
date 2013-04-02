@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     redirect_to :back
   end
 
-  # DELETE /lecturer/comments/delete/:comment_id
+  # DELETE /lecturer/comments/:comment_id/delete
   def delete_lecturer_comment
     lc = LecturerComment.where(id: params[:comment_id]).first
     # Если указанный комментарий не найден

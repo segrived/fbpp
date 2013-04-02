@@ -63,35 +63,13 @@
       %hr/
       %div#comment-block
         %h1#title Последние коммментарии
-        - Lecturer.get_by_user(@user).lecturer_comments.joins(:comment).order('comments.posttime DESC').limit(5).each do |lc|
-          - cls = comment_class_by_mark(lc.comment.mark)
-          %div.comment{class: cls}
-            %p.title
-              %span.left-c= link_to lc.comment.user.login, profile_path(lc.comment.user.login)
-              %span.right-c
-                =lc.comment.posttime.strftime('%0e.%0m.%Y, %H:%M')
-                - if can_admin? || lc.comment.user_id == logged_user.id
-                  = link_to "[X]", delete_lecturer_comment_path(lc.id), method: 'delete'
-            %div{style: "clear: both;"}
-            %p.body
-              ="#{lc.comment.body}"
-        %p
-          = link_to "Показать все комментарии", lecturer_comments_path(Lecturer.get_by_user(@user).id)
+        - @user.get_info.lecturer_comments.joins(:comment).order('comments.posttime DESC').limit(5).each do |lc|
+          = render partial: 'shared/lecturer_comment', locals: { lc: lc }
+      = link_to "Показать все комментарии", lecturer_comments_path(Lecturer.get_by_user(@user).id), class: 'button'
       
       - if logged? && logged_user.student?
         %p.button#show-comment-form Добавить комментарий
-
-        = form_tag :add_lecturer_comment, id: "add-comment-form", :method => 'post' do
-          = hidden_field_tag :lecturer_id, Lecturer.get_by_user(@user).id
-          %p.regform-field
-            - mark_list = [['Негативный', 0], ['Нейтральный', 1], ['Позитивный', 2]]
-            = label_tag :mark, "Тип комментария", class: "inline"
-            = select_tag :mark, options_for_select(mark_list, Comment::MARKS[:neutral])
-          %p.regform-field
-            = text_area_tag :body, "", size: "60x9"
-          %p.regform-field
-            = submit_tag "Оставить комментарий преподавателю"
-            %span.button#cancel-add-comment Отменить
+        = render partial: 'shared/add_lecturer_comment'
 
   - else
     .message-box.bred= t("Этот аккаунт был удалён")

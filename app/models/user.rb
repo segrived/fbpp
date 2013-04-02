@@ -57,6 +57,15 @@ class User < ActiveRecord::Base
     return ACCTYPES.slice(:student, :lecturer).value?(user.account_type)
   end
 
+  # Возвращает дополнительную информацию по аккаунту
+  def get_info
+    case self.account_type
+      when ACCTYPES[:lecturer] then Lecturer.where(user_id: self.id).first
+      when ACCTYPES[:student] then Student.where(user_id: self.id).first
+      else nil
+    end
+  end
+
   # Определяет функции, выполняемые во время создания записи нового пользователя
   before_create :set_register_date, :give_access
   before_save :encrypt_password
