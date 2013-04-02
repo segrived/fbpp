@@ -2,7 +2,7 @@
 
 %html
   %head
-    %title Feedback++
+    %title λFeedback
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     :coffeescript
@@ -13,7 +13,7 @@
     / Шапка сайта
     #header
       #headline
-        %p= link_to "Feedback++", :root
+        %p= link_to "λFξξḐBΔCK⅗", :root
       #menu
         %ul
           - unless exists_admin_account?
@@ -40,10 +40,10 @@
     / Подвал сайта
     #footer
       %p#left-text
-        Feedback++, 2013
+        λFeedback, 2013
         %span#links
           = nav_link t('layout.menu.about'), :about
           = nav_link t('layout.menu.faq'), :faq
       %p#right-text
         Команда разработчиков
-        %b «Quart»
+        %b «λQuart»

@@ -19,3 +19,11 @@ jQuery ->
         $('#unread-messages-count').show().text('(' + data.count + ')')
 
   setIntervalAndExecute(show_new_messages, 10000)
+
+  $("#show-comment-form").click ->
+    $(@).hide()
+    $("#add-comment-form").show()
+    $('body').scrollTo('#add-comment-form', 300)
+  $("#cancel-add-comment").click ->
+    $("#add-comment-form").hide()
+    $("#show-comment-form").show()

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  key: MyString
+  user: 
+  expiry_date: 2013-04-02 04:42:43
+
+two:
+  key: MyString
+  user: 
+  expiry_date: 2013-04-02 04:42:43

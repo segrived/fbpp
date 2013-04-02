@@ -17,8 +17,9 @@ Feedback::Application.routes.draw do
 
   get "users/:filter/(:page)" => "users#list", :as => :users, :page => /\d+/
 
-  post "add_lecturer_comment" => "comments#add_lecturer_comment"
-  delete "lecturer/comments/delete/:comment_id" => "comments#delete_lecturer_comment", :as => :delete_lecturer_comment
+  get "lecturer/:lid/comments" => "sessions#lecturer_comments", :as => :lecturer_comments
+  post "lecturer/comments/add" => "comments#add_lecturer_comment", :as => :add_lecturer_comment
+  delete "lecturer/comments/:comment_id/delete" => "comments#delete_lecturer_comment", :as => :delete_lecturer_comment
 
   # Регистрация
   get "register" => "users#new"
@@ -53,6 +54,11 @@ Feedback::Application.routes.draw do
   end
 
   namespace :api do
+    get "get_key" => "api#get_key"
+    get "profile" => "api#profile"
+    get "received_messages" => "api#received_messages"
+    get "get_users" => "api#get_users"
+    get "get_received_comments" => "api#get_received_comments"
     get "users/get_all"
     get "users/get_user_by_id/:id" => "users#get_user_by_id"
     get "users/get_lecturer_by_id/:id" => "users#get_lecturer_by_id"

@@ -8,15 +8,6 @@
       else
         alert resp.error
 
-    $("#show-comment-form").click ->
-      $(@).hide()
-      $("#add-comment-form").show()
-      $('body').scrollTo('#add-comment-form', 300)
-    $("#cancel-add-comment").click ->
-      $("#add-comment-form").hide()
-      $("#show-comment-form").show()
-
-
 - if @user
   %h1#page-title= t('titles.profile', login: @user.login)
 
@@ -84,11 +75,13 @@
             %div{style: "clear: both;"}
             %p.body
               ="#{lc.comment.body}"
+        %p
+          = link_to "Показать все комментарии", lecturer_comments_path(Lecturer.get_by_user(@user).id)
       
       - if logged? && logged_user.student?
         %p.button#show-comment-form Добавить комментарий
 
-        = form_tag :add_lecturer_comment, id: "add-comment-form" do
+        = form_tag :add_lecturer_comment, id: "add-comment-form", :method => 'post' do
           = hidden_field_tag :lecturer_id, Lecturer.get_by_user(@user).id
           %p.regform-field
             - mark_list = [['Негативный', 0], ['Нейтральный', 1], ['Позитивный', 2]]

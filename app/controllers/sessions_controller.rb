@@ -121,4 +121,11 @@ class SessionsController < ApplicationController
     redirect_to :root, :notice => t('messages.account_has_been_removed_succ')
   end
 
+  def lecturer_comments
+    #  Список комментариев для вывода
+    @comments = Lecturer.find(params[:lid]).lecturer_comments.joins(:comment).order('comments.posttime DESC')
+    @lecturer_id = params[:lid]
+    render 'lecturer_comments'
+  end
+
 end
