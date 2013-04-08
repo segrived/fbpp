@@ -1,6 +1,7 @@
 %h1#page-title= @departament.name
 
-= link_to "Список преподавателей на этой кафедре", :departament_lecturers
+= link_to "Список преподавателей на этой кафедре", :departament_lecturers, class: "button"
+= link_to "Список дисциплин на этой кафедре", :departament_subjects, class: "button"
 
 %p= simple_format @departament.description
 

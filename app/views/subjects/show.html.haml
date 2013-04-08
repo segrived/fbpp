@@ -1,0 +1,8 @@
+%h1#page-title= @subject.name
+
+%p= simple_format @subject.description
+
+- if can_admin?
+  %p
+    = link_to "Редактировать информацию о специальности",
+      edit_subject_path(@subject.id)

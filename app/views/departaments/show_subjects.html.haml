@@ -1,0 +1,8 @@
+%h1#page-title= t('titles.departament_subjects')
+
+- unless @subjects.empty?
+  %ul
+    - @subjects.each do |subject|
+      %li= subject.name
+- else
+  .message-box.bred Дисциплин на данной кафедре нет

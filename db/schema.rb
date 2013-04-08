@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130402014243) do
+ActiveRecord::Schema.define(:version => 20130408074922) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "key"
@@ -116,6 +116,16 @@ ActiveRecord::Schema.define(:version => 20130402014243) do
 
   add_index "students", ["specialty_id"], :name => "index_students_on_specialty_id"
   add_index "students", ["user_id"], :name => "index_students_on_user_id"
+
+  create_table "subjects", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "departament_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "subjects", ["departament_id"], :name => "index_subjects_on_departament_id"
 
   create_table "users", :force => true do |t|
     t.string   "login"

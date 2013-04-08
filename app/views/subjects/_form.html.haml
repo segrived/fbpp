@@ -1,0 +1,14 @@
+= render :partial => 'shared/errors', :locals => { :obj => @subject }
+
+= form_for @subject do |f|
+  %p.form-field
+    = f.label :name, Subject.human_attribute_name("name")
+    = f.text_field :name
+  %p.form-field
+    = f.label :description, Subject.human_attribute_name("description")
+    = f.text_field :description
+  %p.form-field
+    = f.label :departament_id, Subject.human_attribute_name("departament")
+    = f.select :departament_id, options_from_collection_for_select(Departament.all, :id, :name)
+  %p.form-field
+    = f.submit

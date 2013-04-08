@@ -31,6 +31,10 @@ ru:
       departament:
         name: Название
         description: Описание
+      subject:
+        name: Название
+        description: Описание
+        departament: Кафедра
 
   helpers:
     submit:
@@ -41,6 +45,9 @@ ru:
         update: Сохранить изменения
       specialty:
         create: Добавить специальность
+        update: Сохранить изменения
+      subject:
+        create: Добавить дисциплину
         update: Сохранить изменения
 
   account_types:
@@ -122,6 +129,7 @@ ru:
       admin: админка
       profile: профиль
       create_admin: создайте аккаунт администратора
+      subjects: дисциплины
       departaments: кафедры
       specialties: специальности
       users: пользователи
@@ -145,6 +153,7 @@ ru:
     departament_index: Список кафедр
     departament_new: Добавление кафедры
     departament_lecturers: Список преподавателей на кафедре
+    departament_subjects: Список дисциплин на кафедре
     specialty_new: Добавление специальности
     specialty_index: Список специальностей
     specialty_edit: Редактирование специальности

@@ -1,6 +1,7 @@
 class DepartamentsController < ApplicationController
 
-  before_filter :require_admin_rights, :except => [:index, :show, :show_lecturers]
+  before_filter :require_admin_rights, :except =>
+    [:index, :show, :show_lecturers, :show_subjects]
 
   # GET /departaments
   # Отображает страницу со списком кафедр
@@ -81,6 +82,12 @@ class DepartamentsController < ApplicationController
     rescue ActiveRecord::RecordNotFound => e
       redirect_to :departaments
     end
+  end
+
+  # GET /departaments/:id/subjects
+  # Отображает страницу со списком дисциплин
+  def show_subjects
+    @subjects = Departament.find(params[:id]).subjects
   end
 
 end

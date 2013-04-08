@@ -8,7 +8,7 @@ class SpecialtiesController < ApplicationController
     @specialties = Specialty.order('name ASC').all
   end
 
-  # GET /specialties/1
+  # GET /specialties/:id
   # Отображат информацию по выбранной специальности
   def show
     begin
@@ -24,7 +24,7 @@ class SpecialtiesController < ApplicationController
     @specialty = Specialty.new
   end
 
-  # GET /specialties/1/edit
+  # GET /specialties/:id/edit
   # Отображает форму редактирования специальности
   def edit
     begin
@@ -45,7 +45,7 @@ class SpecialtiesController < ApplicationController
     end
   end
 
-  # PUT /specialties/1
+  # PUT /specialties/:id
   # Обновляет информацию о специальности
   def update
     begin
@@ -60,7 +60,7 @@ class SpecialtiesController < ApplicationController
     end
   end
 
-  # DELETE /specialties/1
+  # DELETE /specialties/:id
   # Удаляет информию о специальности
   def destroy
     begin

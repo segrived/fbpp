@@ -1,0 +1,12 @@
+%h1#page-title Список дисциплин
+
+- unless @subjects.empty?
+  %ul
+    - @subjects.each do |subject|
+      %li= link_to subject.name, subject_path(subject.id)
+- else
+  .message-box.bred Информация о дисциплинах ещё не была загружена в систему.
+
+- if can_admin?
+  %hr/
+  = link_to "Добавить дициплину", :new_subject

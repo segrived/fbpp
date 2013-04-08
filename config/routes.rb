@@ -28,11 +28,13 @@ Feedback::Application.routes.draw do
   get "index" => "welcome#index"
   get "faq" => "welcome#faq"
   get "about" => "welcome#about"
+  get "lambda" => "welcome#lambda"
 
   resources :departaments
   get "departaments/:id/lecturers" => "departaments#show_lecturers", :as => :departament_lecturers
-
+  get "departaments/:id/subjects" => "departaments#show_subjects", :as => :departament_subjects
   resources :specialties
+  resources :subjects
 
   delete "remove_account" => "sessions#remove"
 
