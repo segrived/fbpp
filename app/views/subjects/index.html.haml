@@ -4,6 +4,8 @@
   %ul
     - @subjects.each do |subject|
       %li= link_to subject.name, subject_path(subject.id)
+      - if logged? && logged_user.lecturer? && logged_user.get_info.subject_subscriptions.where(subject_id: subject.id).count == 0
+        %p= link_to "подписаться", subject_subscribe_path(subject.id), method: "post", class: "button"
 - else
   .message-box.bred Информация о дисциплинах ещё не была загружена в систему.
 

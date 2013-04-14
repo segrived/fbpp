@@ -28,3 +28,8 @@
       - options = options_for_select(Lecturer::CONFIRM_LEVELS.map {|k, v| [t("confirm_levels.#{k}"), v]}, data.confirm_level)
       = select_tag :confirm_level, options
       = submit_tag "Подтвердить изменение уровня подтверждения аккаунта"
+
+%p.profile-field
+  %b Подписан на следующие дисциплины:
+  - data.subject_subscriptions.each do |sub|
+    = link_to sub.subject.name, subject_path(sub.subject.id), class: "button"

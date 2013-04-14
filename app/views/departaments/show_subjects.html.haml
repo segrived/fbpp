@@ -3,6 +3,6 @@
 - unless @subjects.empty?
   %ul
     - @subjects.each do |subject|
-      %li= subject.name
+      %li= link_to subject.name, subject_path(subject.id)
 - else
   .message-box.bred Дисциплин на данной кафедре нет

@@ -11,11 +11,7 @@ class SpecialtiesController < ApplicationController
   # GET /specialties/:id
   # Отображат информацию по выбранной специальности
   def show
-    begin
-      @specialty = Specialty.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to :specialties
-    end
+    @specialty = Specialty.find(params[:id])
   end
 
   # GET /specialties/new
@@ -27,18 +23,14 @@ class SpecialtiesController < ApplicationController
   # GET /specialties/:id/edit
   # Отображает форму редактирования специальности
   def edit
-    begin
-      @specialty = Specialty.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to :specialties
-    end
+    @specialty = Specialty.find(params[:id])
   end
 
   # POST /specialties
   # Добавляет информацию о новой специальности в БД
   def create
     @specialty = Specialty.new(params[:specialty])
-    if @specialty.save
+    if @specialty.save then
       redirect_to :specialties and return
     else
       render 'new'

@@ -1,35 +1,45 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
   include ApplicationHelper
  
+  rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+  rescue_from ActionController::RoutingError, :with => :render_404
+
+  protected
+
+  def render_403
+    respond_to do |format|
+      format.html { render "errors/403", :status => 403 }
+      format.json { render json: { error: true, message: "403 Not authorized" } }
+    end
+  end
+
+  def render_404
+    respond_to do |format|
+      format.html { render "errors/404", :status => 404 }
+      format.json { render json: { error: true, message: "404 Not Found" } }
+    end
+  end
+
   private
 
   # Необходимо не иметь аккаунта администратора
   def shouldnt_have_admin_account
-    if exists_admin_account? then
-      redirect_to :root, :notice => t('messages.invalid_operation')
-    end
+      render_403 if exists_admin_account?
   end
 
   # Необходимо быть неавторизированным
   def require_not_auth
-    if logged? then
-      redirect_to :root, :notice => t('messages.invalid_operation')
-    end
+    render_403 if logged?
   end
 
   # Необходима авторизация
   def require_auth
-    unless logged? then
-      redirect_to :login, :notice => t('messages.unauthorized')
-    end
+    render_403 unless logged?
   end
 
   # Необходимо наличие прав администратора
   def require_admin_rights
-    unless can_admin? then
-      redirect_to :root, :notice => t('messages.invalid_operation')
-    end
+    render_403 unless can_admin?
   end
 end

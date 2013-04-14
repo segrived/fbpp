@@ -45,6 +45,7 @@ class SessionsController < ApplicationController
   end
 
   # GET /my/options
+  # POST /my/options
   # Отображает личный кабинет
   def options
     # Дополнительные опции доступны только для студентов и преподавателей

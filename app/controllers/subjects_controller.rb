@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
 
-  # before_filter :require_admin_rights
+  before_filter :require_admin_rights, :except => [:index, :show, :subscribe]
 
   # GET /subjects
   # Отображает страницу со списком дисциплин
@@ -16,7 +16,9 @@ class SubjectsController < ApplicationController
   # POST /subjects
   def create
     @subject = Subject.new(params[:subject])
-    unless @subject.save then
+    if @subject.save then
+      redirect_to :subjects and return
+    else
       render 'new'
     end
   end
@@ -43,6 +45,21 @@ class SubjectsController < ApplicationController
   # GET /subjects/:id
   def show
     @subject = Subject.find(params[:id])
+  end
+
+  # POST /subjects/subscribe/:id
+  def subscribe
+    unless logged_user.lecturer? then
+        redirect_to :root and return
+    end
+    @subs = SubjectSubscription.new(
+      lecturer_id: logged_user.get_info.id,
+      subject_id: params[:id])
+    @subs.save
+    redirect_to :back
+  end
+
+  def unsubscribe
   end
 
 end

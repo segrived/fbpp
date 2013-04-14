@@ -1,4 +1,4 @@
-worker_processes 4
+worker_processes 2
 APP_PATH = "/var/www/feedback"
 working_directory APP_PATH
 listen "/tmp/.sock", :backlog => 64
