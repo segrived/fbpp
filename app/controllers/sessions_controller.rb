@@ -25,7 +25,8 @@ class SessionsController < ApplicationController
     if user.banned then
       redirect_to :login, :notice => t('messages.banned') and return
     end
-    # В случае успешной авторизации запоминаем пользователя и перебрасываем его на главную страницу
+    # В случае успешной авторизации запоминаем пользователя и перебрасываем
+    # его на главную страницу
     session[:user_id] = user.id
     redirect_to :root
   end
@@ -39,9 +40,9 @@ class SessionsController < ApplicationController
   # GET /profile/(login)
   # Отображает профиль указанного пользователя
   def profile
-    redirect_to :root and return unless (params[:login] || logged?)
+    redirect_to :login and return unless (params[:login] || logged?)
     login = params[:login] || logged_user.login
-    @user = User.find_by_login(login)
+    @user = User.where(login: login).first!
   end
 
   # GET /my/options
@@ -113,6 +114,7 @@ class SessionsController < ApplicationController
     # Удаление дополнительных данных
     if user.student? then
       Student.get_by_user(user).destroy
+      # Comment.where(user_id: user.id)
     elsif user.lecturer? then
       Lecturer.get_by_user(user).destroy
     end

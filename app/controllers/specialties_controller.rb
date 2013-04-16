@@ -40,11 +40,7 @@ class SpecialtiesController < ApplicationController
   # PUT /specialties/:id
   # Обновляет информацию о специальности
   def update
-    begin
-      @specialty = Departament.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to :specialties and return
-    end
+    @specialty = Departament.find(params[:id])
     if @specialty.update_attributes(params[:specialty]) then
       redirect_to :specialties and return
     else
@@ -55,11 +51,7 @@ class SpecialtiesController < ApplicationController
   # DELETE /specialties/:id
   # Удаляет информию о специальности
   def destroy
-    begin
-      @specialty = Departament.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to :specialties and return
-    end
+    @specialty = Departament.find(params[:id])
     @specialty.destroy
     redirect_to :specialties
   end

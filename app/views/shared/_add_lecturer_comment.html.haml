@@ -1,5 +1,8 @@
-= form_tag :add_lecturer_comment, id: "add-comment-form", :method => 'post' do
+= form_tag :add_comment, id: "add-comment-form", :method => 'post' do
   = hidden_field_tag :lecturer_id, Lecturer.get_by_user(@user).id
+  %p.regform-field
+    = label_tag :anonymously, "Отображать моё имя", class: "inline"
+    = check_box_tag :anonymously, "", checked: true
   %p.regform-field
     - mark_list = [['Негативный', 0], ['Нейтральный', 1], ['Позитивный', 2]]
     = label_tag :mark, "Тип комментария", class: "inline"

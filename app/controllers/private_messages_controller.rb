@@ -24,22 +24,18 @@ class PrivateMessagesController < ApplicationController
   # GET /message/1
   # Отобращает сообщение
   def read
-    @message = PrivateMessage.where(id: params[:message_id]).first
-    # Если сообщение не найдено в базе данных
-    unless @message then
-      redirect_to :inbox and return
-    end
+    @message = PrivateMessage.where(id: params[:message_id]).first!
     # Если сообщение входящее
     if logged_user.id == @message.receiver_id then
       @type = 'inbox'
       unless @message.read then
-        @message.update_attributes({read: true})
+        @message.update_attributes({ read: true })
       end
-    # Елси сообщение исходящее
+    # Если сообщение исходящее
     elsif logged_user.id == @message.sender_id
       @type = 'outbox'
     else
-      redirect_to :inbox and return
+      render_403
     end
   end
 
@@ -68,9 +64,7 @@ class PrivateMessagesController < ApplicationController
         @login = params[:login]
       elsif params[:mid] then
         # Ошибка, если сообщения с указанным ID не существует
-        unless pm = PrivateMessage.find_by_id(params[:mid]) then
-          redirect_to :inbox and return
-        end
+        pm = PrivateMessage.find(params[:mid])
         # Ошибка, в случае, если указанное сообщение пришло не авторизированному пользователю
         # либо сообщение пришло с системного аккаунта, либо аккаунт отправителя был удалён
         if pm.receiver_id != logged_user.id || pm.sender_id == User::SYSTEM_ACCOUNT_ID || pm.sender == nil then

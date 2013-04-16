@@ -2,12 +2,12 @@ class CommentsController < ApplicationController
 
   before_filter :require_auth
 
-  # POST /add_lecturer_comment
-  def add_lecturer_comment
+  # POST /comments/add
+  def add
     comment = Comment.new
     comment.body = params[:body]
     comment.user_id = logged_user.id
-    comment.anonymously = false
+    comment.anonymously = params[:anonymously].eql?(nil)
     comment.mark = params[:mark]
     comment.save
     lecturer_comment = LecturerComment.new
@@ -17,19 +17,17 @@ class CommentsController < ApplicationController
     redirect_to :back
   end
 
-  # DELETE /lecturer/comments/:comment_id/delete
-  def delete_lecturer_comment
+  # DELETE /comments/:comment_id/delete
+  def destroy
     lc = LecturerComment.where(id: params[:comment_id]).first
     # Если указанный комментарий не найден
-    redirect_to :back and return unless lc
-    # Удалить комментарий может только администратор или пользователь
-    # с правами администратора
+    render_404 and return unless lc
+    # Удалить комментарий может только администратор, пользователь
+    # с правами администратора или автор
     unless can_admin? || lc.comment.user_id == logged_user.id then
-      redirect_to :back and return
+      render_403 and return
     end
-    # Удаление самого комментария
-    lc.comment.destroy
-    # Удаление из связывающей таблицы
+    # Удаление комментария
     lc.destroy
     redirect_to :back, notice: t('messages.comment_has_been_removed')
   end

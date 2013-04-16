@@ -1,11 +1,14 @@
 - cls = comment_class_by_mark(lc.comment.mark)
 %div.comment{class: cls}
   %p.title
-    %span.left-c= link_to lc.comment.user.login, profile_path(lc.comment.user.login)
+    - unless lc.comment.anonymously
+      %span.left-c= link_to lc.comment.user.login, profile_path(lc.comment.user.login)
+    - else
+      %span.left-c.anonymous Аноним
     %span.right-c
       =lc.comment.posttime.strftime('%0e.%0m.%Y, %H:%M')
       - if can_admin? || lc.comment.user_id == logged_user.id
-        = link_to "[X]", delete_lecturer_comment_path(lc.id), method: 'delete'
+        = link_to "[удалить]", delete_lecturer_comment_path(lc.id), method: 'delete', confirm: "Точняк?"
   %div{style: "clear: both;"}
   %p.body
     ="#{lc.comment.body}"

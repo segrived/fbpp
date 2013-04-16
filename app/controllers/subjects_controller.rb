@@ -30,11 +30,7 @@ class SubjectsController < ApplicationController
 
   # PUT /subjects/:id
   def update
-    begin
-      @subject = Subject.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to :subject and return
-    end
+    @subject = Subject.find(params[:id])
     if @subject.update_attributes(params[:subject]) then
       redirect_to :subject and return
     else

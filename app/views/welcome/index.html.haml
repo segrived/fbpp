@@ -4,7 +4,9 @@
   .message-box.bred= flash[:notice]
 
 - if logged?
-  Вы вошли, какая удача. Все очень рады вас видеть.
+  %li
+    Вы вошли как
+    =link_to "#{logged_user.login}", profile_path(logged_user.login)
 - else
   Вы не авторизированы в системе. Тем не менее, вы можете
   = link_to "войти", :login

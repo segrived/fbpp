@@ -1,0 +1,5 @@
+%h1#page-title= "Отзывы к дисциплине «#{@subscription.subject.name}», которую ведёт преподаватель #{@subscription.lecturer.get_full_name}"
+
+%p= "Хто ведёт: #{@subscription.lecturer.user.login}"
+%p= "Чо ведёт: #{@subscription.subject.name}"
+%p= "Де ведёт: #{@subscription.subject.departament.name}"

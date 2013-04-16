@@ -14,12 +14,13 @@ Feedback::Application.routes.draw do
   get "create_admin" => "users#create_admin_account"
   post "create_admin" => "users#create_admin_account"
   
+  get "feedback/:id" => "subscriptions#show", as: :subscriptions
 
   get "users/:filter/(:page)" => "users#list", :as => :users, :page => /\d+/
 
   get "lecturer/:lid/comments" => "sessions#lecturer_comments", :as => :lecturer_comments
-  post "lecturer/comments/add" => "comments#add_lecturer_comment", :as => :add_lecturer_comment
-  delete "lecturer/comments/:comment_id/delete" => "comments#delete_lecturer_comment", :as => :delete_lecturer_comment
+  post "comments/add" => "comments#add", :as => :add_comment
+  delete "comments/:comment_id/delete" => "comments#destroy", :as => :delete_comment
   post "subjects/subscribe/:id" => "subjects#subscribe", :as => :subject_subscribe
 
   # Регистрация
