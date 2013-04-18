@@ -63,13 +63,13 @@
       %hr/
       %div#comment-block
         %h1#title Последние коммментарии
-        - @user.get_info.lecturer_comments.joins(:comment).order('comments.posttime DESC').limit(5).each do |lc|
-          = render partial: 'shared/lecturer_comment', locals: { lc: lc }
-      = link_to "Показать все комментарии", lecturer_comments_path(Lecturer.get_by_user(@user).id), class: 'button'
+        - @user.get_info.comments.order('posttime DESC').limit(5).each do |comment|
+          = render partial: 'shared/lecturer_comment', locals: { comment: comment }
+      = link_to "Показать все комментарии", lecturer_comments_path(@user.get_info.id), class: 'button'
       
       - if logged? && logged_user.student?
         %p.button#show-comment-form Добавить комментарий
-        = render partial: 'shared/add_lecturer_comment'
+        = render partial: 'shared/add_lecturer_comment', locals: { lecturer_id: @user.get_info.id }
 
   - else
     .message-box.bred= t("Этот аккаунт был удалён")

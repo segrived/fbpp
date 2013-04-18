@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
     end
     # Ели пользователь забанен
     if user.banned then
-      redirect_to :login, :notice => t('messages.banned') and return
+      redirect_to :login, notice: t('messages.banned') and return
     end
     # В случае успешной авторизации запоминаем пользователя и перебрасываем
     # его на главную страницу
@@ -126,7 +126,7 @@ class SessionsController < ApplicationController
 
   def lecturer_comments
     #  Список комментариев для вывода
-    @comments = Lecturer.find(params[:lid]).lecturer_comments.joins(:comment).order('comments.posttime DESC')
+    @comments = Lecturer.find(params[:lid]).comments.order('posttime DESC')
     @lecturer_id = params[:lid]
     render 'lecturer_comments'
   end

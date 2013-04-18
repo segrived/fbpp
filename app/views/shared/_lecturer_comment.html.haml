@@ -1,14 +1,19 @@
-- cls = comment_class_by_mark(lc.comment.mark)
+- cls = comment_class_by_mark(comment.mark)
 %div.comment{class: cls}
   %p.title
-    - unless lc.comment.anonymously
-      %span.left-c= link_to lc.comment.user.login, profile_path(lc.comment.user.login)
+    - unless comment.anonymously
+      %span.left-c= link_to comment.user.login, profile_path(comment.user.login)
     - else
       %span.left-c.anonymous Аноним
     %span.right-c
-      =lc.comment.posttime.strftime('%0e.%0m.%Y, %H:%M')
-      - if can_admin? || lc.comment.user_id == logged_user.id
-        = link_to "[удалить]", delete_lecturer_comment_path(lc.id), method: 'delete', confirm: "Точняк?"
+      = comment.posttime.strftime('%0e.%0m.%Y, %H:%M')
+      - can_vote = logged? && logged_user.student? && comment.user != logged_user
+      - if can_vote
+        = link_to "-", comment_vote_path(comment.id, 'downvote'), method: "post"
+      %span.rating{class: vote_class_by_rating(comment.rating)}= comment.rating
+      - if can_vote
+        = link_to "+", comment_vote_path(comment.id, 'upvote'), method: "post"
+      - if can_admin? || comment.user_id == logged_user.id
+        = link_to "[x]", delete_comment_path(comment.id), method: 'delete', confirm: "Точняк?"
   %div{style: "clear: both;"}
-  %p.body
-    ="#{lc.comment.body}"
+  %p.body= comment.body

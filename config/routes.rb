@@ -23,6 +23,8 @@ Feedback::Application.routes.draw do
   delete "comments/:comment_id/delete" => "comments#destroy", :as => :delete_comment
   post "subjects/subscribe/:id" => "subjects#subscribe", :as => :subject_subscribe
 
+  post "comment/:comment_id/:type" => "comments#vote", :as => :comment_vote, constraints: { type: /upvote|downvote/ }
+
   # Регистрация
   get "register" => "users#new"
   post "register" => "users#create"

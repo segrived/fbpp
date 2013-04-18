@@ -65,6 +65,14 @@ module ApplicationHelper
     end
   end
 
+  def vote_class_by_rating(vote)
+    case
+      when vote < 0 then 'downvoted'
+      when vote == 0 then 'normal'
+      when vote > 0 then 'upvoted'
+    end
+  end
+
   def confirm_level_text(sym)
     t("confirm_levels.#{Lecturer::CONFIRM_LEVELS.key(sym).to_s}")
   end

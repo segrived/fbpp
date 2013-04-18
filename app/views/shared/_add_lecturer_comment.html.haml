@@ -1,5 +1,5 @@
 = form_tag :add_comment, id: "add-comment-form", :method => 'post' do
-  = hidden_field_tag :lecturer_id, Lecturer.get_by_user(@user).id
+  = hidden_field_tag :lecturer_id, lecturer_id
   %p.regform-field
     = label_tag :anonymously, "Отображать моё имя", class: "inline"
     = check_box_tag :anonymously, "", checked: true

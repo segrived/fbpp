@@ -384,9 +384,16 @@ tr.message
         float: right
         font-weight: normal
         color: #aaa
+        .rating
+          font-weight: bold
+          &.upvoted
+            color: #22ff22
+          &.normal
+            color: #888888
+          &.downvoted
+            color: #ff2222
         a
           color: #555
-          font-weight: bold
     p.body
       border-top: 1px dotted #ccc
       padding-top: 5px

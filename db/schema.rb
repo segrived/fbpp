@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408122349) do
+ActiveRecord::Schema.define(:version => 20130418144317) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "key"
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(:version => 20130408122349) do
 
   add_index "api_keys", ["user_id"], :name => "index_api_keys_on_user_id"
 
+  create_table "comment_votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.integer  "vote"
+    t.datetime "vote_time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "comment_votes", ["comment_id"], :name => "index_comment_votes_on_lecturer_comment_id"
+  add_index "comment_votes", ["user_id"], :name => "index_comment_votes_on_user_id"
+
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.text     "body"
@@ -31,8 +43,10 @@ ActiveRecord::Schema.define(:version => 20130408122349) do
     t.integer  "mark"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "lecturer_id"
   end
 
+  add_index "comments", ["lecturer_id"], :name => "index_comments_on_lecturer_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "departaments", :force => true do |t|
@@ -41,16 +55,6 @@ ActiveRecord::Schema.define(:version => 20130408122349) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
-
-  create_table "lecturer_comments", :force => true do |t|
-    t.integer  "comment_id"
-    t.integer  "lecturer_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "lecturer_comments", ["comment_id"], :name => "index_lecturer_comments_on_comment_id"
-  add_index "lecturer_comments", ["lecturer_id"], :name => "index_lecturer_comments_on_lecturer_id"
 
   create_table "lecturers", :force => true do |t|
     t.integer  "user_id"

@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   # ID системного акаунта (не должен пересекаться с данными созданных аккаунтов)
   SYSTEM_ACCOUNT_ID = 0
 
-  ACCTYPES = { :admin => 0, :mod => 1, :student => 2, :lecturer => 3 }
+  ACCTYPES = { admin: 0, mod: 1, student: 2, lecturer: 3 }
   ACCTYPES.each do |k, v|
     define_method("#{k}?") { account_type == ACCTYPES[k] }
   end
