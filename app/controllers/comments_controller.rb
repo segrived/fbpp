@@ -4,12 +4,11 @@ class CommentsController < ApplicationController
 
   # POST /comments/add
   def add
-    comment = Comment.new
-    comment.body = params[:body]
-    comment.user_id = logged_user.id
-    comment.anonymously = params[:anonymously].eql?(nil)
-    comment.mark = params[:mark]
-    comment.lecturer_id = params[:lecturer_id]
+    comment = Comment.new(params[:comment])
+    comment.attributes = {
+      user_id: logged_user.id,
+      anonymously: params[:comment][:anonymously].eql?(nil)
+    }
     comment.save
     redirect_to :back
   end
@@ -33,7 +32,7 @@ class CommentsController < ApplicationController
     if Comment.find(params[:comment_id]).user == logged_user then
       render_403 and return
     end
-    # Голосовать за комментарии могут только пользователи
+    # Голосовать за комментарии могут только студенты
     render_403 and return unless logged_user.student?
     vote = params[:type].eql?('upvote') ? 1 : -1
     cv = CommentVote.where(

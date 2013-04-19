@@ -37,10 +37,10 @@ class SessionsController < ApplicationController
     redirect_to :root
   end
 
-  # GET /profile/(login)
+  # GET /profile/(:login)
   # Отображает профиль указанного пользователя
   def profile
-    redirect_to :login and return unless (params[:login] || logged?)
+    render_403 and return unless (params[:login] || logged?)
     login = params[:login] || logged_user.login
     @user = User.where(login: login).first!
   end
@@ -112,12 +112,10 @@ class SessionsController < ApplicationController
     end
     user = User.find(logged_user.id)
     # Удаление дополнительных данных
-    if user.student? then
-      Student.get_by_user(user).destroy
-      # Comment.where(user_id: user.id)
-    elsif user.lecturer? then
-      Lecturer.get_by_user(user).destroy
+    if user.student? || user.lecturer? then
+      user.get_info.destroy
     end
+    # Обновление атрибутов
     user.update_attributes({ removed: true, account_type: nil })
     # Выход из системы
     clear_user_session

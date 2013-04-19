@@ -12,11 +12,6 @@ group :assets do
   gem 'i18n-js'
 end
 
-group :development, :test do
-    gem 'railroady'
-    gem 'rails-erd'
-end
-
 gem 'rake'
 gem 'validates_existence'
 gem 'will_paginate'

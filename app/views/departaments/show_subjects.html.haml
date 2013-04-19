@@ -1,8 +1,8 @@
-%h1#page-title= t('titles.departament_subjects')
+%h1#page-title= t('.title')
 
 - unless @subjects.empty?
   %ul
     - @subjects.each do |subject|
       %li= link_to subject.name, subject_path(subject.id)
 - else
-  .message-box.bred Дисциплин на данной кафедре нет
+  .message-box.bred= t('.no_records')

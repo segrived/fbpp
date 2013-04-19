@@ -1,8 +1,8 @@
-%h1#page-title= t('titles.departament_lecturers')
+%h1#page-title= t('.title')
 
 - unless @lecturers.empty?
   %ul
     - @lecturers.each do |lecturer|
       %li= link_to lecturer.get_full_name, profile_path(lecturer.user.login)
 - else
-  .message-box.bred Преподавателей на данной кафедре не зарегистрировано.
+  .message-box.bred= t('.no_records')

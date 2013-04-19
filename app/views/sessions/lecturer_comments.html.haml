@@ -6,6 +6,6 @@
 
 - if logged? && logged_user.student?
   %p.button#show-comment-form Добавить комментарий
-  = render :partial => 'shared/add_lecturer_comment', :locals => { lecturer_id: @lecturer_id }
+  = render :partial => 'shared/add_comment', :locals => { lecturer_id: @lecturer_id }
 
 = link_to "На страницу преподавателя", profile_path(Lecturer.find(@lecturer_id).user.login), class: 'button'

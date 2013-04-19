@@ -1,10 +1,16 @@
-- cls = comment_class_by_mark(comment.mark)
-%div.comment{class: cls}
+- comment_class = comment_class_by_mark(comment.mark)
+- if comment.rating < 0
+  - comment_class << " hidden"
+  .hidden-comment-message
+    %span Этот комментарий скрыт, так как имеет отрицательный рейтинг
+    %span.show-comment-button [показать]
+
+%div.comment{ class: comment_class, id: "comment_#{comment.id}" }
   %p.title
-    - unless comment.anonymously
-      %span.left-c= link_to comment.user.login, profile_path(comment.user.login)
-    - else
+    - if comment.anonymously
       %span.left-c.anonymous Аноним
+    - else
+      %span.left-c= link_to comment.user.login, profile_path(comment.user.login)
     %span.right-c
       = comment.posttime.strftime('%0e.%0m.%Y, %H:%M')
       - can_vote = logged? && logged_user.student? && comment.user != logged_user
@@ -13,7 +19,8 @@
       %span.rating{class: vote_class_by_rating(comment.rating)}= comment.rating
       - if can_vote
         = link_to "+", comment_vote_path(comment.id, 'upvote'), method: "post"
-      - if can_admin? || comment.user_id == logged_user.id
-        = link_to "[x]", delete_comment_path(comment.id), method: 'delete', confirm: "Точняк?"
-  %div{style: "clear: both;"}
-  %p.body= comment.body
+      - if logged? && (can_admin? || comment.user == logged_user)
+        = link_to "[x]", delete_comment_path(comment.id), method: 'delete', confirm: "Вы уверены?"
+  .clearfix
+  %p.body
+    = comment.body

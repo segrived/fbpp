@@ -87,7 +87,7 @@ ru:
     comment_has_been_removed: Комментарий был успешно удалён
 
   will_paginate:
-    previous_label: <<
+    previous_label: "<<"
     next_label: ">>"
 
   sessions:
@@ -120,6 +120,28 @@ ru:
       sended_messages: Отправленные
       create_new_message: Написать новое
 
+  departaments:
+    index:
+      title: Список кафедр
+      no_records: Информация о кафедрах ещё не была загружена в систему
+      create_link: Добавить кафедру
+    edit:
+      title: Редактирование кафедры
+    new:
+      title: Добавление новой кафедры
+    show:
+      list_lecturers_link: Список преподавателей на этой кафедре
+      list_subjects_link: Список дисциплин на этой кафедре
+      edit_link: Редактировать информацию о кафедре
+      delete_link: Удалить информацию о кафедре
+      delete_link_confirm: "Вы уверены, что хотите удалить информацию об этой кафедре?"
+    show_lecturers:
+      title: Список преподавателей на кафедре
+      no_records: Преподавателей на данной кафедре не зарегистрировано.
+    show_subjects:
+      title: Список дисциплин на кафедре
+      no_records: Дисциплин на данной кафедре нет
+
   layout:
     search_field: поиск...
     menu:
@@ -149,7 +171,6 @@ ru:
     change_password: Форма смены пароля
     send_message: Форма отправки личного сообщения
     private_messages: Личные сообщения
-    departament_edit: Редактирование кафедры
     departament_index: Список кафедр
     departament_new: Добавление кафедры
     departament_lecturers: Список преподавателей на кафедре

@@ -65,11 +65,11 @@ module ApplicationHelper
     end
   end
 
-  def vote_class_by_rating(vote)
+  def vote_class_by_rating(rating)
     case
-      when vote < 0 then 'downvoted'
-      when vote == 0 then 'normal'
-      when vote > 0 then 'upvoted'
+      when rating < 0 then 'downvoted'
+      when rating == 0 then 'normal'
+      when rating > 0 then 'upvoted'
     end
   end
 

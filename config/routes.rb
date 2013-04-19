@@ -1,46 +1,52 @@
 Feedback::Application.routes.draw do
   # Main page
   root :to => "welcome#index"
-  # Session
+
+  # Сессии (логин, логаут, страница профиля)
   get "login" => "sessions#login"
   post "login" => "sessions#login"
   get "logout" => "sessions#logout"
   get "profile/(:login)" => "sessions#profile", :as => :profile
-  get "my/options" => "sessions#options"
-  post "my/options" => "sessions#options"
-  get "my/change_password" => "sessions#change_password"
-  put "my/change_password" => "sessions#change_password"
-
-  get "create_admin" => "users#create_admin_account"
-  post "create_admin" => "users#create_admin_account"
-  
-  get "feedback/:id" => "subscriptions#show", as: :subscriptions
-
-  get "users/:filter/(:page)" => "users#list", :as => :users, :page => /\d+/
-
-  get "lecturer/:lid/comments" => "sessions#lecturer_comments", :as => :lecturer_comments
-  post "comments/add" => "comments#add", :as => :add_comment
-  delete "comments/:comment_id/delete" => "comments#destroy", :as => :delete_comment
-  post "subjects/subscribe/:id" => "subjects#subscribe", :as => :subject_subscribe
-
-  post "comment/:comment_id/:type" => "comments#vote", :as => :comment_vote, constraints: { type: /upvote|downvote/ }
+  delete "remove_account" => "sessions#remove"
 
   # Регистрация
   get "register" => "users#new"
   post "register" => "users#create"
 
+  # Настройки аккаунта
+  get "my/options" => "sessions#options"
+  post "my/options" => "sessions#options"
+
+  # Имзенение пароля
+  get "my/change_password" => "sessions#change_password"
+  put "my/change_password" => "sessions#change_password"
+
+  # Создание аккаунта администратора
+  get "create_admin" => "users#create_admin_account"
+  post "create_admin" => "users#create_admin_account"
+  
+  get "feedback/:id" => "subscriptions#show", as: :subscriptions
+  get "users/:filter/(:page)" => "users#list", :as => :users, :page => /\d+/
+  post "subjects/subscribe/:id" => "subjects#subscribe", :as => :subject_subscribe
+
+  # Комментарии
+  get "lecturer/:lid/comments" => "sessions#lecturer_comments", :as => :lecturer_comments
+  post "comments/add" => "comments#add", :as => :add_comment
+  delete "comments/:comment_id/delete" => "comments#destroy", :as => :delete_comment
+  post "comment/:comment_id/:type" => "comments#vote", :as => :comment_vote, constraints: { type: /upvote|downvote/ }
+
+  # Основные статические страницы
   get "index" => "welcome#index"
   get "faq" => "welcome#faq"
   get "about" => "welcome#about"
   get "lambda" => "welcome#lambda"
 
+  # Кафедры
   resources :departaments
   get "departaments/:id/lecturers" => "departaments#show_lecturers", :as => :departament_lecturers
   get "departaments/:id/subjects" => "departaments#show_subjects", :as => :departament_subjects
   resources :specialties
   resources :subjects
-
-  delete "remove_account" => "sessions#remove"
 
   # Личные сообщения
   get "message/new/(:login)" => "private_messages#new", :as => :message_new, :login => /[A-Za-z][\w\d]+/
@@ -54,6 +60,7 @@ Feedback::Application.routes.draw do
   # AJAX ответы
   get "ajax/unread_messages_count" => "ajax#unread_messages_count"
 
+  # Админ-часть
   namespace :admin do
     put "users/ban/:id/*banned" => "users#ban"
     put "lecturers/set_confirmation_level" => "lecturers#set_confirmation_level"

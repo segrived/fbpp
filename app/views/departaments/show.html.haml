@@ -1,11 +1,11 @@
 %h1#page-title= @departament.name
 
-= link_to "Список преподавателей на этой кафедре", :departament_lecturers, class: "button"
-= link_to "Список дисциплин на этой кафедре", :departament_subjects, class: "button"
+= link_to t('.list_lecturers_link'), :departament_lecturers, class: "button"
+= link_to t('.list_subjects_link'), :departament_subjects, class: "button"
 
 %p= simple_format @departament.description
 
 -if can_admin?
-  = link_to "Редактировать информацию о кафедре", edit_departament_path(@departament.id), class: 'button'
-  = link_to "Удалить информацию о кафедре", departament_path(@departament.id),
-    method: :delete, confirm: "Вы уверены, что хотите удалить информацию об этой кафедре?", class: 'button'
+  = link_to t('.edit_link'), edit_departament_path(@departament.id), class: 'button'
+  = link_to t('.delete_link'), departament_path(@departament.id),
+    method: :delete, confirm: t('.delete_link_confirm'), class: 'button'

@@ -67,8 +67,8 @@ class PrivateMessagesController < ApplicationController
         pm = PrivateMessage.find(params[:mid])
         # Ошибка, в случае, если указанное сообщение пришло не авторизированному пользователю
         # либо сообщение пришло с системного аккаунта, либо аккаунт отправителя был удалён
-        if pm.receiver_id != logged_user.id || pm.sender_id == User::SYSTEM_ACCOUNT_ID || pm.sender == nil then
-          redirect_to :inbox and return
+        if pm.receiver_id != logged_user.id || pm.sender_id == User::SYSTEM_ACCOUNT_ID then
+          render_403 and return
         end
         @login = pm.sender.login
         m = /(Re: )*(?<topic>.*)/.match(pm.title)

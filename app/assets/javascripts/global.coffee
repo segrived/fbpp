@@ -1,16 +1,10 @@
 jQuery ->
-  
-  $('#search_string')
-    .focus ->
-      @value = "" if @value == I18n.t('layout.search_field')
-    .blur ->
-      @value = I18n.t('layout.search_field') unless @value
 
-  setIntervalAndExecute= (fn, t) ->
+  setIntervalAndExecute = (fn, t) ->
     do fn
     setInterval fn, t
 
-  show_new_messages= ->
+  show_new_messages = ->
     $.get '/ajax/unread_messages_count', (data) ->
       count = data.count
       if count == 0
@@ -27,3 +21,7 @@ jQuery ->
   $("#cancel-add-comment").click ->
     $("#add-comment-form").hide()
     $("#show-comment-form").show()
+
+  $(".show-comment-button").click ->
+    $(@).parent().next('.comment').removeClass('hidden')
+    $(@).parent('.hidden-comment-message').hide()

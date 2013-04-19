@@ -22,9 +22,9 @@ class User < ActiveRecord::Base
   # Логин: длина не менее 3 символов, должен быть уникальным, должен состоять
   # только из цифр, букв латинского алфавита и символов подчеркивания
   validates :login,
-    :length => { :minimum => 3 },
+    :length => { minimum: 3, maximum: 20 },
     :uniqueness => true,
-    :format => { :with => /^[A-Za-z][\w\d]+$/ }
+    :format => { with: /^[A-Za-z][\w\d]+$/ }
   validates :login,
     :exclusion => { :in => %w{ administrator admin mod moderator } },
     :if => Proc.new { |a| a.student? || a.lecturer? }
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
     :allow_nil => true
   # Пароль должен быть длиной от 6 до 30 символов и совпадать с подтверждением
   validates :password,
-    :length => { :in => 6 .. 30 },
+    :length => { :in => 6..30 },
     :confirmation => true,
     :unless => Proc.new { |a| a.password.nil? }
 

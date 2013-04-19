@@ -3,20 +3,19 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
  
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
-  rescue_from ActionController::RoutingError, :with => :render_404
 
   protected
 
   def render_403
     respond_to do |format|
-      format.html { render "errors/403", :status => 403 }
+      format.html { render "errors/403", status: 403 }
       format.json { render json: { error: true, message: "403 Not authorized" } }
     end
   end
 
   def render_404
     respond_to do |format|
-      format.html { render "errors/404", :status => 404 }
+      format.html { render "errors/404", status: 404 }
       format.json { render json: { error: true, message: "404 Not Found" } }
     end
   end
