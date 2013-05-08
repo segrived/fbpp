@@ -1,16 +1,16 @@
-%h1#page-title= t("titles.send_message")
-
-= render :partial => "shared/errors", :locals => { :obj => @private_message }
-
-= form_for @private_message, :url => { :action => 'new' }, :method => 'post' do |f|
-  %p.form-field
-    = label_tag :login, PrivateMessage.human_attribute_name(:receiver)
-    = text_field_tag :login, @login, :size => 30
-  %p.form-field
-    = f.label :title, PrivateMessage.human_attribute_name(:title)
-    = f.text_field :title
-  %p.form-field
-    = f.label :body, PrivateMessage.human_attribute_name(:body)
-    = f.text_area :body, :size => "60x9"
-  %p.form-field
-    = f.submit t(".send_message_button")
+= render layout: 'private_messages/panel', locals: {title: t('private_messages.new.title')} do
+  = form_for @private_message, url: :messages_new, method: :post do |f|
+    .block-content
+      - if @private_message.errors.any?
+        = render partial: 'shared/errors', locals: { errors: @private_message.errors }
+      .form-field
+        = label_tag :login, PrivateMessage.human_attribute_name(:receiver)
+        = text_field_tag :login, @login, class: 'wp-50'
+      .form-field
+        = f.label :title, PrivateMessage.human_attribute_name(:title)
+        = f.text_field :title, class: 'wp-95'
+      .form-field
+        = f.label :body, PrivateMessage.human_attribute_name(:body)
+        = f.text_area :body, class: 'wp-95', style: 'height: 180px'
+    .block-buttons
+      = f.submit t('private_messages.new.send_message'), class: 'btn-green'

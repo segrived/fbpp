@@ -1,9 +1,19 @@
-%h1#page-title!= "Сообщение от пользователя #{user_login(@message.sender_id, false)}"
-
-%p
-  Заголовок сообщения:
-  %b= @message.title
-%p= @message.body
-- if (@type == 'inbox') && (@message.sender_id != User::SYSTEM_ACCOUNT_ID)
-  = link_to "Ответить на это сообщение", message_new_path(@message.id), :class => 'button'
-= link_to "Удалить это сообщение", message_delete_path(@message.id), :method => :delete, :class => 'button'
+.block.brd
+  = block_title t('.title', login: @message.sender.login), "mail.png"
+  .block-content
+    %span
+      = PrivateMessage.human_attribute_name(:title) << ": "
+      %strong= @message.title
+    %hr.dashed/
+    %p= simple_format @message.body
+  .block-buttons
+    .left
+      - if @type == :inbox
+        = link_to "← #{t('.back_to_inbox')}", :inbox
+      - else
+        = link_to "← #{t('.back_to_outbox')}", :outbox
+    .right
+      - if @type == :inbox
+        = btn_link t('.reply'), messages_new_path(@message.id), true, 'green'
+      = btn_link t('.delete'), messages_delete_path(@message.id), true, 'red', method: 'delete'
+    .cf

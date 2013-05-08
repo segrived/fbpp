@@ -7,13 +7,20 @@ class Lecturer < ActiveRecord::Base
 
   attr_accessible :user_id, :scientific_degree_id, :departament_id, :confirm_level
 
-  CONFIRM_LEVELS = { :unconfirmed => 0, :existence => 1, :real => 2 }
+  # Уровни подтверждения аккаунта
+  CONFIRM_LEVELS = { unconfirmed: 0, existence: 1, real: 2 }
   CONFIRM_LEVELS.each do |k, v|
     define_method("#{k}?") { confirm_level == CONFIRM_LEVELS[k] }
   end
 
-  def get_full_name
-    user.surname << " " << user.name << " " << user.patronymic
+  # Возвращает полное ФИО преподавателя (например: Иванов Андрей Петрович)
+  def full_name
+    "#{user.surname.cap_first} #{user.name.cap_first}  #{user.patronymic.cap_first}"
+  end
+
+  # Возвращает короткое ФИО преподавателя (например: Иванов А. П.)
+  def short_name
+    "#{user.surname.cap_first} #{user.name.first.mb_upcase}. #{user.patronymic.first.mb_upcase}."
   end
 
   validates :user_id,
@@ -22,9 +29,4 @@ class Lecturer < ActiveRecord::Base
     :existence => { :allow_nil => true }
   validates :confirm_level,
     :inclusion => { :in => CONFIRM_LEVELS.values }
-
-  # Возвращает данные преподавателя по ID пользователя
-  def self.get_by_user(user)
-    Lecturer.where(:user_id => user.id).first
-  end
 end

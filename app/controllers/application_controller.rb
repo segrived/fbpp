@@ -2,7 +2,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include ApplicationHelper
  
-  rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404
+
+  before_filter :disable_sidebar!, only: [:render_403, :render_404]
+
+  def enable_sidebar!
+    @has_sidebar = true
+  end
+
+  def disable_sidebar!
+    @has_sidebar = false
+  end
 
   protected
 
@@ -40,5 +50,9 @@ class ApplicationController < ActionController::Base
   # Необходимо наличие прав администратора
   def require_admin_rights
     render_403 unless can_admin?
+  end
+
+  def require_admin_account
+    render_403 unless logged_user.admin?
   end
 end

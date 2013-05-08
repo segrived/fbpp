@@ -1,0 +1,23 @@
+.block
+  = block_title "Карта сайта", "sitemap.png"
+  .block-content
+    %ul
+      %li
+        = image_tag "depart.png"
+        = link_to "кафедры", :departaments
+      %li
+        = image_tag "spec.png"
+        = link_to "специальности", :specialties
+      %li
+        = image_tag "subject.png"
+        = link_to "дисциплины", :subjects
+      %hr.dashed.compact/
+      %li
+        = image_tag "user.png"
+        = link_to "пользователи", users_path(:all)
+      %li
+        = image_tag "help.png"
+        = link_to "справка", home_path(:faq)
+      %li
+        = image_tag "information.png"
+        = link_to "о проекте", home_path(:about)

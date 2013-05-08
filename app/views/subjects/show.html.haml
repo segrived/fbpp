@@ -1,8 +1,16 @@
-%h1#page-title= @subject.name
-
-%p= simple_format @subject.description
-
-- if can_admin?
-  %p
-    = link_to "Редактировать информацию о специальности",
-      edit_subject_path(@subject.id)
+.block.brd
+  = block_title t('.title'), "spec.png"
+  .block-content
+    %h3.left= @subject.name     
+    %hr.dashed/
+    %h3= t('.description') << ': '
+    %p= simple_format @subject.description
+  -if can_admin?
+    .block-buttons
+      .left
+        = link_to "← #{t('.back_to_subject')}", :specialties
+      .right
+        = btn_link t('.edit_link'), subject_path(@subject.id), true, 'green'
+        = btn_link t('.delete_link'), subject_path(@subject.id), true, 'red',
+          method: :delete, confirm: t('.delete_link_confirm')
+      .cf

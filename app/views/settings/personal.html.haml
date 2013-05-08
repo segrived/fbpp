@@ -1,0 +1,15 @@
+= render layout: 'settings/panel', locals: {title: t('settings.personal.title')} do
+  = form_tag :settings_personal, method: :put do
+    .block-content
+      = messages
+      .form-field
+        = label_tag :name, User.human_attribute_name('name')
+        = text_field_tag :name, @user.name, class: 'wp-100'
+      .form-field
+        = label_tag :surname, User.human_attribute_name('surname')
+        = text_field_tag :surname, @user.surname, class: 'wp-100'
+      .form-field
+        = label_tag :patronymic, User.human_attribute_name('patronymic')
+        = text_field_tag :patronymic, @user.patronymic, class: 'wp-100'
+    .block-buttons
+      = submit_tag "Сохранить изменения", class: 'btn-green'

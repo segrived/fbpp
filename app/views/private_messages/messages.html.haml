@@ -1,8 +1,0 @@
-%h1#page-title= t('titles.private_messages')
-
-%ul#filter
-  %li= nav_link t('.received_messages'), :inbox
-  %li= nav_link t('.sended_messages'), :outbox
-  %li= link_to t('.create_new_message'), message_new_path
-
-= render partial: 'message_list', locals: { messages: @messages, type: @type }

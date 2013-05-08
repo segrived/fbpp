@@ -34,55 +34,43 @@ module ApplicationHelper
     logged? && (logged_user.admin? || logged_user.mod?)
   end
 
-  # Возвращает логин пользователя по ID
-  def user_login(id, add_link = true)
-    return t("common.system_account_name") if id == User::SYSTEM_ACCOUNT_ID
-    user = User.where(id: id)
-    return t("common.unknown_account_name") if user.count == 0
-    if add_link
-      return link_to user.first.login, profile_path(user.first.login)
-    else
-      return user.first.login
-    end
-  end
-
-  # Возвращает количество непрочитанных сообщений для текущего пользователя
-  def unread_messages
-    return nil unless logged?
-    logged_user.received_messages.where(read: false).count
-  end
-
   def nav_link(link_text, link_path, link_id = nil)
     class_name = current_page?(link_path) ? 'active' : nil
     link_to link_text, link_path, :class => class_name, :id => link_id
   end
 
-  def comment_class_by_mark(mark)
-    case mark
-      when Comment::MARKS[:good] then 'positive'
-      when Comment::MARKS[:bad] then 'negative'
-      when Comment::MARKS[:neutral] then 'neutral'
+  def block_title(title, icon = nil)
+    title = image_tag(icon, class: 'block-title-icon') + title if icon
+    content_tag(:div, title.html_safe, class: 'block-title')
+  end
+
+  def block_tabs(tabs)
+    tabs_html = ""
+    tabs.each do |tab|
+      link = nav_link tab.first, tab.last
+      tabs_html << content_tag(:span, link, class: 'block-tabs-tab')
     end
+    content_tag(:div, tabs_html.html_safe, class: 'block-tabs')
   end
 
-  def vote_class_by_rating(rating)
-    case
-      when rating < 0 then 'downvoted'
-      when rating == 0 then 'normal'
-      when rating > 0 then 'upvoted'
-    end
+  def has_sidebar?
+    @has_sidebar.nil? ? true : @has_sidebar
   end
 
-  def confirm_level_text(sym)
-    t("confirm_levels.#{Lecturer::CONFIRM_LEVELS.key(sym).to_s}")
+  def content_start(&block)
+    tag_class = 'full' unless has_sidebar?
+    content_tag(:div, capture(&block), id: 'content', class: tag_class || nil)
   end
 
-  def tm(elem)
-    t(elem).mb_chars
+  def messages
+    render(:template =>"shared/_messages.html.haml", :layout => nil)
   end
 
-  def tc(elem)
-    tm(elem).capitalize
+  def btn_link(body, url, comp = false, color = nil, html_options = {})
+    html_options[:class] = 'button'
+    html_options[:class] << ' compact' if comp
+    html_options[:class] << " btn-#{color}" if color
+    link_to(body, url, html_options)
   end
 
 end

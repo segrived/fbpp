@@ -1,14 +1,15 @@
-%h1#page-title Список дисциплин
-
-- unless @subjects.empty?
-  %ul
-    - @subjects.each do |subject|
-      %li= link_to subject.name, subject_path(subject.id)
-      - if logged? && logged_user.lecturer? && logged_user.get_info.subject_subscriptions.where(subject_id: subject.id).count == 0
-        %p= link_to "подписаться", subject_subscribe_path(subject.id), method: "post", class: "button"
-- else
-  .message-box.bred Информация о дисциплинах ещё не была загружена в систему.
-
-- if can_admin?
-  %hr/
-  = link_to "Добавить дициплину", :new_subject
+.block.brd
+  = block_title t(".title"), "spec.png"
+  .block-content
+    - unless @subjects.empty?
+      %ul.compact
+        - @subjects.each do |subject|
+          %li= link_to subject.name, subject_path(subject.id)
+    - else
+      %p= t('.empty')
+      
+  - if can_admin?
+    .block-buttons
+      .right
+        = btn_link t('.create_link'), :new_subject, true, 'green'
+      .cf

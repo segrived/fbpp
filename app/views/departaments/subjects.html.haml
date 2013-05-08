@@ -1,0 +1,11 @@
+.block.brd
+  = block_title t('.title'), 'subject.png'
+  .block-content
+    - unless @subjects.empty?
+      %ul
+        - @subjects.each do |subject|
+          %li= link_to subject.name, subject_path(subject.id)
+    - else
+      %p= t('.empty')
+  .block-buttons
+    = link_to "← #{t('.back_to_departament')}", departament_path(params[:id])

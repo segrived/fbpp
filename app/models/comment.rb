@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   attr_accessible :user_id, :lecturer_id
   attr_accessible :anonymously, :mark, :posttime, :body
 
-  MARKS = { bad: 0, neutral: 1, good: 2 }
+  MARKS = { negative: 0, neutral: 1, positive: 2 }
 
   # Проверяемые условия
   validates :user_id, :existence => true

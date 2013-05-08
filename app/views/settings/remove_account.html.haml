@@ -1,0 +1,18 @@
+= render layout: 'settings/panel', locals: {title: t('settings.remove_account.title')} do
+  = form_tag :settings_remove_account, method: :delete do
+    .block-content
+      = messages
+      %p= t('settings.remove_account.info_text')
+      - if logged_user.student?
+        %hr.dashed/
+        .form-field
+          = check_box_tag :remove_comments
+          = label_tag :remove_comments, t('settings.remove_account.remove_comments'), 
+            class: 'inline normal'
+        .form-field
+          = check_box_tag :remove_feedbacks
+          = label_tag :remove_feedbacks, t('settings.remove_account.remove_feedbacks'),
+            class: 'inline normal'
+    .block-buttons
+      = submit_tag t('settings.remove_account.remove_button'),
+        class: 'btn-red', method: 'delete', confirm: t('settings.remove_account.confirm_text')

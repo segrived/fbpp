@@ -1,0 +1,497 @@
+$header-width: 50px
+$footer-width: 35px
+$page-content-width: 960px
+$content-width: 650px
+
+@mixin border-radius($radius)
+  -moz-border-radius: $radius
+  -webkit-border-radius: $radius
+  border-radius: $radius
+
+@mixin linear-gradient($from, $to)
+  background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to))
+  background-image: -webkit-linear-gradient(top, $from, $to)
+  background-image: -moz-linear-gradient(top, $from, $to)
+  background-image: -ms-linear-gradient(top, $from, $to)
+  background-image: -o-linear-gradient(top, $from, $to)
+  background-image: linear-gradient(to bottom, $from, $to)
+
+@mixin bs-bbox
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+
+@for $i from 0 through 20
+  .wp-#{$i*5}
+    width: #{$i*5%} !important
+
+@for $i from 0 through 20
+  .wpx-#{$i*50}
+    width: #{$i*50px} !important
+
+.undec
+  text-decoration: none
+
+.left
+  float: left
+
+.right
+  float: right
+
+.b-center
+  margin-left: auto !important
+  margin-right: auto !important
+
+.t-center
+  text-align: center
+
+.t-right
+  text-align: right
+
+.strong
+  font-weight: bold
+
+.cf
+  clear: both
+
+.hidden
+  display: none
+
+.inline
+  display: inline !important
+
+.normal
+  font-weight: normal !important
+
+.c-red
+  color: #ff0000
+
+a
+  text-decoration: none
+  color: #777
+  &.dashed
+    border-bottom: 1px dashed
+  &.button
+    display: inline-block
+
+h1, h2, h3, h4, h5, h6
+  margin: 0
+
+p
+  margin: 8px 0px
+
+ul
+  list-style-position: inside
+  padding: 0px
+  padding-left: 3px
+  &.compact
+    margin: 4px !important
+
+hr
+  margin-top: 10px
+  margin-bottom: 10px
+  color: #ccc
+  background: transparent
+  height: 0px
+  border-left: none
+  border-right: none
+  border-top: none
+  border-bottom: 1px solid #ccc
+  &.dashed
+    border-bottom: 1px dashed #ccc !important
+  &.dotted
+    border-bottom: 1px dotted #ccc !important
+  &.compact
+    margin-top: 4px !important
+    margin-bottom: 4px !important
+
+.form-field
+  padding-bottom: 7px
+
+label.required:after
+  color: #ff5555
+  font-size: 12px
+  content: " *"
+
+.form-field label
+  font-weight: bold
+  font-size: 14px
+  display: block
+  margin-bottom: 2px
+  padding-left: 4px
+
+.form-field .form-field-hint
+  font-size: 12px
+  color: #aaa
+  font-style: italic
+  display: block
+  padding-left: 2px
+
+.field_with_errors
+  display: inline
+
+.field_with_errors > label
+  color: #bb0000
+
+select
+  margin: 0
+  padding: 0
+  font-size: 0.85em
+  outline: none
+  box-sizing: border-box
+
+div.styled 
+  overflow: hidden
+  padding: 0
+  margin: 0
+  background: white image-url("select.png") no-repeat bottom right
+  width: 12em
+  border-radius: 2px
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2)
+  border: solid 1px #ccc
+
+div.styled select
+  width: 100%
+  background-color: transparent
+  background-image: none
+  -webkit-appearance: none
+  border: none
+  box-shadow: none
+  padding: 0.3em 0.5em
+
+
+fieldset
+  border: 1px solid #ccc
+  @include border-radius(5px)
+
+legend
+  padding: 0.2em 0.5em
+  border: 1px solid #ccc
+  color: #888
+  font-size: 90%
+  text-align: right
+
+
+textarea, input
+  @include bs-bbox
+
+// Sticky Footer
+html, body
+  height: 100%
+
+.wrapper
+  min-height: 100%
+  height: auto !important
+  height: 100%
+  margin: 0 auto (-$footer-width)
+
+#page-content
+  width: $page-content-width
+  margin: 0 auto
+
+footer, .push
+  height: $footer-width
+
+body
+  font-family: "Segoe UI", helvetica
+  background-color: #fff
+
+input[type="text"], input[type="password"], textarea
+  @include border-radius(5px)
+  border: 1px solid #ccc
+  padding: 4px
+  font-size: 13px
+  &.compact
+    padding: 2px
+    @include border-radius(2px)
+
+header
+  width: 100%
+  height: 50px
+  background-color: #eee
+  border-bottom: 1px solid #ddd
+  margin-bottom: 20px
+  #logo
+    float: left
+    background-image: image-url("logo.png")
+    background-repeat: no-repeat
+    width: 151px
+    height: 50px
+    margin-left: 20px
+  nav
+    float: right
+    ul
+      list-style: none
+      li
+        float: left
+        padding-right: 15px
+
+div#content
+  float: left
+  width: $content-width
+  &.full
+    width: 100% !important
+
+aside
+  float: right
+  width: ($page-content-width)-($content-width)
+
+footer
+  background-color: #eee
+  font-size: 14px
+  #footer-left, #footer-right
+    padding-top: 7px
+  #footer-left
+    padding-left: 10px
+    float: left
+  #footer-right
+    padding-right: 10px
+    float: right
+
+div.block
+  background-color: #f4f4f4
+  .block-title
+    padding: 5px
+    font-size: 20px
+    font-weight: bold
+    background-color: #d5dbff
+    color: #606060
+    border-bottom: 1px solid #ccc
+    a
+      color: #333
+    img.block-title-icon
+      padding-right: 7px
+  .block-tabs
+    background-color: #e4e4e4
+    border-bottom: 1px solid #ddd
+    padding: 5px 10px
+    .block-tabs-tab
+      padding-right: 20px
+      a
+        color: #222
+        &.active
+          font-weight: bold
+          color: #000
+  .block-content
+    padding: 10px
+    &.no-brd
+      padding: 0px !important
+  .block-buttons
+    background-color: #eee
+    border-top: 1px solid #ddd
+    padding: 7px
+    button, input[type="button"], input[type="submit"]
+      margin-right: 10px
+  &.brd
+    border: 1px solid #ddd
+
+#content div.block, aside .block
+  margin-left: 12px
+  margin-right: 12px
+  margin-bottom: 15px
+
+aside .block
+  margin-right: 15px
+  border: 1px solid #ddd
+  background-color: #fff
+  .block-title
+    background-color: #eee
+    font-size: 16px
+    color: #333
+    border-bottom: 1px solid #ccc
+    font-weight: normal
+    img
+      vertical-align: -2px
+      padding-right: 10px !important
+
+aside
+  font-size: 16px
+
+aside p, aside ul
+  margin: 0px
+
+aside ul li
+  padding: 2px
+
+aside ul li img
+  vertical-align: middle
+  padding-right: 4px
+
+aside ul li a
+  text-decoration: none
+  color: #666
+
+aside ul
+  list-style-type: none
+
+.button
+  border: 1px solid #ccc
+  border-radius: 5px
+  font-family: arial, helvetica, sans-serif
+  color: #fff
+  font-weight: bold
+  text-align: center
+  padding: 10px
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3)
+  background-color: #999
+  &.compact
+    border-radius: 2px !important
+    padding: 4px !important
+    font-size: 14px !important
+    background-color: #eee !important
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3)
+
+a.button
+  text-decoration: none
+
+
+button, input[type="submit"], input[type="button"]
+  @extend .button
+
+.btn-red
+  @include linear-gradient(#f62b2b, #d20202)
+  border: 1px solid #df0909
+  background-color: #f62b2b
+  &:hover
+    @include linear-gradient(#e40a0a, #9f0202)
+    border: 1px solid #b30808
+    background-color: #e40a0a
+
+.btn-green
+  @include linear-gradient(#4ba614, #008c00)
+  border: 1px solid #34740e
+  background-color: #4ba614
+  &:hover
+    @include linear-gradient(#36780f, #005900)
+    border: 1px solid #224b09
+    background-color: #36780f
+
+.btn-blue
+  @include linear-gradient(#3093c7, #1c5a85)
+  border: 1px solid #25729a
+  background-color: #3093c7
+  &:hover
+    @include linear-gradient(#26759e, #133d5b)
+    border: 1px solid #1c5675
+    background-color: #26759e
+
+div.comments
+  margin-top: 5px
+  .comment
+    border: 1px solid #ddd
+    padding: 10px
+    margin-bottom: 10px
+    .comment-title .comment-title-left
+      float: left
+      .login
+        font-weight: bold
+        &.anon
+          font-weight: normal !important
+          font-style: italic
+    .comment-title .comment-title-right
+      float: right
+    .comment-body
+      padding-top: 4px
+
+div.comment-form
+  @extend .hidden
+  @extend .b-center
+  padding: 10px
+  border: 1px solid #ddd
+  background-color: #eee
+  fieldset
+    background-color: #e7e7e7
+    legend
+      background-color: #eee
+      font-weight: bold
+      color: #444
+
+.box
+  padding: 8px
+  font-size: 12px
+  font-family: helvetica
+  margin: 5px 5px 10px 5px
+
+.notice
+  @extend .box
+  border: 1px solid #ff8888
+  background-color: #ffdddd
+
+.alert
+  @extend .box
+  border: 1px solid #88ff88
+  background-color: #ddffdd
+
+.errors-list
+  @extend .notice
+  ul
+    padding: 0px
+    margin: 2px !important
+    list-style-type: square
+
+#container
+  display: table
+  width: 100%
+  height: 100%
+
+#position
+  display: table-cell
+  vertical-align: middle
+
+#box 
+  border: 1px solid #000
+  padding: 15px
+  width: 600px
+  margin: 0 auto
+
+table
+  table-layout: fixed
+  word-wrap: break-word
+  border-collapse: collapse
+  border-spacing: 0
+
+
+table tr
+  &.highlighted
+    background-color: #fafac3
+
+table th, table td
+  font-size: 14px
+  padding: 5px
+
+table th
+  color: #333
+  font-style: normal
+  font-weight: bold
+  text-align: left
+  border-bottom: 1px dashed #eaeaea
+
+table td
+  border-left: 1px solid #eaeaea
+  color: #555
+  a
+    color: #555577
+  &.first
+    border-left: none
+
+.pagination
+  background: #f1f1f1
+  border-top: 1px solid #e5e5e5
+  text-align: center
+  padding: 4px
+  cursor: default
+  a, span
+    padding: 0.2em 0.3em
+  .disabled
+    color: #aaaaaa
+  .current
+    font-style: normal
+    font-weight: bold
+    display: inline-block
+    padding: 3px 10px
+    @include border-radius(40px)
+  a
+    text-decoration: none
+    color: black
+    &:hover, &:focus
+      text-decoration: underline

@@ -4,6 +4,9 @@ class CommentsController < ApplicationController
 
   # POST /comments/add
   def add
+    unless logged_user.student? then
+      render_403 and return
+    end
     comment = Comment.new(params[:comment])
     comment.attributes = {
       user_id: logged_user.id,
@@ -13,12 +16,12 @@ class CommentsController < ApplicationController
     redirect_to :back
   end
 
-  # DELETE /comments/:comment_id/delete
+  # DELETE /comments/:id/delete
   def destroy
-    comment = Comment.find!(params[:comment_id])
+    comment = Comment.find(params[:id])
     # Удалить комментарий может только администратор, пользователь
     # с правами администратора или автор
-    if (! can_admin?) || comment.user_id != logged_user.id then
+    if (! can_admin?) && (comment.user_id != logged_user.id) then
       render_403 and return
     end
     # Удаление комментария
@@ -38,8 +41,13 @@ class CommentsController < ApplicationController
     cv = CommentVote.where(
       comment_id: params[:comment_id],
       user_id: logged_user.id).first_or_create
-    cv.update_attributes({ vote: vote })
-    redirect_to :back
+    state = cv.update_attributes({ vote: vote })
+    if request.xhr? then
+      new_rating = Comment.find(params[:comment_id]).rating
+      render json: { id: comment.id, rating: new_rating }
+    else
+      redirect_to :back
+    end
   end
 
 

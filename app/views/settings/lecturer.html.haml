@@ -1,0 +1,24 @@
+= render layout: 'settings/panel', locals: {title: t('settings.lecturer.title')} do
+  = form_tag :settings_lecturer, method: :put do
+    .block-content
+      - if params[:reg] then
+        .alert= t('settings.lecturer.after_reg')
+      = messages
+      / Кафедра
+      .form-field
+        = label_tag :departament, Lecturer.human_attribute_name(:departament)
+        .styled.wp-95
+          = select_tag :departament, |
+            options_from_collection_for_select(Departament.all, :id, :name, |
+              @lecturer.departament ? @lecturer.departament.id : nil), |
+            :prompt => t('settings.not_selected_f')
+      / Ученая степень
+      .form-field
+        = label_tag :degree, Lecturer.human_attribute_name(:scientific_degree)
+        .styled.wp-95
+          = select_tag :degree, |
+            options_from_collection_for_select(ScientificDegree.all, :id, :title, |
+              @lecturer.scientific_degree ? @lecturer.scientific_degree.id : nil), |
+            :prompt => t('settings.not_selected_f')
+    .block-buttons
+      = submit_tag t('settings.lecturer.update_button'), class: 'btn-green'

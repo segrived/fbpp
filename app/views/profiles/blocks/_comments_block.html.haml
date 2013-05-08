@@ -1,0 +1,31 @@
+:coffeescript
+  jQuery ->
+    $('.write-comment-button').click ->
+      $(@).hide()
+      $('.add-comment-button, .cancel-comment-button').show()
+      $('.comment-form').show 'fast', -> $.scrollTo(@, 300)
+    $('.cancel-comment-button').click ->
+      $('.comment-form').hide 'fast', -> $.scrollTo('.comments-block', 300)
+      $('.add-comment-button, .cancel-comment-button').hide()
+      $('.write-comment-button').show()
+      $('#comment_body').val('')
+    $("a#upvote_link, a#downvote_link").bind 'ajax:success', (e, d) ->
+      $("#comment_\#{d.id} .comment-rating").text(d.rating)
+
+
+.block.brd.comments-block
+  = block_title t('.title'), "comment.png"
+  = form_tag :add_comment, method: 'post' do
+    .block-content
+      - unless @lecturer.comments.any?
+        %p Комментариев к данному преподавателю нет
+      - else
+        .comments
+          = render partial: 'profiles/blocks/comment', collection: @lecturer.comments
+      / Форма добавления комментария
+      = render partial: 'profiles/blocks/comment_add', locals: { lecturer_id: @lecturer.id }
+    - if logged? && logged_user.student?
+      .block-buttons
+        = button_tag "Написать комментарий", type: 'button', class: 'compact btn-blue write-comment-button'
+        = button_tag "Добавить комментарий", type: 'submit', class: 'compact btn-green hidden add-comment-button'
+        = button_tag "Отменить", type: 'button', class: 'compact btn-blue hidden cancel-comment-button'

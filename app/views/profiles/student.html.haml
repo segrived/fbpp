@@ -1,0 +1,29 @@
+.block.brd
+  = block_title t('.title', login: @user.login), "user.png"
+  .block-content
+    %h3 Основная информация
+    %hr.dashed/
+    %p
+      %strong Тип аккаунта:
+      - acctype_str = User::ACCTYPES.key(@user.account_type).to_s
+      %span= t("accounts.#{acctype_str}")
+    %p
+      %strong Зарегистрирован:
+      %span= @user.regdate.strftime('%e.%m.%Y, %H:%M')
+    %p
+      %strong Специальность:
+      %span
+        - if spec = @user.student.specialty     
+          = link_to spec.name, specialty_path(spec.id)
+        - else 
+          Не указана
+    %p
+      %strong Курс:
+      %span
+        - if course = "#{@user.student.course} курс"
+          = course
+        - else
+          Не указан
+
+  .block-buttons
+    = btn_link "Написать сообщение", messages_new_path(@user.login), true, 'green'

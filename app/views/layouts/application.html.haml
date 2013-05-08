@@ -2,47 +2,36 @@
 
 %html
   %head
-    %title λFeedback
-    = stylesheet_link_tag "application", :media => "all"
+    %title Feedback 1.2 Beta
+    = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application"
     :coffeescript
       I18n.defaultLocale = "#{I18n.default_locale}"
       I18n.locale = "#{I18n.locale}"
     = csrf_meta_tags
+
   %body
-    / Шапка сайта
-    #header
-      #headline
-        %p= link_to "λ.FEEDBACK", :root
-      #menu
-        %ul
-          - unless exists_admin_account?
-            %li= nav_link t('layout.menu.create_admin'), :create_admin, 'create_admin_account_link'
-          %li= nav_link t('layout.menu.home'), :root
-          %li= nav_link t('layout.menu.subjects'), :subjects
-          %li= nav_link t('layout.menu.specialties'), :specialties
-          %li= nav_link t('layout.menu.departaments'), :departaments
-          %li= nav_link t('layout.menu.users'), users_path(:all)
-          - if logged?
-            %li
-              = nav_link t('layout.menu.messages'), :inbox
-              %span#unread-messages-count= (unread_messages > 0) ? "(#{unread_messages})" : ""
-            %li= nav_link t('layout.menu.profile'), profile_path(logged_user.login)
-            %li= nav_link t('layout.menu.logout'), :logout
-          -else
-            %li= nav_link t('layout.menu.register'), :register
-            %li= nav_link t('layout.menu.login'), :login
-    / Контент страницы
-    #content-box
-      #content
-        = yield
-    / Подвал сайта
-    #footer
-      %p#left-text
-        Feedback, 2013
-        %span#links
-          = nav_link t('layout.menu.about'), :about
-          = nav_link t('layout.menu.faq'), :faq
-      %p#right-text
-        Команда разработчиков
-        %b «Quart»
+    .wrapper
+      %header
+        = link_to :root do
+          #logo
+        %nav
+          %ul
+            - if logged?
+              %li= nav_link t('layout.menu.settings'), :settings
+              %li= nav_link t('layout.menu.logout'), :logout
+            - else
+              %li= nav_link t('layout.menu.register'), :register
+              %li= nav_link t('layout.menu.login'), :login
+      #page-content
+        = content_start do
+          = yield
+        = render partial: 'layouts/sidebar' if has_sidebar?
+      .cf
+      .push
+
+    %footer
+      #footer-left= t('layout.footer.left_text')
+      #footer-right
+        = t('layout.footer.right_text')
+        = image_tag "lightning.png"

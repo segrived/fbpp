@@ -1,0 +1,21 @@
+.block.brd
+  = block_title "Модераторы", "user_mod.png"
+  = messages
+  .block-content.no-brd
+    %table.wp-100
+      %tr
+        %th.wp-95= User.human_attribute_name('login')
+        %th
+      - if @mods.empty?
+        %td{colspan: 2}= "В данный момент в системе нет ещё ни одного модератора"
+      - else
+        - @mods.each do |mod|
+          %tr
+            %td= link_to mod.login, profile_path(mod.login)
+            %td
+              = link_to admin_mod_path(mod.id), method: 'delete' do
+                = image_tag "delete.png", title: "Удалить аккаунт пользователя #{mod.login}"
+  .block-buttons
+    = form_tag :admin_mods, method: 'post' do
+      = text_field_tag :login
+      %button.btn-green.compact Добавить модератора

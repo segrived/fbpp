@@ -1,5 +1,4 @@
 ru:
-
   activerecord:
     models:
       user: Пользователь
@@ -11,177 +10,223 @@ ru:
         name: Имя
         surname: Фамилия
         patronymic: Отчество
-        regdate: Дата регистрации
         account_type: Тип аккаунта
-      student:
-        specialty: Специальность
-        course: Курс
       lecturer:
         departament: Кафедра
         scientific_degree: Ученая степень
+      student:
+        specialty: Специальность
+        course: Курс
       private_message:
-        title: Заголовок
-        body: Сообщение
-        receiver: Получатель
         sender: Отправитель
-      specialty:
-        code: Номер
-        name: Название
-        description: Описание
+        receiver: Получатель
+        title: Заголовок
+        body: Текст сообщения
+        sendtime: Время
       departament:
         name: Название
         description: Описание
-      subject:
+      specialty:
+        code: Код
         name: Название
         description: Описание
-        departament: Кафедра
 
-  helpers:
-    submit:
-      user:
-        create: Зарегистироваться
-      departament:
-        create: Добавить новую кафедру
-        update: Сохранить изменения
-      specialty:
-        create: Добавить специальность
-        update: Сохранить изменения
-      subject:
-        create: Добавить дисциплину
-        update: Сохранить изменения
-
-  account_types:
+  accounts:
     student: Студент
     lecturer: Преподаватель
     mod: Модератор
     admin: Администратор
 
-  confirm_levels:
-    unconfirmed: Неподтверждённый
-    existence: Подтверждено существование
-    real: Подтверждена личность
+  helpers:
+    submit:
+      user:
+        create: Зарегистрироваться
+      departament:
+        create: Добавить кафедру
+        update: Сохранить изменения
+      specialty:
+        create: Добавить специальность
+        update: Сохранить изменения
 
-  common:
-    system_account_name: Система
-    unknown_account_name: Неизвестный
+  layout:
+    menu:
+      register: регистрация
+      login: войти
+      settings: настройки
+      logout: выйти
+    footer:
+      left_text: Feedback++
+      right_text: "Компания «Quart», 2013 год"
 
-  messages:
-    not_logged: Вы не вошли
-    bad_login: Неверный логин или пароль
-    removed_account: Этот аккаунт был удален из системы
-    unauthorized: Вы должны войти в систему для совершения данного действия
-    user_not_found: "Пользователь %{login} не найден"
-    banned: Данный аккаунт был отключен. За дополнительной информацией обратитесь к администрации ресурса.
-    cantbanself: Нельзя забанить самого себя
-    bad_action: Неизвестное действие
-    invalid_operation: Попытка выполнить недопустимую операцию
-    invalid_current_password: Текущий пароль введён неверно
-    changed_confirm_level_mail_title: Статус аккаунта был изменен
-    changed_confirm_level_mail_body: "Статуc вашего аккаунта был изменен на «%{status}»."
-    selected_user_not_exists: Указанного пользователя не существует
-    send_message_self: Нельзя отправить сообщение самому себе
-    departament_havnt_lecturers: Преподавателей на данной кафедре не зарегистрированно
-    confirm_remove_account: Вы действительно хотите удалить этот аккаунт? Удалённый аккаунт невозможно будет восстановить
-    account_has_been_removed_succ: Ваш аккаунт был успешно удалён
-    cant_delete_admin_account: Нельзя удалить аккаунт администратора
-    comment_has_been_removed: Комментарий был успешно удалён
+  layouts:
+    sidebar_blocks:
+      account:
+        title: Мой аккаунт
+      account_logged:
+        logged_as: Вы вошли как
+        admin_mods: модераторы
+        profile: мой профиль
+        settings: настройки аккаунта
+        messages: сообщения
+        logout: выйти из системы
 
-  will_paginate:
-    previous_label: "<<"
-    next_label: ">>"
-
-  sessions:
+  users:
+    invalid_login: Неверный логин или пароль
+    removed_account: Этот аккаунт был удалён
+    banned: Данный аккаунт был забанен. За дополнительной информацией можете обратиться к администратору ресурса.
+    register:
+      title: Регистрация нового аккаунта
+      hint_login: "Только буквы (A-Z a-z), цифры (0-9) и символ подчеркивания (_), не меньше 3 и не больше 20 символов."
+      hint_password: "В целях безопасности длина пароля не может быть меньше 8 символов."
+      hint_name: "Имя, фамилия и отчество обязательны для заполнения только преподавателям."
     login:
+      title: Вход в систему
       login_button: Войти в систему
-    options:
-      confirm_button: Сохранить
-    profile:
-      fullname: ФИО
-      used_locale: Язык интерфейса
-      set_locale: Выбрать язык
-      not_specified_f: Не указана
-      not_specified_m: Не указан
-      edit_options_link: Редактировать данные
-      remove_account: Удалить аккаунт
-      change_password_link: Сменить пароль
-      send_private_message: Отправить личное сообщение
+    list:
+      title: Пользователи
+      empty: Пользователей в данной категории не найдено
+      tabs:
+        all: Все
+        student: Студенты
+        lecturer: Преподаватели
+        mod: Модераторы
+
+  settings:
+    not_selected_m: <Не указан>
+    not_selected_f: <Не указана>
+    save_suc: Изменения были успешно сохранены
+    save_fail: Произошла ошибка при сохранении изменений
+    invalid_current_password: Текущий пароль указан неверно
+    password_has_been_changed: Пароль был успешно изменен
+    panel:
+      title_left_path: Настройки
+      tabs:
+        personal: Личные
+        student: Студент
+        lecturer: Преподаватель
+        change_password: Смена пароля
+        remove_account: Удаление аккаунта
+        api: API
+    api:
+      title: Управление API ключами
+    lecturer:
+      title: Преподавательские данные
+      update_button: Сохранить изменения
+      after_reg: Вы успешно зарегистировались. Для подтверждения вашего аккаунта вы должны заполнить информацию о кафедре и ученой степени.
+    student:
+      title: Студенческие данные
+      course: "%{n} курс"
+      update_button: Сохранить изменения
+      after_reg: Вы успешно зарегистировались. Сейчас вы можете заполнить дополнительную информацию о себе. Данный шаг является не обязательным, но желательным.
+    personal:
+      title: Личные настройки
+
     change_password:
-      enter_current_password: Введите текущий пароль
-      enter_new_password: Введите новый пароль
-      confirm_new_password: Подтвердите введённый пароль
-      change_password_button: Подтвердить пароль
-      back_to_profile_page: Вернуться назад
+      title: Смена пароля
+      current_password: Введите текущий пароль
+      new_password: Введите новый пароль
+      confirm_new_password: Подтвердите новый пароль
+      confirm_button: Подтвердить изменение пароля
+      password_hint: Длиной от 8 до 30 символов
+    remove_account:
+      title: Удаление аккаунта
+      info_text: Здесь вы можете удалить свой аккаунт. После удаления аккаунта вы будет автоматически разлогинены. Удаленный аккаунт невозможно будет восстановить. Будьте внимательны.
+      remove_comments: Удалить оставленные комментарии
+      remove_feedbacks: Удалить оставленные отзывы
+      remove_button: Подтвердить удаление аккаунта
+      confirm_text: "ПОСЛЕДНЕЕ ПРЕДУПРЕЖДЕНИЕ: удалённый аккаунт невозможно будет восстановить. Продолжить?"
+
   private_messages:
+    user_not_exists: Указанный пользователь не найден
+    self_send: Невозможно отправить сообщение самому себе
+    panel:
+      title_left_path: Личные сообщения
+      tabs:
+        inbox: Входящие
+        outbox: Исходящие
+        new: Написать сообщение
+    message_list:
+      topic: Тема
+      empty: В данной папке сообщений не найдено
+    inbox:
+      title: Входящие
+    outbox:
+      title: Исходящие
     new:
-      receiver_login: Логин получателя
-      send_message_button: Отправить сообщение
-    messages:
-      received_messages: Принятные
-      sended_messages: Отправленные
-      create_new_message: Написать новое
+      title: Новое сообщение
+      send_message: Отправить сообщение
+    read:
+      title: "Сообщение от пользователя %{login}"
+      back_to_inbox: Входящие
+      back_to_outbox: Исходящие
+      reply: Ответить на это собщение
+      delete: Удалить
 
   departaments:
     index:
       title: Список кафедр
-      no_records: Информация о кафедрах ещё не была загружена в систему
-      create_link: Добавить кафедру
-    edit:
-      title: Редактирование кафедры
+      empty: В базу данных ещё не была добавлена информация о кафедрах
+      create_link: Добавить новую кафедру
     new:
       title: Добавление новой кафедры
+    edit:
+      title: Редактирование информации о кафедре
+    form:
+      cancel: Отменить
     show:
+      title: Информация о кафедре
+      description: Описание
+      back_to_departaments: К списку кафедр
       list_lecturers_link: Список преподавателей на этой кафедре
-      list_subjects_link: Список дисциплин на этой кафедре
-      edit_link: Редактировать информацию о кафедре
-      delete_link: Удалить информацию о кафедре
-      delete_link_confirm: "Вы уверены, что хотите удалить информацию об этой кафедре?"
-    show_lecturers:
-      title: Список преподавателей на кафедре
-      no_records: Преподавателей на данной кафедре не зарегистрировано.
-    show_subjects:
-      title: Список дисциплин на кафедре
-      no_records: Дисциплин на данной кафедре нет
+      list_subjects_link: Список дисциплин на кафедре
+      edit_link: Редактировать
+      delete_link: Удалить
+      delete_link_confirm: Вы действительно хотите удалить информацию о кафедре?
+    lecturers:
+      title: Преподаватели на кафедре
+      empty: В данный момент на данной кафедре не было зарегистрированно ещё ни одного преподавателя.
+      back_to_departament: Назад к кафедре
+    subjects:
+      title: Предметы на кафедре
+      empty: В данный момент на кафедре ещё не зарегистрированно ни одного предмета
+      back_to_departament: Назад к кафедре
 
-  layout:
-    search_field: поиск...
-    menu:
-      home: главная
-      about: о сервисе
-      faq: faq
-      admin: админка
-      profile: профиль
-      create_admin: создайте аккаунт администратора
-      subjects: дисциплины
-      departaments: кафедры
-      specialties: специальности
-      users: пользователи
-      messages: сообщения
-      register: регистрация
-      login: войти
-      logout: выйти
+  specialties:
+    index:
+      title: Список специальностей
+      empty: В базу данных ещё не была добавлена информация о специальностях
+      create_link: Добавить новую специальность
+    new:
+      title: Добавление новой специальности
+    edit:
+      title: Редактирование информации о специальности
+    form:
+      cancel: Отменить
+    show:
+      title: Информация о специальности
+      description: Описание
+      back_to_specialty: К списку специальностей
+      edit_link: Редактировать
+      delete_link: Удалить
+      delete_link_confirm: Вы действительно хотите удалить информацию о специальности?
 
-  titles:
-    register: Регистрация
-    login: Вход в систему
-    my_options: Дополнительные данные
-    profile: "Профиль пользователя %{login}"
-    about: О сервисе
-    faq: FAQ (Часто задаваемые вопросы)
-    index: Добро пожаловать. Снова.
-    change_password: Форма смены пароля
-    send_message: Форма отправки личного сообщения
-    private_messages: Личные сообщения
-    departament_index: Список кафедр
-    departament_new: Добавление кафедры
-    departament_lecturers: Список преподавателей на кафедре
-    departament_subjects: Список дисциплин на кафедре
-    specialty_new: Добавление специальности
-    specialty_index: Список специальностей
-    specialty_edit: Редактирование специальности
-    create_admin_account: Создание аккаунта администратора
-    admin:
-      index: Панель администратора
-      users: Список пользователей
+  profiles:
+    lecturer:
+      title: "Профиль преподавателя %{login}"
+    blocks:
+      comments:
+        title: Комментарии
 
-  api_messages:
-    user_not_found: Пользователь не найден
+  home:
+    about:
+      title: "О проекте"
+    faq:
+      title: "Часто задаваемые вопросы и ответы"
+
+  ctrl:
+    users:
+      invalid_login: Неверный логин или пароль
+
+  will_paginate:
+    previous_label: "←"
+    next_label: "→"

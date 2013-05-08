@@ -1,0 +1,5 @@
+.block
+  = block_title "Преподаватели", "departament.png"
+  .block-content
+    - User.where(account_type: User::ACCTYPES[:lecturer]).each do |u|
+      %p= u.lecturer.short_name

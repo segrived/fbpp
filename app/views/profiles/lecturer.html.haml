@@ -1,0 +1,21 @@
+.block.brd
+  = block_title t('.title', login: @user.login), "user_teacher.png"
+  .block-content
+    %h3 Основная информация
+    %hr.dashed/
+    %p
+      %strong ФИО:
+      %span= @lecturer.full_name
+    %p
+      %strong Зарегистрирован:
+      %span= @user.regdate.strftime('%e.%m.%Y, %H:%M')
+    %p
+      %strong Название кафедры:
+      %span= @lecturer.departament ? @lecturer.departament.name : "Не указана"
+    %p
+      %strong Учёная степень:
+      %span= @lecturer.scientific_degree ? @lecturer.scientific_degree.title : "Не указана"
+  .block-buttons
+    = btn_link "Написать сообщение", messages_new_path(@user.login), true, 'green'
+
+= render partial: 'profiles/blocks/comments_block', locals: {lecturer: @lecturer}

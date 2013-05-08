@@ -1,0 +1,23 @@
+= render layout: 'settings/panel', locals: {title: t('settings.student.title')} do
+  = form_tag :settings_student, method: :put do
+    .block-content
+      - if params[:reg] then
+        .alert= t('settings.student.after_reg')
+      = messages
+      / Специальность
+      .form-field
+        = label_tag :specialty, Student.human_attribute_name(:specialty)
+        .styled.wp-95
+          = select_tag :specialty, |
+            options_from_collection_for_select(Specialty.all, :id, :name, |
+              @student.specialty ? @student.specialty.id : nil), |
+              :prompt => t('settings.not_selected_f')
+      / Курс
+      .form-field
+        = label_tag :course, Student.human_attribute_name(:course)
+        - courses_list = (1..Student::MAX_COURSE).map { |n| [t('settings.student.course', n: n), n] }
+        .styled.wp-95
+          = select_tag :course, options_for_select(courses_list, @student.course),
+            :prompt => t('settings.not_selected_m')
+    .block-buttons
+      = submit_tag t('settings.student.update_button'), class: 'btn-green'

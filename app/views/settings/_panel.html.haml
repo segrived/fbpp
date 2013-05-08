@@ -1,0 +1,13 @@
+.block.brd
+  - link = link_to t('.title_left_path'), :settings
+  = block_title link << " → #{title}", "settings.png"
+  .block-tabs
+    %span.block-tabs-tab= nav_link t('.tabs.personal'), :settings_personal
+    - if logged_user.student?
+      %span.block-tabs-tab= nav_link t('.tabs.student'), :settings_student
+    - elsif logged_user.lecturer?
+      %span.block-tabs-tab= nav_link t('.tabs.lecturer'), :settings_lecturer
+    %span.block-tabs-tab= nav_link t('.tabs.change_password'), :settings_change_password
+    %span.block-tabs-tab= nav_link t('.tabs.remove_account'), :settings_remove_account
+    %span.block-tabs-tab= nav_link t('.tabs.api'), :settings_api
+  = yield

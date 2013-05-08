@@ -1,0 +1,17 @@
+.block.brd.wp-50.b-center
+  = block_title "Создание аккаунта администратора", "user_admin.png"
+  = form_for @user, :url => { :action => 'create_admin' } do |f|
+    .block-content
+      - if @user.errors.any?
+        = render partial: 'shared/errors', locals: { errors: @user.errors }
+      .form-field
+        = f.label :login, User.human_attribute_name(:login)
+        = f.text_field :login, class: 'wp-100'
+      .form-field
+        = f.label :password, User.human_attribute_name(:password)
+        = f.password_field :password, class: 'wp-100'
+      .form-field
+        = f.label :password_confirmation, User.human_attribute_name(:password_confirmation)
+        = f.password_field :password_confirmation, class: 'wp-100'
+    .block-buttons
+      = f.submit "Создать аккаунт администратора", class: 'btn-green'

@@ -1,16 +1,24 @@
-%table{:style => 'width: 100%'}
+%table.wp-100
   %tr
-    %th{:width => '60%'} Заголовок
-    - if @type == 'inbox'
-      %th{:width => '20%'} Отправитель
-    - elsif @type == 'outbox'
-      %th{:width => '20%'} Получатель
-    %th{:width => '20%'} Дата отправления
-  - @messages.each do |message|
-    %tr.message{:id => message.read ? 'read' : 'unread'}
-      %td= link_to(message.title, read_message_path(message.id))
-      - if @type == 'inbox'
-        %td= user_login(message.sender_id)
-      - elsif @type == 'outbox'
-        %td= user_login(message.receiver_id)
-      %td= message.sendtime.strftime('%e.%m.%Y, %H:%M')
+    %th.wp-5
+    %th.wp-50= PrivateMessage.human_attribute_name('title')
+    - if inbox
+      %th.wp-25= PrivateMessage.human_attribute_name('sender')
+    - else
+      %th.wp-25= PrivateMessage.human_attribute_name('receiver')
+    %th.wp-20= PrivateMessage.human_attribute_name('sendtime')
+  - unless message_list.empty?
+    - message_list.each do |message|
+      - row_class = 'highlighted' unless message.read
+      %tr{class: row_class}
+        %td.first= image_tag (message.read) ? "mail_read.png" : "mail_unread.png"
+        - title_class = 'strong' unless message.read
+        %td= link_to message.title, messages_path(message.id), class: title_class
+        - if inbox
+          %td= link_to message.sender.login, profile_path(message.sender.login)
+        -else 
+          %td= link_to message.receiver.login, profile_path(message.receiver.login)
+        %td= message.sendtime.strftime('%e.%m.%Y, %H:%M')
+  - else
+    %tr
+      %td{colspan: 4}= t('.empty')

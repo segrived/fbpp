@@ -1,14 +1,17 @@
-= render :partial => 'shared/errors', :locals => { :obj => @specialty }
-
 = form_for @specialty do |f|
-  %p.form-field
-    = f.label :code, Specialty.human_attribute_name("code")
-    = f.text_field :code
-  %p.form-field
-    = f.label :name, Specialty.human_attribute_name("name")
-    = f.text_field :name
-  %p.form-field
-    = f.label :description, Specialty.human_attribute_name("description")
-    = f.text_area :description, :size => "60x9"
-  %p.form-field
-    = f.submit
+  .block-content
+    - if @specialty.errors.any?
+      = render partial: 'shared/errors', locals: { errors: @specialty.errors }
+    .form-field
+      = f.label :code, Specialty.human_attribute_name("code")
+      = f.text_field :code, class: 'wp-95'  
+    .form-field
+      = f.label :name, Specialty.human_attribute_name("name")
+      = f.text_field :name, class: 'wp-95'
+    .form-field
+      = f.label :description, Specialty.human_attribute_name("description")
+      = f.text_area :description, class: 'wp-95', style: 'width: 150px'
+  .block-buttons
+    = f.submit class: 'btn-green'
+    - unless @specialty.new_record?
+      = btn_link t('.cancel'), specialty_path(@specialty.id), false, 'blue'

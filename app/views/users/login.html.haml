@@ -1,0 +1,13 @@
+.block.brd.b-center.wpx-500
+  = block_title t('.title'), "login.png"
+  = form_tag :login, method: 'post' do
+    .block-content
+      = messages
+      .form-field
+        = label_tag :login, User.human_attribute_name(:login)
+        = text_field_tag :login, nil, class: 'wp-95'
+      .form-field
+        = label_tag :password, User.human_attribute_name(:password)
+        = password_field_tag :password, nil, class: 'wp-95'
+    .block-buttons
+      = submit_tag t('.login_button'), class: 'btn-green'

@@ -1,66 +1,54 @@
-:coffeescript
-  jQuery ->
-    # Устанавливает порядок поле для ввода имени и фамилии
-    set_name_fileds_position = (account_type) ->
-      if account_type == "#{User::ACCTYPES[:student]}"
-        $('#fname').insertBefore('#fsurname')
-      else if account_type == "#{User::ACCTYPES[:lecturer]}"
-        $('#fsurname').insertBefore('#fname')
+.block.brd.b-center.wpx-500
+  = block_title t('.title'), "signup.png"
+  = form_for @user, url: { action: :register } do |f|
+    .block-content
 
-    $('input[name^="user[account_type]"]').bind 'change', () ->
-        $('#fpatronymic').toggle("#{User::ACCTYPES[:student]}" != @value)
-        $('#fpatronymic input').val("")
-        set_name_fileds_position @value
+      - if @user.errors.any?
+        = render partial: 'shared/errors', locals: { errors: @user.errors }
 
-/ Заголовок страницы
-%h1#page-title= t('titles.register')
+      / Тип аккаунта
+      .form-field
+        = f.label :account_type, User.human_attribute_name(:account_type)
+        #account_type_wrapper.switch.candy.yellow.wp-100
+          = f.radio_button :account_type, User::ACCTYPES[:student], id: :user_student,
+            checked: @user.account_type == nil || @user.account_type == User::ACCTYPES[:student]
+          = f.label 'student', t('accounts.student')
+          = f.radio_button :account_type, User::ACCTYPES[:lecturer], id: :user_lecturer
+          = f.label 'lecturer', t('accounts.lecturer')
+          .slide-button
 
-= render :partial => "shared/errors", :locals => { :obj => @user }
+      / Логин
+      .form-field
+        = f.label :login, User.human_attribute_name(:login), class: 'required'
+        = f.text_field :login, class: 'wp-100'
+        .form-field-hint= t('.hint_login')
 
-/ Форма регистрации
-= form_for @user, :url => { :action => 'create' },
-  :html=> { :id => 'register-form' } do |f|
+      / Пароль
+      .form-field
+        = f.label :password, User.human_attribute_name(:password), class: 'required'
+        = f.password_field :password, class: 'wp-100'
+        .form-field-hint= t('.hint_password')
 
-  / Тип аккаунта
-  %p.form-field#faccountType
-    = f.label User.human_attribute_name(:account_type)
-    / Студент
-    = f.radio_button :account_type, User::ACCTYPES[:student], :id => 'user_student',
-      :checked => (@user[:account_type] == User::ACCTYPES[:student]) 
-    = f.label 'student', t('account_types.student'), :class => 'inline'
-    / Преподаватель
-    = f.radio_button :account_type, User::ACCTYPES[:lecturer], :id => 'user_lecturer'
-    = f.label 'lecturer', t('account_types.lecturer'), :class => 'inline',
-      :checked => (@user[:account_type] == User::ACCTYPES[:lecturer]) 
+      / Подтверждение пароля
+      .form-field
+        = f.label :password_confirmation, User.human_attribute_name(:password_confirmation), class: 'required'
+        = f.password_field :password_confirmation, class: 'wp-100'
 
-  / Логин
-  %p.form-field#flogin
-    = f.label :login, User.human_attribute_name(:login)
-    = f.text_field :login
+      / Имя
+      .form-field
+        = f.label :name, User.human_attribute_name(:name)
+        = f.text_field :name, class: 'wp-100'
+        .form-field-hint= t('.hint_name')
 
-  / Пароль
-  %p.form-field#fpassword
-    = f.label :password, User.human_attribute_name(:password)
-    = f.password_field :password
+      / Фамилия
+      .form-field
+        = f.label :surname, User.human_attribute_name(:surname)
+        = f.text_field :surname, class: 'wp-100'
 
-  / Подтверждение пароля
-  %p.form-field#fpasswordconfirmation
-    = f.label :password_confirmation, User.human_attribute_name(:password_confirmation)
-    = f.password_field :password_confirmation
-   
-  / Имя
-  %p.form-field#fname
-    = f.label :name, User.human_attribute_name(:name)
-    = f.text_field :name
-    
-  / Фамилия
-  %p.form-field#fsurname
-    = f.label :surname, User.human_attribute_name(:surname)
-    = f.text_field :surname
+      / Отчество
+      .form-field
+        = f.label :patronymic, User.human_attribute_name(:patronymic)
+        = f.text_field :patronymic, class: 'wp-100'
 
-  / Отчество
-  %p.form-field.hidden#fpatronymic
-    = f.label :patronymic, User.human_attribute_name(:patronymic)
-    = f.text_field :patronymic
-
-  = f.submit :id => "register-button"
+    .block-buttons
+      = f.submit class: 'btn-green'

@@ -43,27 +43,30 @@ class User < ActiveRecord::Base
 
   # Авторизирует пользователя; в случае удачи возвращает пользователя, иначе возвращает nil
   def self.authenticate(login, password)
-    user = find_by_login(login)
+    user = User.where(login: login).first
     return nil unless user
     ph, ps = user.password_hash, user.password_salt
-    if ph == BCrypt::Engine.hash_secret(password, ps) then user else nil end
+    (ph == BCrypt::Engine.hash_secret(password, ps)) ? user : nil
   end
 
+  # Возвращает True, если пользователь обладает правами администратора
   def self.in_admin_group?(user)
     return ACCTYPES.slice(:admin, :mod).value?(user.account_type)
   end
 
+  # Возрващает True, если пользователь находится в группе обычных пользователей
   def self.in_user_group?(user)
     return ACCTYPES.slice(:student, :lecturer).value?(user.account_type)
   end
 
-  # Возвращает дополнительную информацию по аккаунту
-  def get_info
-    case self.account_type
-      when ACCTYPES[:lecturer] then Lecturer.where(user_id: self.id).first
-      when ACCTYPES[:student] then Student.where(user_id: self.id).first
-      else nil
-    end
+  def lecturer
+    return nil unless ACCTYPES[:lecturer]
+    Lecturer.where(user_id: self.id).first
+  end
+
+  def student
+    return nil unless ACCTYPES[:student]
+    Student.where(user_id: self.id).first
   end
 
   # Определяет функции, выполняемые во время создания записи нового пользователя

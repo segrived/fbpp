@@ -1,12 +1,19 @@
-%h1#page-title= @specialty.name
-
-%p= simple_format @specialty.description
-
-- if logged? && can_admin?
-  %p
-    = link_to "Редактировать информацию о специальности",
-      edit_specialty_path(@specialty.id)
-  %p
-    = link_to "Удалить информацию о специальности", specialty_path(@specialty.id),
-      :method => :delete,
-      :confirm => "Вы уверены, что хотите удалить информацию об этой специальности?"
+.block.brd
+  = block_title t('.title'), "spec.png"
+  .block-content
+    %div
+      %h3.left= @specialty.name     
+      %h3.right{style: 'color: #338811'}= "#{@specialty.code}"
+    .cf
+    %hr.dashed/
+    %h3= t('.description') << ': '
+    %p= simple_format @specialty.description
+  -if can_admin?
+    .block-buttons
+      .left
+        = link_to "← #{t('.back_to_specialty')}", :specialties
+      .right
+        = btn_link t('.edit_link'), edit_specialty_path(@specialty.id), true, 'green'
+        = btn_link t('.delete_link'), specialty_path(@specialty.id), true, 'red',
+          method: :delete, confirm: t('.delete_link_confirm')
+      .cf

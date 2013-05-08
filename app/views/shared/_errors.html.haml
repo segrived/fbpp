@@ -1,5 +1,4 @@
-- if obj.errors.any?
-  .message-box.bred
-    %ul
-    - obj.errors.full_messages.each do |message|
-      %li= message
+.errors-list
+  %ul
+    - errors.full_messages.each do |error|
+      %li= error

@@ -1,8 +1,0 @@
-/ Специальность
-%p.profile-field
-  %b= Student.human_attribute_name('specialty') << ": "
-  %span= data.specialty ? data.specialty.name : t('sessions.profile.not_specified_f')
-/ Курс обучения
-%p.profile-field
-  %b= Student.human_attribute_name('course') << ": "
-  %span= data.course || t('sessions.profile.not_specified_m')

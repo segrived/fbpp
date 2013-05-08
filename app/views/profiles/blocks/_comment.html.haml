@@ -1,0 +1,16 @@
+.comment[comment]
+  .comment-title
+    .comment-title-left
+      %span.login= "#{comment.user.login},"
+      = comment.posttime.strftime('%e.%m.%Y, %H:%M')
+    .comment-title-right
+      %span.comment-rating.strong= "#{comment.rating}"
+      = link_to "↑", comment_vote_path(comment.id, :upvote), method: :post,
+        remote: true, id: 'upvote_link'
+      = link_to "↓", comment_vote_path(comment.id, :downvote), method: :post,
+        remote: true, id: 'downvote_link'
+      - if logged? && (can_admin? || comment.user == logged_user)
+        = link_to delete_comment_path(comment.id), method: :delete, confirm: "Вы уверены?" do
+          = image_tag "delete.png"
+  .cf
+  .comment-body= comment.body

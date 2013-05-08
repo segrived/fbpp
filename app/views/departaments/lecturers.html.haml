@@ -1,0 +1,11 @@
+.block.brd
+  = block_title t('.title'), 'user_teacher.png'
+  .block-content
+    - unless @lecturers.empty?
+      %ul
+        - @lecturers.each do |lecturer|
+          %li= link_to lecturer.full_name, profile_path(lecturer.user.login)
+    - else
+      %p= t('.empty')
+  .block-buttons
+    = link_to "← #{t('.back_to_departament')}", departament_path(params[:id])

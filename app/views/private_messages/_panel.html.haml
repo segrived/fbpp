@@ -1,0 +1,7 @@
+.block.brd
+  - link = link_to t('.title_left_path'), :inbox
+  = block_title link << " → #{title}", "mail.png"
+  = block_tabs [[t('.tabs.inbox'), :inbox],
+    [t('.tabs.outbox'), :outbox],
+    [t('.tabs.new'), :messages_new]]
+  = yield

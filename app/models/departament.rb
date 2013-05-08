@@ -3,6 +3,5 @@ class Departament < ActiveRecord::Base
   has_many :subjects
   attr_accessible :name, :description
 
-  validates :name, :description,
-    :presence => true
+  validates :name, :description, presence: true
 end

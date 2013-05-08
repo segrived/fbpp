@@ -15,7 +15,7 @@ class DepartamentsController < ApplicationController
     @departament = Departament.find(params[:id])
   end
 
-  # GET /departamnets/new
+  # GET /departaments/new
   # Отображает форму добавления кафедры
   def new
     @departament = Departament.new
@@ -59,14 +59,14 @@ class DepartamentsController < ApplicationController
 
   # GET /departaments/:id/lecturers
   # Выводит информацию о преподавателях, работающих на кафедре
-  def show_lecturers
+  def lecturers
     @lecturers = Departament.find(params[:id]).lecturers
   end
 
   # GET /departaments/:id/subjects
   # Отображает страницу со списком дисциплин
-  def show_subjects
-      @subjects = Departament.find(params[:id]).subjects
+  def subjects
+    @subjects = Departament.find(params[:id]).subjects
   end
 
 end

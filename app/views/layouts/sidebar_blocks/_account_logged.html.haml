@@ -1,0 +1,24 @@
+%p
+  = t('.logged_as')
+  %b= logged_user.login
+
+- if logged_user.admin?
+  %ul
+    %li
+      = image_tag "user_mod.png"
+      = link_to t('.admin_mods'), :admin_mods
+
+%hr.compact.dashed/
+%ul
+  %li
+    = image_tag "user.png"
+    = link_to t('.profile'), :profile
+  %li
+    = image_tag "settings.png"
+    = link_to t('.settings'), :settings
+  %li
+    = image_tag "mail_icon.png"
+    = link_to t('.messages'), :inbox
+  %li
+    = image_tag "logout.png"
+    = link_to t('.logout'), :logout

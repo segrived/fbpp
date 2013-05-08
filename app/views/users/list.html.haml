@@ -1,22 +1,25 @@
-%h1#page-title= t('titles.admin.users')
-
-%ul#filter
-  %li= nav_link "Все пользователи", users_path(:all)
-  %li= nav_link "Модераторы", users_path(:mod)
-  %li= nav_link "Студенты", users_path(:student)
-  %li= nav_link "Преподаватели", users_path(:lecturer)
-
-%table{:style => 'width: 100%'}
-  %tr
-    %th= User.human_attribute_name(:login)
-    %th= User.human_attribute_name(:surname)
-    %th= User.human_attribute_name(:name)
-    %th= User.human_attribute_name(:patronymic)
-  - @users.each do |user|
-    %tr
-      %td= link_to user.login, profile_path(user.login)
-      %td= user.surname.blank? ? "—" : user.surname
-      %td= user.name.blank? ? "—" : user.name
-      %td= user.patronymic.blank? ? "—" : user.patronymic
-
-= will_paginate @users
+.block.brd
+  = block_title t('.title'), "user.png"
+  = block_tabs [[t('.tabs.all'), users_path(:all)],
+    [t('.tabs.lecturer'), users_path(:lecturers)],
+    [t('.tabs.student'), users_path(:students)],
+    [t('.tabs.mod'), users_path(:mods)]]
+  .block-content.no-brd
+    %table.wp-100
+      %tr
+        %th.wp-5
+        %th= User.human_attribute_name('login')
+        %th= User.human_attribute_name('name')
+        %th= User.human_attribute_name('surname')
+        %th= User.human_attribute_name('patronymic')
+      - if @users.empty?
+        %td{colspan: 5}= t('.empty')
+      - else
+        - @users.each do |user|
+          %tr
+            %td.first= image_tag("user_#{User::ACCTYPES.key(user.account_type)}.png")
+            %td= link_to user.login, profile_path(user.login)
+            %td= user.name.blank? ? "—" : user.name
+            %td= user.surname.blank? ? "—" : user.surname
+            %td= user.patronymic.blank? ? "—" : user.patronymic
+    = will_paginate @users

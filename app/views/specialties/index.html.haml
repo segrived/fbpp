@@ -1,12 +1,15 @@
-%h1#page-title= t("titles.specialty_index")
-
-- unless @specialties.empty?
-  %ul
-    - @specialties.each do |specialty|
-      %li= link_to specialty.name, specialty_path(specialty.id)
-- else
-  .message-box.bred Информация о специальностях ещё не была загружена в систему.
-
-- if logged? && can_admin?
-  %hr/
-  = link_to "Добавить специальность", :new_specialty
+.block.brd
+  = block_title t(".title"), "spec.png"
+  .block-content
+    - unless @specialties.empty?
+      %ul.compact
+        - @specialties.each do |specialty|
+          %li= link_to specialty.name, specialty_path(specialty.id)
+    - else
+      %p= t('.empty')
+      
+  - if can_admin?
+    .block-buttons
+      .right
+        = btn_link t('.create_link'), :new_specialty, true, 'green'
+      .cf
