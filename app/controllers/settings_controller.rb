@@ -88,6 +88,7 @@ class SettingsController < ApplicationController
   end
 
   def personal
+    @user = logged_user
     if request.put? then
       logged_user.update_attributes({
         name: params[:name],

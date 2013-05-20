@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
 
-  before_filter :require_admin_rights, :except => [:index, :show, :subscribe]
+  before_filter :require_admin_rights, :except => [:index, :show, :subscribe, :unsubscribe]
 
   # GET /subjects
   # Отображает страницу со списком дисциплин
@@ -49,13 +49,20 @@ class SubjectsController < ApplicationController
         redirect_to :root and return
     end
     @subs = SubjectSubscription.new(
-      lecturer_id: logged_user.get_info.id,
+      lecturer_id: logged_user.lecturer.id,
       subject_id: params[:id])
     @subs.save
     redirect_to :back
   end
 
   def unsubscribe
+    unless logged_user.lecturer? then
+        redirect_to :root and return
+    end
+    @subs = SubjectSubscription.destroy_all(
+      lecturer_id: logged_user.lecturer.id,
+      subject_id: params[:id])
+    redirect_to :back
   end
 
 end
