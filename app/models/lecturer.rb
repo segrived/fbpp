@@ -27,6 +27,10 @@ class Lecturer < ActiveRecord::Base
     "#{user.surname.cap_first} #{user.name.first.mb_upcase}. #{user.patronymic.first.mb_upcase}."
   end
 
+  def subscribed?(subject_id)
+    subject_subscriptions.where(subject_id: subject_id).count > 0
+  end
+
   validates :user_id,
     :presence => true
   validates :scientific_degree_id, :departament_id,

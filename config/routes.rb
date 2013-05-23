@@ -34,7 +34,6 @@ Feedback::Application.routes.draw do
   get "users/:filter/(:page)" => "users#list", :as => :users, :page => /\d+/
   post "subjects/:id/subscribe" => "subjects#subscribe", :as => :subject_subscribe
   post "subjects/:id/unsubscribe" => "subjects#unsubscribe", :as => :subject_unsubscribe
-
   # Комментарии
   get "lecturer/:lid/comments" => "sessions#lecturer_comments", :as => :lecturer_comments
   post "comments/add" => "comments#add", :as => :add_comment

@@ -1,6 +1,7 @@
 .block.brd
   = block_title t('.title'), "spec.png"
   .block-content
+<<<<<<< HEAD
     %h3= @subject.name
     %hr.dashed/
     %h3= t('.description') << ': '
@@ -25,4 +26,32 @@
           = btn_link "отменить подписку", subject_unsubscribe_path(@subject.id), true, 'red', method: :post
         - else
           = btn_link "подписаться", subject_subscribe_path(@subject.id), true, 'green', method: :post
+=======
+    %h3= @subject.name     
+    %hr.dashed/
+    %p
+      %h3 Название кафедры:
+      %p= @subject.departament.name
+    %p
+      %h3= t('.description') << ': '
+      %p= simple_format @subject.description
+  - if logged? && logged_user.lecturer?
+    .block-buttons
+      .right
+        - if logged_user.lecturer.subscribed?(@subject.id)
+          = btn_link "отменить подписку", subject_unsubscribe_path(@subject.id), true, 'red',
+            method: :delete
+        - else
+          = btn_link "подписаться", subject_subscribe_path(@subject.id), true, 'blue',
+            method: :post
+      .cf
+  - if can_admin?
+    .block-buttons
+      .left
+        = link_to "← #{t('.back_to_subjects')}", :subjects
+      .right
+        = btn_link t('.edit_link'), edit_subject_path(@subject.id), true, 'green'
+        = btn_link t('.delete_link'), subject_path(@subject.id), true, 'red',
+          method: :delete, confirm: t('.delete_link_confirm')
+>>>>>>> 1a116d729901378d45d7ae03b392948b1ab3e01e
       .cf
