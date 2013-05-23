@@ -210,6 +210,25 @@ ru:
       delete_link: Удалить
       delete_link_confirm: Вы действительно хотите удалить информацию о специальности?
 
+  subjects:
+    index:
+      title: Список дисциплин
+      empty: В базу данных ещё не была добавлена информация о дисциплинах
+      create_link: Добавить дисциплину
+    new:
+      title: Добавление новой дисциплины
+    edit:
+      title: Редактирование информации о дисциплине
+    form:
+      cancel: Отменить
+    show:
+      title: Информация о дисциплине
+      description: Описание
+      back_to_subjects: К списку дисциплин
+      edit_link: Редактировать
+      delete_link: Удалить
+      delete_link_confirm: Вы действительно хотите удалить информацию о дисциплине?
+
   profiles:
     lecturer:
       title: "Профиль преподавателя %{login}"

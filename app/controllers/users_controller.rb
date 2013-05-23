@@ -123,14 +123,14 @@ class UsersController < ApplicationController
       passwd = SecureRandom.base64(16)
       @user.password = @user.password_confirmation = passwd
       if @user.save then
-        message = "Данные созданного аккаунта: Логин: #{@user.login}, пароль: #{passwd}"
+        message = "Account. Login: #{@user.login}, password: #{passwd}"
         redirect_to :admin_mods, alert: message
       else
-        redirect_to :admin_mods, notice: "Не удалось создать аккаунт модератора"
+        redirect_to :admin_mods, notice: "Can't create"
       end
     elsif request.delete? then
       User.find(params[:id]).destroy
-      redirect_to :admin_mods, alert: "Модератор был успешно удалён"
+      redirect_to :admin_mods, alert: "Removed"
     end
   end
 

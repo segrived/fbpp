@@ -34,16 +34,16 @@
         = f.label :password_confirmation, User.human_attribute_name(:password_confirmation), class: 'required'
         = f.password_field :password_confirmation, class: 'wp-100'
 
+      / Фамилия
+      .form-field
+        = f.label :surname, User.human_attribute_name(:surname)
+        = f.text_field :surname, class: 'wp-100'
+
       / Имя
       .form-field
         = f.label :name, User.human_attribute_name(:name)
         = f.text_field :name, class: 'wp-100'
         .form-field-hint= t('.hint_name')
-
-      / Фамилия
-      .form-field
-        = f.label :surname, User.human_attribute_name(:surname)
-        = f.text_field :surname, class: 'wp-100'
 
       / Отчество
       .form-field

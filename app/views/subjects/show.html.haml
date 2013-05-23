@@ -1,16 +1,28 @@
 .block.brd
   = block_title t('.title'), "spec.png"
   .block-content
-    %h3.left= @subject.name     
+    %h3= @subject.name
     %hr.dashed/
     %h3= t('.description') << ': '
     %p= simple_format @subject.description
+    - if @subject.subject_subscriptions.present?
+      %h3 Эту дисциплину ведут:
+      - @subject.subject_subscriptions.each do |s|
+        %li= s.lecturer.full_name
   -if can_admin?
     .block-buttons
       .left
-        = link_to "← #{t('.back_to_subject')}", :specialties
+        = link_to "← #{t('.back_to_subjects')}", :specialties
+      - if logged_user.admin?
+        .right
+          = btn_link t('.edit_link'), edit_subject_path(@subject.id), true, 'green'
+          = btn_link t('.delete_link'), subject_path(@subject.id), true, 'red',
+            method: :delete, confirm: t('.delete_link_confirm')
+  - if logged_user.lecturer?
+    .block-buttons
       .right
-        = btn_link t('.edit_link'), subject_path(@subject.id), true, 'green'
-        = btn_link t('.delete_link'), subject_path(@subject.id), true, 'red',
-          method: :delete, confirm: t('.delete_link_confirm')
+        - if logged_user.lecturer.subscribed?(@subject.id)
+          = btn_link "отменить подписку", subject_unsubscribe_path(@subject.id), true, 'red', method: :post
+        - else
+          = btn_link "подписаться", subject_subscribe_path(@subject.id), true, 'green', method: :post
       .cf

@@ -39,7 +39,7 @@ class SettingsController < ApplicationController
       logged_user.update_attributes({ removed: true, account_type: nil })
       # Выход из системы
       clear_user_session
-      redirect_to :login, :alert => "Аккаунт был успешно удалён"
+      redirect_to :login, :alert => "Account has been removed"
     end
   end
 
@@ -88,12 +88,13 @@ class SettingsController < ApplicationController
   end
 
   def personal
+    @user = logged_user
     if request.put? then
       logged_user.update_attributes({
         name: params[:name],
         surname: params[:surname],
         patronymic: params[:patronymic]})
-      redirect_to :back, alert: "Изменения были успешно сохранены"
+      redirect_to :back, alert: "Saved"
     end
   end
 

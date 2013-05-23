@@ -32,7 +32,8 @@ Feedback::Application.routes.draw do
   get "feedback/:id" => "subscriptions#show", as: :subscriptions
   get "users" => redirect("/users/all")
   get "users/:filter/(:page)" => "users#list", :as => :users, :page => /\d+/
-  post "subjects/subscribe/:id" => "subjects#subscribe", :as => :subject_subscribe
+  post "subjects/:id/subscribe" => "subjects#subscribe", :as => :subject_subscribe
+  post "subjects/:id/unsubscribe" => "subjects#unsubscribe", :as => :subject_unsubscribe
 
   # Комментарии
   get "lecturer/:lid/comments" => "sessions#lecturer_comments", :as => :lecturer_comments
@@ -45,6 +46,7 @@ Feedback::Application.routes.draw do
 
   # Кафедры, специальности и дисциплины
   resources :departaments, :specialties, :subjects
+  resources :feedbacks, controller: 'subscriptions'
   get "departaments/:id/lecturers" => "departaments#lecturers", :as => :departament_lecturers
   get "departaments/:id/subjects" => "departaments#subjects", :as => :departament_subjects
 

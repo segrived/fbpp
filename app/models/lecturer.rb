@@ -13,6 +13,10 @@ class Lecturer < ActiveRecord::Base
     define_method("#{k}?") { confirm_level == CONFIRM_LEVELS[k] }
   end
 
+  def subscribed?(subject_id)
+    subject_subscriptions.where(subject_id: subject_id).count > 0
+  end
+
   # Возвращает полное ФИО преподавателя (например: Иванов Андрей Петрович)
   def full_name
     "#{user.surname.cap_first} #{user.name.cap_first}  #{user.patronymic.cap_first}"

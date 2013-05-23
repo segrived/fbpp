@@ -1,6 +1,6 @@
 class SpecialtiesController < ApplicationController
 
-  before_filter :require_admin_rights, :except => [:index, :show]
+  before_filter :require_admin_rights, except: [:index, :show]
 
   # GET /specialties
   # Отображает страницу со списком специальностей
