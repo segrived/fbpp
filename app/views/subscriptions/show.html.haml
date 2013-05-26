@@ -1,0 +1,13 @@
+.block.brd
+  = block_title t('.title'), "spec.png"
+  .block-content
+    %p
+      %span.strong Преподаватель:
+      = @subscription.lecturer.full_name
+    %p
+      %span.strong Дисциплина:
+      = @subscription.subject.name
+    %hr.dotted
+    %h3 Последние отзывы:
+    - @subscription.feedbacks.each do |f|
+      = f.student.user.login

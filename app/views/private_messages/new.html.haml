@@ -5,12 +5,12 @@
         = render partial: 'shared/errors', locals: { errors: @private_message.errors }
       .form-field
         = label_tag :login, PrivateMessage.human_attribute_name(:receiver)
-        = text_field_tag :login, @login, class: 'wp-50'
+        = text_field_tag :login, @login, class: 'wp-100'
       .form-field
         = f.label :title, PrivateMessage.human_attribute_name(:title)
-        = f.text_field :title, class: 'wp-95'
+        = f.text_field :title, class: 'wp-100'
       .form-field
         = f.label :body, PrivateMessage.human_attribute_name(:body)
-        = f.text_area :body, class: 'wp-95', style: 'height: 180px'
+        = f.text_area :body, class: 'wp-100', style: 'height: 180px'
     .block-buttons
       = f.submit t('private_messages.new.send_message'), class: 'btn-green'

@@ -8,7 +8,7 @@
     - if @subject.subject_subscriptions.present?
       %h3 Эту дисциплину ведут:
       - @subject.subject_subscriptions.each do |s|
-        %li= s.lecturer.full_name
+        %li= link_to s.lecturer.full_name, feedback_path(s.id)
   -if can_admin?
     .block-buttons
       .left

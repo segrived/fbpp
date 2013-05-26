@@ -30,6 +30,9 @@ ru:
         code: Код
         name: Название
         description: Описание
+      question:
+        text: Текст вопроса
+        required: Обязательный
 
   accounts:
     student: Студент
@@ -47,6 +50,8 @@ ru:
       specialty:
         create: Добавить специальность
         update: Сохранить изменения
+      question:
+        create: Добавить вопрос
 
   layout:
     menu:
@@ -65,6 +70,7 @@ ru:
       account_logged:
         logged_as: Вы вошли как
         admin_mods: модераторы
+        question_editor: редактор вопросов
         profile: мой профиль
         settings: настройки аккаунта
         messages: сообщения
@@ -232,6 +238,16 @@ ru:
       edit_link: Редактировать
       delete_link: Удалить
       delete_link_confirm: Вы действительно хотите удалить информацию о дисциплине?
+
+  questions:
+    index:
+      title: Список вопросов для отзывов
+      empty: Вопросы ещё не были добавлены в БД
+      create_link: Добавить вопрос
+
+  subscriptions:
+    show:
+      title: Страница с отзывами
 
   profiles:
     lecturer:

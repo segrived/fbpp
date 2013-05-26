@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418144317) do
+ActiveRecord::Schema.define(:version => 20130525015413) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "key"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(:version => 20130418144317) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "feedbacks", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "subject_subscription_id"
+    t.datetime "time"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "feedbacks", ["student_id"], :name => "index_feedbacks_on_student_id"
+  add_index "feedbacks", ["subject_subscription_id"], :name => "index_feedbacks_on_subject_subscription_id"
+
   create_table "lecturers", :force => true do |t|
     t.integer  "user_id"
     t.integer  "departament_id"
@@ -84,6 +95,14 @@ ActiveRecord::Schema.define(:version => 20130418144317) do
 
   add_index "private_messages", ["receiver_id"], :name => "index_private_messages_on_receiver_id"
   add_index "private_messages", ["sender_id"], :name => "index_private_messages_on_sender_id"
+
+  create_table "questions", :force => true do |t|
+    t.string   "text"
+    t.integer  "type"
+    t.boolean  "required"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "scientific_degrees", :force => true do |t|
     t.string   "title"

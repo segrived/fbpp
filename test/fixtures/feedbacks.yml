@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  student: 
+  subject_subscription: 
+  time: 2013-05-25 04:54:13
+
+two:
+  student: 
+  subject_subscription: 
+  time: 2013-05-25 04:54:13

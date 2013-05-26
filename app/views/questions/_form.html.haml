@@ -1,0 +1,12 @@
+= form_for @question do |f|
+  .block-content
+    - if @question.errors.any?
+      = render partial: 'shared/errors', locals: { errors: @question.errors }
+    .form-field
+      = f.label :text, Question.human_attribute_name("text")
+      = f.text_field :text, class: 'wp-100'
+      .form-field-hint Данный вопрос будет обязательным для ответа
+  .block-buttons
+    = f.submit class: 'btn-green'
+    - unless @question.new_record?
+      = btn_link t('.cancel'), question_path(@question.id), false, 'blue'

@@ -1,0 +1,28 @@
+.block.brd
+  = block_title t(".title"), "help.png"
+  .block-content.no-brd
+    - unless @questions.empty?
+      %table.wp-100
+        %tr
+          %th.wp-90 Текст вопроса
+          %th.t-center= image_tag "settings.png"
+        - @questions.each do |question|
+          %tr
+            %td= question.text
+            %td
+              .left
+                = link_to edit_question_path(question.id) do
+                  = image_tag "write.png"
+              .right
+                = link_to question_path(question.id), method: :delete do
+                  = image_tag "cross.png"
+              .cf
+          
+    - else
+      %p= t('.empty')
+      
+  - if can_admin?
+    .block-buttons
+      .right
+        = btn_link t('.create_link'), :new_question, true, 'green'
+      .cf

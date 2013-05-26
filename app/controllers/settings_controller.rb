@@ -87,6 +87,7 @@ class SettingsController < ApplicationController
     end
   end
 
+  # GET /settings/personal
   def personal
     @user = logged_user
     if request.put? then

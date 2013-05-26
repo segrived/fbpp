@@ -1,4 +1,4 @@
-Feedback::Application.routes.draw do
+Fbpp::Application.routes.draw do
   root :to => "home#index"
   
   match "login" => "users#login", via: [:get, :post]
@@ -45,6 +45,7 @@ Feedback::Application.routes.draw do
 
   # Кафедры, специальности и дисциплины
   resources :departaments, :specialties, :subjects
+  resources :questions, except: [:show]
   resources :feedbacks, controller: 'subscriptions'
   get "departaments/:id/lecturers" => "departaments#lecturers", :as => :departament_lecturers
   get "departaments/:id/subjects" => "departaments#subjects", :as => :departament_subjects

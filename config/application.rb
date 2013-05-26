@@ -7,7 +7,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Feedback
+module Fbpp
   class Application < Rails::Application
     config.encoding = "utf-8"
     config.filter_parameters += [:password]

@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Feedback::Application.load_tasks
+Fbpp::Application.load_tasks
