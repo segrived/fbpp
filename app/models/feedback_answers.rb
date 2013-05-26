@@ -1,3 +1,5 @@
 class FeedbackAnswers < ActiveRecord::Base
-  attr_accessible :answer, :feedback, :question
+  belongs_to :feedback
+  belongs_to :question
+  attr_accessible :answer, :feedback_id, :question_id
 end

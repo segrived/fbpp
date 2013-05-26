@@ -11,3 +11,4 @@
     %h3 Последние отзывы:
     - @subscription.feedbacks.each do |f|
       = f.student.user.login
+    = btn_link "Оставить отзыв", new_feedback_path(@subscription.id), true, 'green'

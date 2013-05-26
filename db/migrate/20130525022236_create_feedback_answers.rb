@@ -1,8 +1,8 @@
 class CreateFeedbackAnswers < ActiveRecord::Migration
   def change
     create_table :feedback_answers do |t|
-      t.reference :feedback
-      t.reference :question
+      t.references :feedback
+      t.references :question
       t.integer :answer
 
       t.timestamps

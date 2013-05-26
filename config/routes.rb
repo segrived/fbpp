@@ -47,6 +47,8 @@ Fbpp::Application.routes.draw do
   resources :departaments, :specialties, :subjects
   resources :questions, except: [:show]
   resources :feedbacks, controller: 'subscriptions'
+  get "feedbacks/:id/new" => "feedbacks#new", as: 'new_feedback'
+  post "feedbacks/:id/add" => "feedbacks#add", as: 'add_feedback'
   get "departaments/:id/lecturers" => "departaments#lecturers", :as => :departament_lecturers
   get "departaments/:id/subjects" => "departaments#subjects", :as => :departament_subjects
 

@@ -1,0 +1,51 @@
+:coffeescript
+  jQuery ->
+
+    highlight_start = (question, rating) ->
+      stars = question.find('.rating-star')
+      stars.text("☆")
+      filled = stars.filter (i) -> $(@).data('rating') <= rating
+      filled.text("★")
+
+    # Наведение на звездочку
+    $('.rating-star').hover ->
+      highlight_start($(@).closest('div.question'), $(@).data('rating'))
+    # Щелчёк по звездочке
+    $('.rating-star').click ->
+      rating = $(@).data('rating')
+      question = $(@).closest('div.question')
+      $(question).data('rating', rating).addClass('answered')
+    # Вывод мышки с области звездочек ;)
+    $('.answer').mouseleave ->
+      _this = $(@)
+      rating = _this.parent('.question').data('rating')
+      if rating?
+        highlight_start($(@).parent(), rating)
+      else
+        _this.find('.rating-star').text('☆')
+    # Нажатие кнопки "Отправить отзыв"
+    $('#send-feedback').click () ->
+      ajax_data = []
+      for q in $('.question')
+        ajax_data.push { qid: $(q).data('question-id'), answer: $(q).data('rating') }
+      all_answered = ajax_data.every (x) -> x.answer?
+      unless all_answered
+        alert("Ответы даны не на все вопросы.")
+        return
+      $.post "/feedbacks/#{params[:id]}/add",
+        answers: $.stringify(ajax_data),
+        (data) -> console.log data
+
+.block.brd
+  = block_title "Добавить отзыв к дисциплине", "write.png"
+  .block-content
+    - @question.each_with_index do |q, i|
+      .question[q]{data: {question_id: q.id}}
+        .question-text
+          %span.strong= "Вопрос №#{i + 1}:"
+          = q.text
+        .answer
+          - (1..5).each do |x|
+            %span.rating-star{id: "s_#{x}", data: {rating: x}} ☆
+  .block-buttons
+    %button.btn-green.compact#send-feedback Добавить

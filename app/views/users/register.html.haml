@@ -1,3 +1,11 @@
+:coffeescript
+  jQuery ->
+    $("input[name='user[account_type]']").change () ->
+      if @id is 'user_student'
+        $('.lecturer-req').removeClass('required')
+      else
+        $('.lecturer-req').addClass('required')
+
 .block.brd.b-center.wpx-500
   = block_title t('.title'), "signup.png"
   = form_for @user, url: { action: :register } do |f|
@@ -9,7 +17,7 @@
       / Тип аккаунта
       .form-field
         = f.label :account_type, User.human_attribute_name(:account_type)
-        #account_type_wrapper.switch.candy.yellow.wp-100
+        #account_type_wrapper.switch.candy.green.wp-100
           = f.radio_button :account_type, User::ACCTYPES[:student], id: :user_student,
             checked: @user.account_type == nil || @user.account_type == User::ACCTYPES[:student]
           = f.label 'student', t('accounts.student')
@@ -36,18 +44,18 @@
 
       / Фамилия
       .form-field
-        = f.label :surname, User.human_attribute_name(:surname)
+        = f.label :surname, User.human_attribute_name(:surname), class: 'lecturer-req'
         = f.text_field :surname, class: 'wp-100'
 
       / Имя
       .form-field
-        = f.label :name, User.human_attribute_name(:name)
+        = f.label :name, User.human_attribute_name(:name), class: 'lecturer-req'
         = f.text_field :name, class: 'wp-100'
         .form-field-hint= t('.hint_name')
 
       / Отчество
       .form-field
-        = f.label :patronymic, User.human_attribute_name(:patronymic)
+        = f.label :patronymic, User.human_attribute_name(:patronymic), class: 'lecturer-req'
         = f.text_field :patronymic, class: 'wp-100'
 
     .block-buttons

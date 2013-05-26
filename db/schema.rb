@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525015413) do
+ActiveRecord::Schema.define(:version => 20130525022236) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "key"
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(:version => 20130525015413) do
   create_table "departaments", :force => true do |t|
     t.string   "name"
     t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "feedback_answers", :force => true do |t|
+    t.integer  "feedback_id"
+    t.integer  "question_id"
+    t.integer  "answer"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
