@@ -14,8 +14,6 @@ class ApplicationController < ActionController::Base
     @has_sidebar = false
   end
 
-  protected
-
   if Rails.env.production?
     unless Rails.application.config.consider_all_requests_local
       rescue_from Exception, with: :render_404
@@ -25,6 +23,8 @@ class ApplicationController < ActionController::Base
       rescue_from ActiveRecord::RecordNotFound, with: :render_404
     end
   end
+
+  protected
 
   def render_403
     respond_to do |format|
