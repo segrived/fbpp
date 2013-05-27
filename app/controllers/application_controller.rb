@@ -21,6 +21,14 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def render_403
+    render_error 403
+  end
+
+  def render_404
+    render_error 404
+  end
+
   def render_error(status, exception)
     respond_to do |format|
       format.html { render "errors/error_#{status}", status: status }
