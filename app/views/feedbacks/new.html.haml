@@ -33,19 +33,36 @@
         alert("Ответы даны не на все вопросы.")
         return
       $.post "/feedbacks/#{params[:id]}/add",
-        answers: $.stringify(ajax_data),
-        (data) -> console.log data
+        answers: $.stringify(ajax_data)
+        complete: (request, textStatus) ->
+          $('.question-list, .block-buttons').hide()
+          $('.succ-dialog').show()
+
 
 .block.brd
   = block_title "Добавить отзыв к дисциплине", "write.png"
-  .block-content
-    - @question.each_with_index do |q, i|
-      .question[q]{data: {question_id: q.id}}
-        .question-text
-          %span.strong= "Вопрос №#{i + 1}:"
-          = q.text
-        .answer
-          - (1..5).each do |x|
-            %span.rating-star{id: "s_#{x}", data: {rating: x}} ☆
-  .block-buttons
-    %button.btn-green.compact#send-feedback Добавить
+  - if logged_user.student.can_add_feedback(params[:id])
+    .block-content
+      .succ-dialog.hidden
+        %h3 Отзыв был успешно добавлен
+        = link_to "Перейти на страницу с отзывами", feedback_path(params[:id])
+      .question-list
+        - @question.each_with_index do |q, i|
+          .question[q]{data: {question_id: q.id}}
+            .question-text
+              %span.strong= "Вопрос №#{i + 1}:"
+              = q.text
+            .answer
+              - (1..5).each do |x|
+                %span.rating-star{id: "s_#{x}", data: {rating: x}} ☆
+      .block-buttons
+        %button.btn-green.compact#send-feedback Добавить отзыв
+  - else
+    .block-content
+      %h2 Невозможно оставить отзыв
+      %p Сегодня вы уже оставляли комментарий к этой дисциплине. Можно оставлять не более одного комментария в день.
+      - diff = Time.diff(Time.now, Date.tomorrow.to_time)
+      %p
+        Вы сможете оставить новый отзыв через:
+        %span.strong= "#{diff[:hour]} часов #{diff[:minute]} минут"
+      = link_to "Вернуться назад", feedback_path(params[:id])

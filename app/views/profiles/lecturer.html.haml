@@ -15,6 +15,12 @@
     %p
       %strong Учёная степень:
       %span= @lecturer.scientific_degree ? @lecturer.scientific_degree.title : "Не указана"
+    - if @lecturer.subject_subscriptions.present?
+      %hr.dashed
+      %p
+        %strong Ведёт следующие дисциплины:
+        - @lecturer.subject_subscriptions.each do |s|
+          .item= link_to s.subject.name, feedback_path(s.id)
   .block-buttons
     = btn_link "Написать сообщение", messages_new_path(@user.login), true, 'green'
 

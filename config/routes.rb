@@ -49,6 +49,8 @@ Fbpp::Application.routes.draw do
   resources :feedbacks, controller: 'subscriptions'
   get "feedbacks/:id/new" => "feedbacks#new", as: 'new_feedback'
   post "feedbacks/:id/add" => "feedbacks#add", as: 'add_feedback'
+  delete "feedbacks/:id/destroy" => "feedbacks#destroy", as: 'feedback_destroy'
+  get "feedbacks/:id/all/(page-(:page))" => "subscriptions#all", as: 'feedbacks_all'
   get "departaments/:id/lecturers" => "departaments#lecturers", :as => :departament_lecturers
   get "departaments/:id/subjects" => "departaments#subjects", :as => :departament_subjects
 

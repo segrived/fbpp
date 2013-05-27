@@ -1,0 +1,2 @@
+- feedbacks.order('time DESC').limit(5).each do |f|
+  = render partial: 'feedback', locals: { feedback: f }

@@ -1,14 +1,49 @@
+- f = @subscription.feedbacks.collect(&:id)
+- data = FeedbackAnswer.where(feedback_id: f).average(:answer, group: 'question')
+- count = FeedbackAnswer.where(feedback_id: f).count(:all, group: 'question')
+:javascript
+  $(function () {
+    $('.chart').highcharts({
+        chart: { type: 'bar' },
+        title: { text: 'Статистика на основе полученных отзывов' },
+        xAxis: { categories: #{data.keys.map(&:text)} },
+        yAxis: {
+          min: 0,
+          max: 5,
+          minorTickLength: 10,
+          title: { text: 'Средняя оценка' }
+        },
+        legend: { enabled: false },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.x +'</b><br/>'+
+              'В среднем: '+ this.y.toFixed(2) + " балла"
+          }
+        },
+        plotOptions: {
+          column: { stacking: 'normal' }
+        },
+        series: [
+          {data: #{data.values.map(&:to_f)} },
+        ]
+    });
+  });
+
 .block.brd
   = block_title t('.title'), "spec.png"
   .block-content
     %p
       %span.strong Преподаватель:
-      = @subscription.lecturer.full_name
+      = link_to @subscription.lecturer.full_name, profile_path(@subscription.lecturer.user.login)
     %p
       %span.strong Дисциплина:
       = @subscription.subject.name
-    %hr.dotted
-    %h3 Последние отзывы:
-    - @subscription.feedbacks.each do |f|
-      = f.student.user.login
-    = btn_link "Оставить отзыв", new_feedback_path(@subscription.id), true, 'green'
+    - if @subscription.feedbacks.present?
+      %hr.dotted
+      .chart.wp-100{style: "height: 300px"}
+      %h3 Последние отзывы:
+      = render partial: 'feedbacks', locals: {feedbacks: @subscription.feedbacks}
+      = link_to "Смотреть все отзывы", feedbacks_all_path(@subscription.id)
+  - if logged_user.student?
+    .block-buttons
+      = btn_link "Оставить отзыв", new_feedback_path(@subscription.id), true, 'green'

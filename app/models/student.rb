@@ -15,6 +15,14 @@ class Student < ActiveRecord::Base
     :inclusion => { :in => 1 .. MAX_COURSE },
     :allow_nil => true
 
+  def can_add_feedback(subscription_id)
+    lf = Feedback.where(
+      student_id: self.id,
+      subject_subscription_id: subscription_id)
+    .order('time DESC').first
+    return !(lf.present? && lf.time.to_date == Date.today)
+  end
+
   # Возвращает данные студента по ID пользователя
   def self.get_by_user(user)
     Student.where(:user_id => user.id).first
