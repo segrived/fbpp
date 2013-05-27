@@ -252,6 +252,10 @@ ru:
   profiles:
     lecturer:
       title: "Профиль преподавателя %{login}"
+    common:
+      title: "Профиль пользователя %{login}"
+    student:
+      title: "Профиль студента %{login}"
     blocks:
       comments:
         title: Комментарии

@@ -22,6 +22,8 @@
   %li
     = image_tag "mail_icon.png"
     = link_to t('.messages'), :inbox
+    - if logged_user.unread_messages > 0
+      %span.unread-count= "[#{logged_user.unread_messages}]"
   %li
     = image_tag "logout.png"
     = link_to t('.logout'), :logout

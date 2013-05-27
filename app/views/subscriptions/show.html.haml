@@ -1,6 +1,5 @@
 - f = @subscription.feedbacks.collect(&:id)
 - data = FeedbackAnswer.where(feedback_id: f).average(:answer, group: 'question')
-- count = FeedbackAnswer.where(feedback_id: f).count(:all, group: 'question')
 :javascript
   $(function () {
     $('.chart').highcharts({

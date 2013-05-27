@@ -7,7 +7,7 @@
     - else
       %th.wp-25= PrivateMessage.human_attribute_name('receiver')
     %th.wp-20= PrivateMessage.human_attribute_name('sendtime')
-  - unless message_list.empty?
+  - if message_list.present?
     - message_list.each do |message|
       - row_class = 'highlighted' unless message.read
       %tr{class: row_class}
@@ -15,9 +15,15 @@
         - title_class = 'strong' unless message.read
         %td= link_to message.title, messages_path(message.id), class: title_class
         - if inbox
-          %td= link_to message.sender.login, profile_path(message.sender.login)
+          - if message.sender.present?
+            %td= link_to message.sender.login, profile_path(message.sender.login)
+          - else
+            %td= "Неизвестный пользователь"
         -else 
-          %td= link_to message.receiver.login, profile_path(message.receiver.login)
+          - if message.receiver.present?
+            %td= link_to message.receiver.login, profile_path(message.receiver.login)
+          - else
+            %td= "Неизвестный пользователь"
         %td= message.sendtime.strftime('%e.%m.%Y, %H:%M')
   - else
     %tr

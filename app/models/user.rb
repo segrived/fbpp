@@ -69,6 +69,10 @@ class User < ActiveRecord::Base
     Student.where(user_id: self.id).first
   end
 
+  def unread_messages
+    return PrivateMessage.where(receiver_id: self.id, read: false).count
+  end
+
   # Определяет функции, выполняемые во время создания записи нового пользователя
   before_create :set_register_date, :give_access
   before_save :encrypt_password
