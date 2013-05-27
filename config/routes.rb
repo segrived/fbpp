@@ -1,4 +1,8 @@
 Fbpp::Application.routes.draw do
+  get "errors/error_404"
+
+  get "errors/error_500"
+
   root :to => "home#index"
   
   match "login" => "users#login", via: [:get, :post]
@@ -54,4 +58,8 @@ Fbpp::Application.routes.draw do
   get "departaments/:id/lecturers" => "departaments#lecturers", :as => :departament_lecturers
   get "departaments/:id/subjects" => "departaments#subjects", :as => :departament_subjects
   get "create_admin" => "users#create_admin"
+
+  unless Rails.application.config.consider_all_requests_local
+    match '*not_found', to: 'errors#error_404'
+  end
 end

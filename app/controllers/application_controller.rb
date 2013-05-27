@@ -14,29 +14,17 @@ class ApplicationController < ActionController::Base
     @has_sidebar = false
   end
 
-  if Rails.env.production?
-    unless Rails.application.config.consider_all_requests_local
-      rescue_from Exception, with: :render_404
-      rescue_from ActionController::RoutingError, with: :render_404
-      rescue_from ActionController::UnknownController, with: :render_404
-      rescue_from ActionController::UnknownAction, with: :render_404
-      rescue_from ActiveRecord::RecordNotFound, with: :render_404
-    end
+  unless Rails.application.config.consider_all_requests_local
+    rescue_from Exception, with: lambda { |exception| render_error 500, exception }
+    rescue_from ActionController::RoutingError, ActionController::UnknownController, ::AbstractController::ActionNotFound, ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
   end
 
   protected
 
-  def render_403
+  def render_error(status, exception)
     respond_to do |format|
-      format.html { render "errors/403", status: 403 }
-      format.json { render json: { error: true, message: "403 Not authorized" } }
-    end
-  end
-
-  def render_404
-    respond_to do |format|
-      format.html { render "errors/404", status: 404 }
-      format.json { render json: { error: true, message: "404 Not Found" } }
+      format.html { render "errors/error_#{status}", status: status }
+      format.all { render nothing: true, status: status }
     end
   end
 
