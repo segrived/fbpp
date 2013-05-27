@@ -1,3 +1,5 @@
 %aside
   = render 'layouts/sidebar_blocks/account'
+  - if can_admin?
+    = render partial: 'layouts/sidebar_blocks/admin'
   = render 'layouts/sidebar_blocks/site_map'

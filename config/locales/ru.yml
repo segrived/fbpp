@@ -75,6 +75,9 @@ ru:
         settings: настройки аккаунта
         messages: сообщения
         logout: выйти из системы
+      admin:
+        admin_mods: управление модераторами
+        question_editor: редактор вопросов
 
   users:
     invalid_login: Неверный логин или пароль

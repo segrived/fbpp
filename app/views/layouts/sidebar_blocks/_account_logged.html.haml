@@ -2,15 +2,6 @@
   = t('.logged_as')
   %b= logged_user.login
 
-- if logged_user.admin?
-  %ul
-    %li
-      = image_tag "user_mod.png"
-      = link_to t('.admin_mods'), :admin_mods
-    %li
-      = image_tag "help.png"
-      = link_to t('.question_editor'), :questions
-
 %hr.compact.dashed/
 %ul
   %li

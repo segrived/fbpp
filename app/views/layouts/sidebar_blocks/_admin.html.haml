@@ -1,0 +1,11 @@
+.block
+  = block_title "Функции администратора", "user_admin.png"
+  .block-content
+    %ul
+      - if logged? && logged_user.admin?
+        %li
+          = image_tag "user_mod.png"
+          = link_to t('.admin_mods'), :admin_mods
+      %li
+        = image_tag "help.png"
+        = link_to t('.question_editor'), :questions
