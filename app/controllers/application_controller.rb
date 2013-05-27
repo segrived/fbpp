@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
   def render_error(status, exception)
     respond_to do |format|
-      format.html { render "errors/error_#{status}", status: status }
+      format.html { render "errors/#{status}", status: status }
       format.all { render nothing: true, status: status }
     end
   end
