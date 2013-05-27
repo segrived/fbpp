@@ -10,7 +10,7 @@ class SubscriptionsController < ApplicationController
       .find(params[:id])
       .feedbacks
       .order('time DESC')
-      .paginate(page: page, per_page: 4)
+      .paginate(page: page, per_page: 10)
   end
     
 end

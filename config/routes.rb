@@ -32,8 +32,6 @@ Fbpp::Application.routes.draw do
   get "feedback/:id" => "subscriptions#show", as: :subscriptions
   get "users" => redirect("/users/all")
   get "users/:filter/(:page)" => "users#list", :as => :users, :page => /\d+/
-  post "subjects/:id/subscribe" => "subjects#subscribe", :as => :subject_subscribe
-  post "subjects/:id/unsubscribe" => "subjects#unsubscribe", :as => :subject_unsubscribe
   # Комментарии
   get "lecturer/:lid/comments" => "sessions#lecturer_comments", :as => :lecturer_comments
   post "comments/add" => "comments#add", :as => :add_comment
@@ -47,12 +45,13 @@ Fbpp::Application.routes.draw do
   resources :departaments, :specialties, :subjects
   resources :questions, except: [:show]
   resources :feedbacks, controller: 'subscriptions'
+  post "subjects/:id/subscribe" => "subjects#subscribe", :as => :subject_subscribe
+  post "subjects/:id/unsubscribe" => "subjects#unsubscribe", :as => :subject_unsubscribe
   get "feedbacks/:id/new" => "feedbacks#new", as: 'new_feedback'
   post "feedbacks/:id/add" => "feedbacks#add", as: 'add_feedback'
   delete "feedbacks/:id/destroy" => "feedbacks#destroy", as: 'feedback_destroy'
   get "feedbacks/:id/all/(page-(:page))" => "subscriptions#all", as: 'feedbacks_all'
   get "departaments/:id/lecturers" => "departaments#lecturers", :as => :departament_lecturers
   get "departaments/:id/subjects" => "departaments#subjects", :as => :departament_subjects
-
   get "create_admin" => "users#create_admin"
 end

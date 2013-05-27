@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
 
-  before_filter :require_admin_rights, :except => [:index, :show, :subscribe, :unsubscribe]
+  before_filter :require_admin_rights, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /subjects
   # Отображает страницу со списком дисциплин
@@ -36,6 +36,11 @@ class SubjectsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    Subject.find(params[:id]).destroy
+    redirect_to :subjects
   end
 
   # GET /subjects/:id

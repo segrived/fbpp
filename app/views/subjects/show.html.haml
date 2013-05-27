@@ -9,6 +9,7 @@
       %h3 Эту дисциплину ведут:
       - @subject.subject_subscriptions.each do |s|
         %li= link_to s.lecturer.full_name, feedback_path(s.id)
+  / Функции администратора
   -if can_admin?
     .block-buttons
       .left
@@ -19,7 +20,8 @@
           = btn_link t('.delete_link'), subject_path(@subject.id), true, 'red',
             method: :delete, confirm: t('.delete_link_confirm')
       .cf
-  - if logged_user.lecturer?
+  / Функции преподавателя
+  - if logged? && logged_user.lecturer?
     .block-buttons
       .right
         - if logged_user.lecturer.subscribed?(@subject.id)

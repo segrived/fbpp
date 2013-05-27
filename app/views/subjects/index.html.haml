@@ -7,7 +7,8 @@
           %li= link_to subject.name, subject_path(subject.id)
     - else
       %p= t('.empty')
-  .block-buttons
-    .right
-      = btn_link t('.create_link'), :new_subject, true, 'green'
-    .cf
+  - if can_admin?
+    .block-buttons
+      .right
+        = btn_link t('.create_link'), :new_subject, true, 'green'
+      .cf
