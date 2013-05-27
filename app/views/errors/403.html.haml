@@ -1,4 +1,9 @@
-.t-center
-  %h2 Доступ запрещён
-  %h1 403
-  %p Извините, но вам сюда нельзя
+.block.brd
+  = block_title "Доступ запрещён", "key_solid.png"
+  .block-content
+    .t-center
+      %h2 Доступ запрещён
+      %h1 403
+      %p Извините, но вам сюда нельзя
+  .block-buttons
+    = btn_link "Вернуться на главную", :root, true, 'blue'

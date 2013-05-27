@@ -1,4 +1,9 @@
-.t-center
-  %h2 Ничего не найдено
-  %h1 404
-  %p Здесь ничего и никого нет
+.block.brd
+  = block_title "Ничего не найдено", "http_status_not_found.png"
+  .block-content
+    .t-center
+      %h2 Ничего не найдено
+      %h1 404
+      %p Здесь ничего и никого нет
+  .block-buttons
+    = btn_link "Вернуться на главную", :root, true, 'blue'
