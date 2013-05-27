@@ -11,6 +11,6 @@
         remote: true, id: 'downvote_link'
       - if logged? && (can_admin? || comment.user == logged_user)
         = link_to delete_comment_path(comment.id), method: :delete, confirm: "Вы уверены?" do
-          = image_tag "delete.png"
+          = image_tag "cross.png"
   .cf
   .comment-body= comment.body

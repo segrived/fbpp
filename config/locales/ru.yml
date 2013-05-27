@@ -257,7 +257,7 @@ ru:
     student:
       title: "Профиль студента %{login}"
     blocks:
-      comments:
+      comments_block:
         title: Комментарии
 
   home:
