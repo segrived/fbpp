@@ -1,5 +1,5 @@
 .block
-  = block_title "Функции администратора", "user_admin.png"
+  = block_title t(".title"), "user_admin.png"
   .block-content
     %ul
       - if logged? && logged_user.admin?

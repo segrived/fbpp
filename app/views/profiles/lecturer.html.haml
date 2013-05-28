@@ -11,7 +11,11 @@
       %span= @user.regdate.strftime('%e.%m.%Y, %H:%M')
     %p
       %strong Название кафедры:
-      %span= @lecturer.departament ? @lecturer.departament.name : "Не указана"
+      %span
+        - if @lecturer.departament
+          = link_to @lecturer.departament.name, departament_path(@lecturer.departament.id)
+        - else
+          Не указана
     %p
       %strong Учёная степень:
       %span= @lecturer.scientific_degree ? @lecturer.scientific_degree.title : "Не указана"

@@ -2,10 +2,10 @@
   = hidden_field_tag 'comment[lecturer_id]', lecturer_id
   .form-field.right
     = check_box_tag 'comment[anonymously]', 1, true
-    = label_tag :comment_anonymously, "Отображать моё имя", class: 'inline normal'
+    = label_tag :comment_anonymously, t(".show_my_name"), class: 'inline normal'
   .form-field.left
     - mark_list = [['Негативный', 0], ['Нейтральный', 1], ['Позитивный', 2]]
-    = label_tag :comment_mark, "Тип комментария", class: 'inline normal'
+    = label_tag :comment_mark, t(".comment_type"), class: 'inline normal'
     = select_tag 'comment[mark]', options_for_select(mark_list, Comment::MARKS[:neutral])
   .cf
   .form-field

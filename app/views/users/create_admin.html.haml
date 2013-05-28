@@ -1,5 +1,5 @@
 .block.brd.wp-50.b-center
-  = block_title "Создание аккаунта администратора", "user_admin.png"
+  = block_title t(".title"), "user_admin.png"
   = form_for @user, :url => { :action => 'create_admin' } do |f|
     .block-content
       - if @user.errors.any?
@@ -14,4 +14,4 @@
         = f.label :password_confirmation, User.human_attribute_name(:password_confirmation)
         = f.password_field :password_confirmation, class: 'wp-100'
     .block-buttons
-      = f.submit "Создать аккаунт администратора", class: 'btn-green'
+      = f.submit t(".create_btn"), class: 'btn-green'

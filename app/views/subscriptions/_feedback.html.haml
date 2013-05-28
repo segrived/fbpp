@@ -1,7 +1,7 @@
 .feedback
   .feedback-title
     .left
-      Отзыв от пользователя 
+      = t(".feedback_from")
       %span.strong= feedback.student.user.login
     .right
       = feedback.time.strftime('%e.%m.%Y, %H:%M')
@@ -11,8 +11,8 @@
   .feedback-content
     %table
       %tr
-        %th.wp-95 Вопрос
-        %th Оценка
+        %th.wp-95= t(".question")
+        %th= t(".rating")
       - feedback.feedback_answers.each do |a|
         - if a.question.present?
           %tr

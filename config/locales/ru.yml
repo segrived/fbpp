@@ -2,6 +2,8 @@ ru:
   activerecord:
     models:
       user: Пользователь
+      lecturer: Преподаватель
+      subject: Дисциплина
     attributes:
       user:
         login: Логин
@@ -40,6 +42,56 @@ ru:
     mod: Модератор
     admin: Администратор
 
+  admin:
+    mods:
+      title: Управление модераторами
+      empty: В данный момент в системе нет ещё ни одного модератора
+      delete_link_alt: "Удалить аккаунт пользователя %{login}"
+      btn_add: Добавить модератора
+
+  departaments:
+    index:
+      title: Список кафедр
+      empty: В базу данных ещё не была добавлена информация о кафедрах
+      create_link: Добавить новую кафедру
+    new:
+      title: Добавление новой кафедры
+    edit:
+      title: Редактирование информации о кафедре
+    form:
+      cancel: Отменить
+    show:
+      title: Информация о кафедре
+      description: Описание
+      back_to_departaments: К списку кафедр
+      list_lecturers_link: Список преподавателей на этой кафедре
+      list_subjects_link: Список дисциплин на кафедре
+      edit_link: Редактировать
+      delete_link: Удалить
+      delete_link_confirm: Вы действительно хотите удалить информацию о кафедре?
+    lecturers:
+      title: Преподаватели на кафедре
+      empty: В данный момент на данной кафедре не было зарегистрированно ещё ни одного преподавателя.
+      back_to_departament: Назад к кафедре
+    subjects:
+      title: Предметы на кафедре
+      empty: В данный момент на кафедре ещё не зарегистрированно ни одного предмета
+      back_to_departament: Назад к кафедре
+
+  feedbacks:
+    new:
+      title: Добавить отзыв к дисциплине
+      feedback_suc: Отзыв был успешно добавлен
+      to_feedbacks: Перейти на страницу с отзывами
+      question: "Вопрос №%{number}"
+      add_btn: Добавить отзыв
+      not_all_req_questions: Ответы даны не на все вопросы.
+      limit_error_title: Невозможно оставить отзыв
+      limit_error_hint: Сегодня вы уже оставляли комментарий к этой дисциплине. Можно оставлять не более одного комментария в день.
+      next_feedback_wait: "Вы сможете оставить новый отзыв через:"
+      next_feedback_timefrm: "%{hour} часов %{min} минут"
+      back_link: Вернуться назад
+
   helpers:
     submit:
       user:
@@ -67,6 +119,10 @@ ru:
     sidebar_blocks:
       account:
         title: Мой аккаунт
+        create_admin: Создать администратора
+      account_not_logged:
+        login_btn: Войти
+        hasnt_account: У меня ещё нет аккаунта
       account_logged:
         logged_as: Вы вошли как
         admin_mods: модераторы
@@ -76,8 +132,21 @@ ru:
         messages: сообщения
         logout: выйти из системы
       admin:
+        title: Функции администратора
         admin_mods: управление модераторами
         question_editor: редактор вопросов
+      departaments:
+        title: Кафедры
+      lecturers:
+        title: Преподаватели
+      site_map:
+        title: Карта сайта
+        departaments: кафедры
+        specialties: специальности
+        subjects: дисциплины
+        user: пользователи
+        faq: справка
+        about: о проекте
 
   users:
     invalid_login: Неверный логин или пароль
@@ -99,6 +168,9 @@ ru:
         student: Студенты
         lecturer: Преподаватели
         mod: Модераторы
+    create_admin:
+      title: Создание аккаунта администратора
+      create_btn: Создать аккаунт администратора
 
   settings:
     not_selected_m: <Не указан>
@@ -129,6 +201,7 @@ ru:
       after_reg: Вы успешно зарегистировались. Сейчас вы можете заполнить дополнительную информацию о себе. Данный шаг является не обязательным, но желательным.
     personal:
       title: Личные настройки
+      save_btn: Сохранить изменения
 
     change_password:
       title: Смена пароля
@@ -157,6 +230,7 @@ ru:
     message_list:
       topic: Тема
       empty: В данной папке сообщений не найдено
+      unknown_user: Неизвестный пользователь
     inbox:
       title: Входящие
     outbox:
@@ -170,35 +244,6 @@ ru:
       back_to_outbox: Исходящие
       reply: Ответить на это собщение
       delete: Удалить
-
-  departaments:
-    index:
-      title: Список кафедр
-      empty: В базу данных ещё не была добавлена информация о кафедрах
-      create_link: Добавить новую кафедру
-    new:
-      title: Добавление новой кафедры
-    edit:
-      title: Редактирование информации о кафедре
-    form:
-      cancel: Отменить
-    show:
-      title: Информация о кафедре
-      description: Описание
-      back_to_departaments: К списку кафедр
-      list_lecturers_link: Список преподавателей на этой кафедре
-      list_subjects_link: Список дисциплин на кафедре
-      edit_link: Редактировать
-      delete_link: Удалить
-      delete_link_confirm: Вы действительно хотите удалить информацию о кафедре?
-    lecturers:
-      title: Преподаватели на кафедре
-      empty: В данный момент на данной кафедре не было зарегистрированно ещё ни одного преподавателя.
-      back_to_departament: Назад к кафедре
-    subjects:
-      title: Предметы на кафедре
-      empty: В данный момент на кафедре ещё не зарегистрированно ни одного предмета
-      back_to_departament: Назад к кафедре
 
   specialties:
     index:
@@ -239,6 +284,7 @@ ru:
       description: Описание
       back_to_subjects: К списку дисциплин
       edit_link: Редактировать
+      subj_lecturers: "Эту дисциплину ведут:"
       delete_link: Удалить
       delete_link_confirm: Вы действительно хотите удалить информацию о дисциплине?
 
@@ -247,10 +293,29 @@ ru:
       title: Список вопросов для отзывов
       empty: Вопросы ещё не были добавлены в БД
       create_link: Добавить вопрос
+      question_text: Текст вопроса
+      link_alt_edit: редактировать
+      link_alt_delete: удалить
+    form:
+      req_hint: Данный вопрос будет обязательным для ответа
 
   subscriptions:
+    feedback:
+      feedback_from: Отзыв от пользователя
+      question: Вопрос
+      rating: Оценка
+    all:
+      title: Все отзывы к дисциплине
+      back_to_sub: Назад к дисциплине
+      add_feedback_link: Добавить отзыв
     show:
       title: Страница с отзывами
+      all_feedbacks: Смотреть все отзывы
+      add_feedback: Оставить отзыв
+      chart_title: Статистика на основе полученных отзывов
+      chart_avg: Средняя оценка
+      recent_feedbacks: Последние отзывы
+
 
   profiles:
     lecturer:
@@ -260,8 +325,18 @@ ru:
     student:
       title: "Профиль студента %{login}"
     blocks:
+      comment_add:
+        show_my_name: Отображать моё имя
+        comment_type: Тип комментария
       comments_block:
         title: Комментарии
+        empty: Комментариев к данному преподавателю нет
+        btn_write: Написать номментарий
+        btn_add: Добавить комменатрий
+        btn_cancel: Отменить
+      comment:
+        delete_confirm: Вы уверены?
+
 
   home:
     about:

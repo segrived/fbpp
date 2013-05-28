@@ -6,7 +6,7 @@
     %h3= t('.description') << ': '
     %p= simple_format @subject.description
     - if @subject.subject_subscriptions.present?
-      %h3 Эту дисциплину ведут:
+      %h3= t(".subj_lecturers")
       - @subject.subject_subscriptions.each do |s|
         %li= link_to s.lecturer.full_name, feedback_path(s.id)
   / Функции администратора

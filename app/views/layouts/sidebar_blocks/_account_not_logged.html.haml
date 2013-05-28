@@ -6,6 +6,6 @@
     = label_tag :password, User.human_attribute_name(:password)
     .t-center= password_field_tag :password, nil, class: 'wp-100 compact'
   %div{style:'text-align: center'}
-    = submit_tag "Войти", class: "button compact btn-green wp-100"
+    = submit_tag t(".login_btn"), class: "button compact btn-green wp-100"
 %hr.dashed/
-= link_to "У меня ещё нет аккаунта", :register
+= link_to t(".hasnt_account"), :register

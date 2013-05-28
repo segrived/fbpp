@@ -10,7 +10,7 @@
       = link_to "↓", comment_vote_path(comment.id, :downvote), method: :post,
         remote: true, id: 'downvote_link'
       - if logged? && (can_admin? || comment.user == logged_user)
-        = link_to delete_comment_path(comment.id), method: :delete, confirm: "Вы уверены?" do
+        = link_to delete_comment_path(comment.id), method: :delete, confirm: t(".delete_confirm") do
           = image_tag "cross.png"
   .cf
   .comment-body= comment.body

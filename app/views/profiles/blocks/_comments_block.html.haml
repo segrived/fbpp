@@ -18,7 +18,7 @@
   = form_tag :add_comment, method: 'post' do
     .block-content
       - unless @lecturer.comments.any?
-        %p Комментариев к данному преподавателю нет
+        %p= t(".empty")
       - else
         .comments
           = render partial: 'profiles/blocks/comment', collection: @lecturer.comments
@@ -26,6 +26,6 @@
       = render partial: 'profiles/blocks/comment_add', locals: { lecturer_id: @lecturer.id }
     - if logged? && logged_user.student?
       .block-buttons
-        = button_tag "Написать комментарий", type: 'button', class: 'compact btn-blue write-comment-button'
-        = button_tag "Добавить комментарий", type: 'submit', class: 'compact btn-green hidden add-comment-button'
-        = button_tag "Отменить", type: 'button', class: 'compact btn-blue hidden cancel-comment-button'
+        = button_tag t(".btn_write"), type: 'button', class: 'compact btn-blue write-comment-button'
+        = button_tag t(".btn_add"), type: 'submit', class: 'compact btn-green hidden add-comment-button'
+        = button_tag t(".btn_cancel"), type: 'button', class: 'compact btn-blue hidden cancel-comment-button'

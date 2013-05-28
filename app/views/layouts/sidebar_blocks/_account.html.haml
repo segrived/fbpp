@@ -3,7 +3,7 @@
   .block-content
     - unless exists_admin_account?
       .t-center
-        = link_to "Создать администратора", :create_admin, class: 'strong c-red'
+        = link_to t('.create_admin'), :create_admin, class: 'strong c-red'
       %hr.dashed/
     - if logged?
       = render partial: 'layouts/sidebar_blocks/account_logged'

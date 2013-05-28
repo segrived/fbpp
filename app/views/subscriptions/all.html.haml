@@ -1,10 +1,10 @@
 .block.brd
-  = block_title "Все отзывы к дисциплине"
+  = block_title t(".title")
   .block-content
     - @feedbacks.each do |feedback|
       = render partial: 'feedback', locals: {feedback: feedback}
     = will_paginate @feedbacks
   .block-buttons
-    .left= link_to "Назад к дисциплине", feedback_path(params[:id])
-    .right= btn_link "Добавить отзыв", add_feedback_path(params[:id]), true, "green"
+    .left= link_to t(".back_to_sub"), feedback_path(params[:id])
+    .right= btn_link t(".add_feedback_link"), new_feedback_path(params[:id]), true, "green"
     .cf

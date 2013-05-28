@@ -18,12 +18,12 @@
           - if message.sender.present?
             %td= link_to message.sender.login, profile_path(message.sender.login)
           - else
-            %td= "Неизвестный пользователь"
+            %td= t(".unknown_user")
         -else 
           - if message.receiver.present?
             %td= link_to message.receiver.login, profile_path(message.receiver.login)
           - else
-            %td= "Неизвестный пользователь"
+            %td= t(".unknown_user")
         %td= message.sendtime.strftime('%e.%m.%Y, %H:%M')
   - else
     %tr

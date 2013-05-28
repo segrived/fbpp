@@ -4,17 +4,17 @@
     .block-content.no-brd
       %table.wp-100
         %tr
-          %th.wp-90 Текст вопроса
+          %th.wp-90= t('.question_text')
           %th.t-center= image_tag "settings.png"
         - @questions.each do |question|
           %tr
             %td= question.text
             %td
               .left
-                = link_to edit_question_path(question.id) do
+                = link_to edit_question_path(question.id), title: t('.link_alt_edit') do
                   = image_tag "write.png"
               .right
-                = link_to question_path(question.id), method: :delete do
+                = link_to question_path(question.id), title: t('.link_alt_delete'), method: :delete do
                   = image_tag "cross.png"
               .cf     
   - else
@@ -23,6 +23,4 @@
       
   - if can_admin?
     .block-buttons
-      .right
-        = btn_link t('.create_link'), :new_question, true, 'green'
-      .cf
+      = btn_link t('.create_link'), :new_question, true, 'green'
