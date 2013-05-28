@@ -45,7 +45,8 @@
     .block-content
       .succ-dialog.hidden
         %h3= t(".feedback_suc")
-        = link_to t(".to_feedbacks"), feedback_path(params[:id])
+        %hr.dashed
+        = link_to "← #{t('.to_feedbacks')}", feedback_path(params[:id])
       .question-list
         - @question.each_with_index do |q, i|
           .question[q]{data: {question_id: q.id}}
@@ -65,4 +66,5 @@
       %p
         = t(".next_feedback_wait")
         %span.strong= t(".next_feedback_timefrm", hour: diff[:hour], min: diff[:minute])
-      = link_to t('.back_link'), feedback_path(params[:id])
+    .block-buttons
+      = link_to "← #{t('.back_link')}", feedback_path(params[:id])

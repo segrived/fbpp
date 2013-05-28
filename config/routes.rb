@@ -59,6 +59,8 @@ Fbpp::Application.routes.draw do
   get "departaments/:id/subjects" => "departaments#subjects", :as => :departament_subjects
   get "create_admin" => "users#create_admin"
 
+  get "set_locale/:locale" => "application#set_locale", as: :set_locale
+
   unless Rails.application.config.consider_all_requests_local
     match '*not_found', to: 'errors#error_404'
   end

@@ -31,6 +31,9 @@
       .push
 
     %footer
-      #footer-left= t('layout.footer.left_text')
+      #footer-left
+        = t('layout.footer.left_text')
+        = link_to "[ua]", set_locale_path(:ua)
+        = link_to "[ru]", set_locale_path(:ru)
       #footer-right
         = t('layout.footer.right_text')
