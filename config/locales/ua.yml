@@ -9,10 +9,10 @@ ua:
         login: Логін
         password: Пароль
         password_confirmation: Підтвердження паролю
-        name: "Ім'я"
+        name: Ім'я
         surname: Прізвище
         patronymic: По батькові
-        account_type: Тип акаунта
+        account_type: Тип акаунту
       lecturer:
         departament: Кафедра
         scientific_degree: Вчений ступінь
@@ -34,7 +34,7 @@ ua:
         description: Опис
       question:
         text: Текст запитання
-        required: "Обов'язкове"
+        required: Обов'язкове
 
   accounts:
     student: Студент
@@ -46,7 +46,7 @@ ua:
     mods:
       title: Управління модераторами
       empty: Зараз в системі ще немає модераторів
-      delete_link_alt: "Видалити акаунт користувача %{login}"
+      delete_link_alt: Видалити акаунт користувача %{login}
       btn_add: Додати модератора
 
   departaments:
@@ -128,7 +128,7 @@ ua:
         admin_mods: модератори
         question_editor: редактор запитань
         profile: мій профіль
-        settings: налаштування акаунта
+        settings: налаштування акаунту
         messages: повідомлення
         logout: вийти із системи
       admin:
@@ -161,7 +161,7 @@ ua:
       title: Вхід до системи
       login_button: Увійти до системи
     list:
-      title: Користувачів
+      title: Список користувачів
       empty: Користувачів у цій категорії немає
       tabs:
         all: Всі
@@ -182,10 +182,10 @@ ua:
     panel:
       title_left_path: Налаштування
       tabs:
-        personal: Особисті
+        personal: Персональні
         student: Студент
         lecturer: Викладач
-        change_password: Змінення паролю
+        change_password: Зміна паролю
         remove_account: Видалення акаунту
         api: "API"
     api:
@@ -204,11 +204,11 @@ ua:
       save_btn: Зберегти зміни
 
     change_password:
-      title: Змінення паролю
+      title: Зміна паролю
       current_password: Введіть поточний пароль
       new_password: Введіть новий пароль
       confirm_new_password: Підтвердіть новий пароль
-      confirm_button: Підтвердіть змінення паролю
+      confirm_button: Підтвердіть зміну
       password_hint: Довжиною від 8 до 30 символів
     remove_account:
       title: Видалення акаунту
@@ -297,7 +297,7 @@ ua:
       link_alt_edit: редагувати
       link_alt_delete: видалити
     form:
-      req_hint: "Даний критерій буде обов'язковим для заповнення студентами"
+      req_hint: Даний критерій буде обов'язковим для заповнення студентами
 
   subscriptions:
     feedback:
@@ -326,7 +326,7 @@ ua:
       title: "Профіль студента %{login}"
     blocks:
       comment_add:
-        show_my_name: "Показувати моє ім'я"
+        show_my_name: Показувати моє ім'я
         comment_type: Тип коментаря
       comments_block:
         title: Коментарі
