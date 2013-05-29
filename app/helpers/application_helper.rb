@@ -78,7 +78,7 @@ module ApplicationHelper
   end
 
   def get_random_users
-    pics = Dir.entries("#{Rails.root}/app/assets/images/user_pack")
+    pics = Dir.entries("#{Rails.root}/app/assets/images/user_pack").reject{|e| e =~ /^\.{1,2}$/}
     [pics.sample, pics.sample]
   end
 
