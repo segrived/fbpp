@@ -77,4 +77,9 @@ module ApplicationHelper
     Comment::MARKS.key(mark).to_s
   end
 
+  def get_random_users
+    pics = Dir.entries("#{Rails.root}/app/assets/images/user_pack")
+    [pics.sample, pics.sample]
+  end
+
 end

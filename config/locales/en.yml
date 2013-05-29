@@ -42,6 +42,11 @@ en:
     mod: Moderator
     admin: Administrator
 
+  confirm_levels:
+    unconfirmed: Unconfirmed
+    existence: Data accuracy is confirmed
+    real: Personality is confirmed
+
   admin:
     mods:
       title: Moderator management
@@ -155,7 +160,7 @@ en:
     register:
       title: New account registration
       hint_login: "Only letters (A-Z a-z), digits (0-9) and underscore (_), 3 to 20 characters."
-      hint_password: "For security purposes the password should be at least 8 characters in length."
+      hint_password: "For security purposes the password should be at least 6 characters in length."
       hint_name: "Name, patronymic and surname are mandatory for lecturers only."
     login:
       title: Authorization
@@ -209,7 +214,7 @@ en:
       new_password: Enter new password
       confirm_new_password: Confirm new password
       confirm_button: Confirm password change
-      password_hint: 8 to 30 characters
+      password_hint: 6 to 30 characters
     remove_account:
       title: Account removal
       info_text: You can remove your account here. Deleted account cannot be restored. Be careful.
@@ -343,6 +348,8 @@ en:
       title: "About"
     faq:
       title: "Frequently asked questions"
+    index:
+      title: Recent news
 
   ctrl:
     users:
