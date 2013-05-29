@@ -17,6 +17,9 @@
         - else
           Не указана
     %p
+      %strong Уровень подтверждения аккаунта:
+      %span= t("confirm_levels." + Lecturer::CONFIRM_LEVELS.key(@lecturer.confirm_level).to_s)
+    %p
       %strong Учёная степень:
       %span= @lecturer.scientific_degree ? @lecturer.scientific_degree.title : "Не указана"
     - if @lecturer.subject_subscriptions.present?

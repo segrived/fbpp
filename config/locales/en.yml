@@ -1,0 +1,353 @@
+﻿en:
+  activerecord:
+    models:
+      user: User
+      lecturer: Lecturer
+      subject: Subject
+    attributes:
+      user:
+        login: Login
+        password: Password
+        password_confirmation: Password confirmation
+        name: Name
+        surname: Surname
+        patronymic: Patronymic
+        account_type: Account type
+      lecturer:
+        department: Department
+        scientific_degree: Scientific degree
+      student:
+        specialty: Specialty
+        course: Course
+      private_message:
+        sender: Sender
+        receiver: Receiver
+        title: Title
+        body: Message
+        sendtime: Sending time
+      department:
+        name: Title
+        description: Description
+      specialty:
+        code: Code
+        name: Title
+        description: Description
+      question:
+        text: Text of question
+        required: Mandatory
+
+  accounts:
+    student: Student
+    lecturer: Lecturer
+    mod: Moderator
+    admin: Administrator
+
+  admin:
+    mods:
+      title: Moderator management
+      empty: There are no moderators yet
+      delete_link_alt: "Delete account of user %{login}"
+      btn_add: Add moderator
+
+  departments:
+    index:
+      title: Departments list
+      empty: There is no information about departments yet
+      create_link: Add new department
+    new:
+      title: Add new department
+    edit:
+      title: Edit department information
+    form:
+      cancel: Cancel
+    show:
+      title: Department information
+      description: Description
+      back_to_departments: Back to departments list
+      list_lecturers_link: Department's lecturers list
+      list_subjects_link: Department's subjects list
+      edit_link: Edit
+      delete_link: Delete
+      delete_link_confirm: Do you really want to delete department information?
+    lecturers:
+      title: Lecturers on this department
+      empty: There are no lecturers in this department yet
+      back_to_department: Back to department
+    subjects:
+      title: Subjects in this department
+      empty: There are no subjects in this department yet
+      back_to_department: Back to department
+
+  feedbacks:
+    new:
+      title: Add feedback to subject
+      feedback_suc: Your feedback was successfully added
+      to_feedbacks: Go to the feedbacks page
+      question: "Question №%{number}"
+      add_btn: Add feedback
+      not_all_req_questions: Not all questions have been answered
+      limit_error_title: You can't leave a feedback
+      limit_error_hint: You have already left feedback to this subject today. Come back tomorrow.
+      next_feedback_wait: "You can add new feedback in:"
+      next_feedback_timefrm: "%{hour} hours %{min} minutes"
+      back_link: Back
+
+  helpers:
+    submit:
+      user:
+        create: Register
+      department:
+        create: Add department
+        update: Save changes
+      specialty:
+        create: Add specialty
+        update: Save changes
+      question:
+        create: Add question
+
+  layout:
+    menu:
+      register: register
+      login: login
+      settings: settings
+      logout: log out
+    footer:
+      left_text: Feedback++
+      right_text: "Quart company, 2013"
+
+  layouts:
+    sidebar_blocks:
+      account:
+        title: My account
+        create_admin: Create admin account
+      account_not_logged:
+        login_btn: Login
+        hasnt_account: I don't have an account yet
+      account_logged:
+        logged_as: You are logged in as
+        admin_mods: moderators
+        question_editor: question editor
+        profile: my profile
+        settings: account settings
+        messages: messages
+        logout: log out
+      admin:
+        title: Admin functions
+        admin_mods: moderator management
+        question_editor: question editor
+      departments:
+        title: Departments
+      lecturers:
+        title: Lecturers
+      site_map:
+        title: Site map
+        departments: departments
+        specialties: specialties
+        subjects: subjects
+        user: users
+        faq: FAQ
+        about: about
+
+  users:
+    invalid_login: Invalid login or password
+    removed_account: This account was removed
+    banned: This account was banned. Please contact administrator for more information.
+    register:
+      title: New account registration
+      hint_login: "Only letters (A-Z a-z), digits (0-9) and underscore (_), 3 to 20 characters."
+      hint_password: "For security purposes the password should be at least 8 characters in length."
+      hint_name: "Name, patronymic and surname are mandatory for lecturers only."
+    login:
+      title: Authorization
+      login_button: Log in
+    list:
+      title: Users
+      empty: There are no users in this category
+      tabs:
+        all: All
+        student: Students
+        lecturer: Lecturers
+        mod: Moderators
+    create_admin:
+      title: Admin account creation
+      create_btn: Create admin account
+
+  settings:
+    not_selected_m: <Not specified>
+    not_selected_f: <Not specified>
+    save_suc: Your changes has been saved
+    save_fail: There was an error saving changes
+    invalid_current_password: Your current password is incorrect
+    password_has_been_changed: Password has been changed
+    panel:
+      title_left_path: Settings
+      tabs:
+        personal: Personal
+        student: Student
+        lecturer: Lecturer
+        change_password: Change password
+        remove_account: Remove account
+        api: API
+    api:
+      title: API key management
+    lecturer:
+      title: Lecturer's data
+      update_button: Save changes
+      after_reg: You have been successfully registered. Please provide additional information to confirm your account.
+    student:
+      title: Student's data
+      course: "Course %{n}"
+      update_button: Save changes
+      after_reg: You have been successfully registered. Now you can provide additional information. This step is not mandatory but desirable.
+    personal:
+      title: Personal settings
+      save_btn: Save changes
+
+    change_password:
+      title: Password change
+      current_password: Enter your current password
+      new_password: Enter new password
+      confirm_new_password: Confirm new password
+      confirm_button: Confirm password change
+      password_hint: 8 to 30 characters
+    remove_account:
+      title: Account removal
+      info_text: You can remove your account here. Deleted account cannot be restored. Be careful.
+      remove_comments: Delete my comments
+      remove_feedbacks: Delete my feedbacks
+      remove_button: Confirm account removal
+      confirm_text: "LAST WARNING: deleted account cannot be restored. Continue?"
+
+  private_messages:
+    user_not_exists: Specified user not found
+    self_send: You can't send a message to yourself
+    panel:
+      title_left_path: Personal messages
+      tabs:
+        inbox: Inbox
+        outbox: Outbox
+        new: Create message
+    message_list:
+      topic: Topic
+      empty: There are no messages in this folder
+      unknown_user: Unknown user
+    inbox:
+      title: Inbox
+    outbox:
+      title: Outbox
+    new:
+      title: New message
+      send_message: Send message
+    read:
+      title: "Message from user %{login}"
+      back_to_inbox: Inbox
+      back_to_outbox: Outbox
+      reply: Reply to this message
+      delete: Delete
+
+  specialties:
+    index:
+      title: Specialties list
+      empty: There is no information about specialties yet
+      create_link: Add new specialty
+    new:
+      title: Add new specialty
+    edit:
+      title: Edit specialty information
+    form:
+      cancel: Сancel
+    show:
+      title: Specialty information
+      description: Description
+      back_to_specialty: Back to specialties list
+      edit_link: Edit
+      delete_link: Delete
+      delete_link_confirm: Do you really want to delete specialty information?
+
+  subjects:
+    index:
+      title: Subjects list
+      empty: There is no information about subjects yet
+      create_link: Add subject
+    new:
+      title: Add new subject
+      empty: There is no information about subjects yet
+      create_link: Add new subject
+    new:
+      title: Add subject
+    edit:
+      title: Edit subject information
+    form:
+      cancel: Cancel
+    show:
+      title: Subject information
+      description: Description
+      back_to_subjects: Back to subjects list
+      edit_link: Edit
+      subj_lecturers: "Lecturers of this subject:"
+      delete_link: Delete
+      delete_link_confirm: Do you really want to delete subject information?
+
+  questions:
+    index:
+      title: List of the lecturers evaluation criterions
+      empty: There are no criterions yet
+      create_link: Add criterion
+      question_text: Сriterion
+      link_alt_edit: edit
+      link_alt_delete: delete
+    form:
+      req_hint: This criterion will be mandatory for students
+
+  subscriptions:
+    feedback:
+      feedback_from: Feedback from user
+      question: Question
+      rating: Rating
+    all:
+      title: All feedbacks to this subject
+      back_to_sub: Back to subject
+      add_feedback_link: Add feedback
+    show:
+      title: Feedback page
+      all_feedbacks: Show all feedbacks
+      add_feedback: Add feedback
+      chart_title: Statistics on the basis of the feedbacks
+      chart_avg: Average rating
+      recent_feedbacks: Recent feedbacks
+
+
+  profiles:
+    lecturer:
+      title: "%{login}'s profile (lecturer)"
+    common:
+      title: "%{login}'s profile"
+    student:
+      title: "%{login}'s profile (student)"
+    blocks:
+      comment_add:
+        show_my_name: Show my name
+        comment_type: Comment type
+      comments_block:
+        title: Comments
+        empty: There are no comments for this lecturer
+        btn_write: Write comment
+        btn_add: Add comment
+        btn_cancel: Cancel
+      comment:
+        delete_confirm: Are you sure?
+
+
+  home:
+    about:
+      title: "About"
+    faq:
+      title: "Frequently asked questions"
+
+  ctrl:
+    users:
+      invalid_login: Invalid login or password
+
+  will_paginate:
+    previous_label: "←"
+    next_label: "→"

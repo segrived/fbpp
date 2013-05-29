@@ -10,6 +10,6 @@
     %p
       %strong Зарегистрирован:
       %span= @user.regdate.strftime('%e.%m.%Y, %H:%M')
-  - if @user.login != logged_user.login
+  - if logged? && @user.login != logged_user.login
     .block-buttons
       = btn_link "Написать сообщение", messages_new_path(@user.login), true, 'green'

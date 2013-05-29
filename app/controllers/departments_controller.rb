@@ -1,6 +1,6 @@
 class DepartmentsController < ApplicationController
 
-  before_filter :require_admin_rights, :only =>
+  before_filter :require_admin_rights, only:
     [ :new, :edit, :create, :update, :destroy ]
 
   # GET /departments

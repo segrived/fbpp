@@ -27,14 +27,12 @@ class Lecturer < ActiveRecord::Base
     "#{user.surname.cap_first} #{user.name.first.mb_upcase}. #{user.patronymic.first.mb_upcase}."
   end
 
+  # Подписан ли преподаватель на указанныю дисциплину
   def subscribed?(subject_id)
     subject_subscriptions.where(subject_id: subject_id).count > 0
   end
 
-  validates :user_id,
-    :presence => true
-  validates :scientific_degree_id, :department_id,
-    :existence => { :allow_nil => true }
-  validates :confirm_level,
-    :inclusion => { :in => CONFIRM_LEVELS.values }
+  validates :user_id, presence: true
+  validates :scientific_degree_id, :department_id, existence: { allow_nil: true }
+  validates :confirm_level, inclusion: { in: CONFIRM_LEVELS.values }
 end

@@ -42,6 +42,11 @@ ru:
     mod: Модератор
     admin: Администратор
 
+  confirm_levels:
+    unconfirmed: Не подтверждён
+    existence: Подтверждена правильность данных
+    real: Подтверждена личность
+
   admin:
     mods:
       title: Управление модераторами
