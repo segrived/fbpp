@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525022236) do
+ActiveRecord::Schema.define(:version => 20130529020719) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "key"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20130525022236) do
   add_index "comments", ["lecturer_id"], :name => "index_comments_on_lecturer_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
-  create_table "departaments", :force => true do |t|
+  create_table "departments", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  :null => false
@@ -77,14 +77,14 @@ ActiveRecord::Schema.define(:version => 20130525022236) do
 
   create_table "lecturers", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "departament_id"
+    t.integer  "department_id"
     t.integer  "scientific_degree_id"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.integer  "confirm_level",        :default => 0
   end
 
-  add_index "lecturers", ["departament_id"], :name => "index_lecturers_on_departament_id"
+  add_index "lecturers", ["department_id"], :name => "index_lecturers_on_departament_id"
   add_index "lecturers", ["scientific_degree_id"], :name => "index_lecturers_on_scientific_degree_id"
   add_index "lecturers", ["user_id"], :name => "index_lecturers_on_user_id"
 
@@ -161,12 +161,12 @@ ActiveRecord::Schema.define(:version => 20130525022236) do
   create_table "subjects", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "departament_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "department_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
-  add_index "subjects", ["departament_id"], :name => "index_subjects_on_departament_id"
+  add_index "subjects", ["department_id"], :name => "index_subjects_on_departament_id"
 
   create_table "users", :force => true do |t|
     t.string   "login"

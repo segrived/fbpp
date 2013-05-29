@@ -1,72 +1,72 @@
-class DepartamentsController < ApplicationController
+class DepartmentsController < ApplicationController
 
   before_filter :require_admin_rights, :only =>
     [ :new, :edit, :create, :update, :destroy ]
 
-  # GET /departaments
+  # GET /departments
   # Отображает страницу со списком кафедр
   def index
-    @departaments = Departament.order('name ASC').all
+    @departments = Department.order('name ASC').all
   end
 
-  # GET /departaments/:id
+  # GET /departments/:id
   # Отображат информацию по выбранной кафедре
   def show
-    @departament = Departament.find(params[:id])
+    @department = Department.find(params[:id])
   end
 
-  # GET /departaments/new
+  # GET /departments/new
   # Отображает форму добавления кафедры
   def new
-    @departament = Departament.new
+    @department = Department.new
   end
 
-  # GET /departaments/:id/edit
+  # GET /departments/:id/edit
   # Отображает форму редактирования кафедры
   def edit
-    @departament = Departament.find(params[:id])
+    @department = Department.find(params[:id])
   end
 
-  # POST /departaments
+  # POST /departments
   # Добавляет информацию о новой кафедре в БД
   def create
-    @departament = Departament.new(params[:departament])
-    if @departament.save then
-      redirect_to :departaments
+    @department = Department.new(params[:department])
+    if @department.save then
+      redirect_to :departments
     else
       render 'new'
     end
   end
 
-  # PUT /departaments/:id
+  # PUT /departments/:id
   # Обновляет информацию о кафедре
   def update
-    @departament = Departament.find(params[:id])
-    if @departament.update_attributes(params[:departament]) then
-      redirect_to :departaments
+    @department = Department.find(params[:id])
+    if @department.update_attributes(params[:department]) then
+      redirect_to :departments
     else
       render 'edit'
     end
   end
 
-  # DELETE /departaments/:id
+  # DELETE /departments/:id
   # Удаляет информию о кафедре
   def destroy
-    @departament = Departament.find(params[:id])
-    @departament.destroy
-    redirect_to :departaments
+    @department = Department.find(params[:id])
+    @department.destroy
+    redirect_to :departments
   end
 
-  # GET /departaments/:id/lecturers
+  # GET /departments/:id/lecturers
   # Выводит информацию о преподавателях, работающих на кафедре
   def lecturers
-    @lecturers = Departament.find(params[:id]).lecturers
+    @lecturers = Department.find(params[:id]).lecturers
   end
 
-  # GET /departaments/:id/subjects
+  # GET /departments/:id/subjects
   # Отображает страницу со списком дисциплин
   def subjects
-    @subjects = Departament.find(params[:id]).subjects
+    @subjects = Department.find(params[:id]).subjects
   end
 
 end

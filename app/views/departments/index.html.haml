@@ -1,0 +1,15 @@
+.block.brd
+  = block_title t(".title"), "depart.png"
+  .block-content
+    - unless @departments.empty?
+      %ul.compact
+        - @departments.each do |department|
+          %li= link_to department.name, department_path(department.id)
+    - else
+      %p= t('.empty')
+      
+  - if can_admin?
+    .block-buttons
+      .right
+        = btn_link t('.create_link'), :new_department, true, 'green'
+      .cf

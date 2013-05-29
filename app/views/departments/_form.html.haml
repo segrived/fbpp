@@ -1,0 +1,14 @@
+= form_for @department do |f|
+  .block-content
+    - if @department.errors.any?
+      = render partial: 'shared/errors', locals: { errors: @department.errors }
+    .form-field
+      = f.label :name, Department.human_attribute_name("name")
+      = f.text_field :name, class: 'wp-95'
+    .form-field
+      = f.label :description, Department.human_attribute_name("description")
+      = f.text_area :description, class: 'wp-95'
+  .block-buttons
+    = f.submit class: 'btn-green'
+    - unless @department.new_record?
+      = btn_link t('.cancel'), department_path(@department.id), false, 'blue'

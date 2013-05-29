@@ -14,7 +14,7 @@ ru:
         patronymic: Отчество
         account_type: Тип аккаунта
       lecturer:
-        departament: Кафедра
+        department: Кафедра
         scientific_degree: Ученая степень
       student:
         specialty: Специальность
@@ -25,7 +25,7 @@ ru:
         title: Заголовок
         body: Текст сообщения
         sendtime: Время
-      departament:
+      department:
         name: Название
         description: Описание
       specialty:
@@ -49,7 +49,7 @@ ru:
       delete_link_alt: "Удалить аккаунт пользователя %{login}"
       btn_add: Добавить модератора
 
-  departaments:
+  departments:
     index:
       title: Список кафедр
       empty: В базу данных ещё не была добавлена информация о кафедрах
@@ -63,7 +63,7 @@ ru:
     show:
       title: Информация о кафедре
       description: Описание
-      back_to_departaments: К списку кафедр
+      back_to_departments: К списку кафедр
       list_lecturers_link: Список преподавателей на этой кафедре
       list_subjects_link: Список дисциплин на кафедре
       edit_link: Редактировать
@@ -72,11 +72,11 @@ ru:
     lecturers:
       title: Преподаватели на кафедре
       empty: В данный момент на данной кафедре не было зарегистрированно ещё ни одного преподавателя.
-      back_to_departament: Назад к кафедре
+      back_to_department: Назад к кафедре
     subjects:
       title: Предметы на кафедре
       empty: В данный момент на кафедре ещё не зарегистрированно ни одного предмета
-      back_to_departament: Назад к кафедре
+      back_to_department: Назад к кафедре
 
   feedbacks:
     new:
@@ -96,7 +96,7 @@ ru:
     submit:
       user:
         create: Зарегистрироваться
-      departament:
+      department:
         create: Добавить кафедру
         update: Сохранить изменения
       specialty:
@@ -135,13 +135,13 @@ ru:
         title: Функции администратора
         admin_mods: управление модераторами
         question_editor: редактор вопросов
-      departaments:
+      departments:
         title: Кафедры
       lecturers:
         title: Преподаватели
       site_map:
         title: Карта сайта
-        departaments: кафедры
+        departments: кафедры
         specialties: специальности
         subjects: дисциплины
         user: пользователи

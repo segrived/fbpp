@@ -1,8 +1,8 @@
 class Subject < ActiveRecord::Base
-  belongs_to :departament
+  belongs_to :department
   has_many :subject_subscriptions
-  attr_accessible :departament_id, :description, :name
+  attr_accessible :department_id, :description, :name
 
-  validates :name, :presence => true, :uniqueness => true
-  validates :departament, :existence => true
+  validates :name, presence: true, uniqueness: true
+  validates :department, existence: true
 end

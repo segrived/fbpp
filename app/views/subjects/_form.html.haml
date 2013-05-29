@@ -9,9 +9,9 @@
       = f.label :description, Subject.human_attribute_name("description")
       = f.text_area :description, class: 'wp-100', style: 'width: 150px'
     .form-field
-      = f.label :departament_id, Subject.human_attribute_name("departament")
+      = f.label :department_id, Subject.human_attribute_name("department")
       .styled.wp-100
-        = f.collection_select :departament_id, Departament.all, :id, :name
+        = f.collection_select :department_id, Departament.all, :id, :name
   .block-buttons
     = f.submit class: 'btn-green'
     - unless @subject.new_record?

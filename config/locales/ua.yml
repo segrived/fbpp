@@ -14,7 +14,7 @@ ua:
         patronymic: По батькові
         account_type: Тип акаунту
       lecturer:
-        departament: Кафедра
+        department: Кафедра
         scientific_degree: Вчений ступінь
       student:
         specialty: Спеціальність
@@ -25,7 +25,7 @@ ua:
         title: Заголовок
         body: Текст повідомлення
         sendtime: Час
-      departament:
+      department:
         name: Назва
         description: Опис
       specialty:
@@ -49,7 +49,7 @@ ua:
       delete_link_alt: Видалити акаунт користувача %{login}
       btn_add: Додати модератора
 
-  departaments:
+  departments:
     index:
       title: Список кафедр
       empty: Зараз в системі ще немає кафедр
@@ -63,7 +63,7 @@ ua:
     show:
       title: Информація про кафедру
       description: Опис
-      back_to_departaments: До списку кафедр
+      back_to_departments: До списку кафедр
       list_lecturers_link: Список викладачів на кафедрі
       list_subjects_link: Список дисциплін на кафедрі
       edit_link: Редагувати
@@ -72,11 +72,11 @@ ua:
     lecturers:
       title: Викладачі на кафедрі
       empty: На кафедрі ще не було зареєстровано жодного викладача
-      back_to_departament: Назад до кафедри
+      back_to_department: Назад до кафедри
     subjects:
       title: Дисципліни на кафедрі
       empty: На кафедрі ще не було зареєстровано жодної дисципліни
-      back_to_departament: Назад до кафедри
+      back_to_department: Назад до кафедри
 
   feedbacks:
     new:
@@ -96,7 +96,7 @@ ua:
     submit:
       user:
         create: Зареєструватися
-      departament:
+      department:
         create: Додати кафедру
         update: Зберігти зміни
       specialty:
@@ -135,13 +135,13 @@ ua:
         title: Функції адміністратора
         admin_mods: управління модераторами
         question_editor: редактор запитань
-      departaments:
+      departments:
         title: Кафедри
       lecturers:
         title: Викладачі
       site_map:
         title: Мапа сайту
-        departaments: кафедри
+        departments: кафедри
         specialties: спеціальності
         subjects: дисципліни
         user: користувачі

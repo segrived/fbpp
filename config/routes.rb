@@ -46,17 +46,17 @@ Fbpp::Application.routes.draw do
   get ":action" => "home#:action", constraints: { action: /index|faq|about/ }, as: :home
 
   # Кафедры, специальности и дисциплины
-  resources :departaments, :specialties, :subjects
+  resources :departments, :specialties, :subjects
   resources :questions, except: [:show]
   resources :feedbacks, controller: 'subscriptions'
-  post "subjects/:id/subscribe" => "subjects#subscribe", :as => :subject_subscribe
-  post "subjects/:id/unsubscribe" => "subjects#unsubscribe", :as => :subject_unsubscribe
+  post "subjects/:id/subscribe" => "subjects#subscribe", as: :subject_subscribe
+  post "subjects/:id/unsubscribe" => "subjects#unsubscribe", as: :subject_unsubscribe
   get "feedbacks/:id/new" => "feedbacks#new", as: 'new_feedback'
   post "feedbacks/:id/add" => "feedbacks#add", as: 'add_feedback'
   delete "feedbacks/:id/destroy" => "feedbacks#destroy", as: 'feedback_destroy'
   get "feedbacks/:id/all/(page-(:page))" => "subscriptions#all", as: 'feedbacks_all'
-  get "departaments/:id/lecturers" => "departaments#lecturers", :as => :departament_lecturers
-  get "departaments/:id/subjects" => "departaments#subjects", :as => :departament_subjects
+  get "departments/:id/lecturers" => "departments#lecturers", as: :department_lecturers
+  get "departments/:id/subjects" => "departments#subjects", as: :department_subjects
   get "create_admin" => "users#create_admin"
 
   get "set_locale/:locale" => "application#set_locale", as: :set_locale

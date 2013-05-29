@@ -6,11 +6,11 @@
       = messages
       / Кафедра
       .form-field
-        = label_tag :departament, Lecturer.human_attribute_name(:departament)
+        = label_tag :department, Lecturer.human_attribute_name(:department)
         .styled.wp-95
-          = select_tag :departament, |
-            options_from_collection_for_select(Departament.all, :id, :name, |
-              @lecturer.departament ? @lecturer.departament.id : nil), |
+          = select_tag :department, |
+            options_from_collection_for_select(Department.all, :id, :name, |
+              @lecturer.department ? @lecturer.department.id : nil), |
             :prompt => t('settings.not_selected_f')
       / Ученая степень
       .form-field

@@ -53,7 +53,7 @@ class SettingsController < ApplicationController
       @lecturer = logged_user.lecturer
     elsif request.put? then
       lecturer = Lecturer.find(logged_user.lecturer.id)
-      lecturer.departament_id = params[:departament]
+      lecturer.department_id = params[:department]
       lecturer.scientific_degree_id = params[:degree]
       # Сброс уровная подтверждения преподавателя
       unless lecturer.real? then

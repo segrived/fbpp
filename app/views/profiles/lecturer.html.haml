@@ -12,8 +12,8 @@
     %p
       %strong Название кафедры:
       %span
-        - if @lecturer.departament
-          = link_to @lecturer.departament.name, departament_path(@lecturer.departament.id)
+        - if @lecturer.department
+          = link_to @lecturer.department.name, department_path(@lecturer.department.id)
         - else
           Не указана
     %p

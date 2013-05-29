@@ -1,0 +1,5 @@
+.block
+  = block_title t(".title"), "departament.png"
+  .block-content
+    - Department.all.each do |d|
+      %p= link_to d.name, department_path(d.id)

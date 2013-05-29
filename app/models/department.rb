@@ -1,4 +1,4 @@
-class Departament < ActiveRecord::Base
+class Department < ActiveRecord::Base
   has_many :lecturers
   has_many :subjects
   attr_accessible :name, :description

@@ -1,11 +1,11 @@
 class Lecturer < ActiveRecord::Base
   belongs_to :user
-  belongs_to :departament
+  belongs_to :department
   belongs_to :scientific_degree
   has_many :comments
   has_many :subject_subscriptions
 
-  attr_accessible :user_id, :scientific_degree_id, :departament_id, :confirm_level
+  attr_accessible :user_id, :scientific_degree_id, :department_id, :confirm_level
 
   # Уровни подтверждения аккаунта
   CONFIRM_LEVELS = { unconfirmed: 0, existence: 1, real: 2 }
@@ -33,7 +33,7 @@ class Lecturer < ActiveRecord::Base
 
   validates :user_id,
     :presence => true
-  validates :scientific_degree_id, :departament_id,
+  validates :scientific_degree_id, :department_id,
     :existence => { :allow_nil => true }
   validates :confirm_level,
     :inclusion => { :in => CONFIRM_LEVELS.values }
