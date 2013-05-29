@@ -73,4 +73,8 @@ module ApplicationHelper
     link_to(body, url, html_options)
   end
 
+  def get_comment_class_by_mark(mark)
+    Comment::MARKS.key(mark).to_s
+  end
+
 end

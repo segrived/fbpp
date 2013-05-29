@@ -25,7 +25,7 @@
         %strong Ведёт следующие дисциплины:
         - @lecturer.subject_subscriptions.each do |s|
           .item= link_to s.subject.name, feedback_path(s.id)
-  - if @user.login != logged_user.login
+  - if logged? && @user.login != logged_user.login
     .block-buttons
       = btn_link "Написать сообщение", messages_new_path(@user.login), true, 'green'
 

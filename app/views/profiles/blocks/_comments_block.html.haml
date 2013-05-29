@@ -21,7 +21,7 @@
         %p= t(".empty")
       - else
         .comments
-          = render partial: 'profiles/blocks/comment', collection: @lecturer.comments
+          = render partial: 'profiles/blocks/comment', collection: @lecturer.comments.order('posttime DESC')
       / Форма добавления комментария
       = render partial: 'profiles/blocks/comment_add', locals: { lecturer_id: @lecturer.id }
     - if logged? && logged_user.student?

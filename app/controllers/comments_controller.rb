@@ -43,8 +43,8 @@ class CommentsController < ApplicationController
       user_id: logged_user.id).first_or_create
     state = cv.update_attributes({ vote: vote })
     if request.xhr? then
-      new_rating = Comment.find(params[:comment_id]).rating
-      render json: { id: comment.id, rating: new_rating }
+      cm = Comment.find(params[:comment_id])
+      render json: { id: cm.id, rating: cm.rating }
     else
       redirect_to :back
     end

@@ -1,4 +1,5 @@
-.comment[comment]
+- cls = get_comment_class_by_mark(comment.mark)
+.comment[comment]{class: cls}
   .comment-title
     .comment-title-left
       %span.login= "#{comment.user.login},"
