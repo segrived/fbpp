@@ -173,8 +173,8 @@
       create_btn: Create admin account
 
   settings:
-    not_selected_m: <Not specified>
-    not_selected_f: <Not specified>
+    not_selected_m: "<Not specified>"
+    not_selected_f: "<Not specified>"
     save_suc: Your changes has been saved
     save_fail: There was an error saving changes
     invalid_current_password: Your current password is incorrect
