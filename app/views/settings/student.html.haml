@@ -1,3 +1,5 @@
+- content_for :title, t('settings.student.title')
+
 = render layout: 'settings/panel', locals: {title: t('settings.student.title')} do
   = form_tag :settings_student, method: :put do
     .block-content

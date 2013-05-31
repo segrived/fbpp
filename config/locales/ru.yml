@@ -35,6 +35,10 @@ ru:
       question:
         text: Текст вопроса
         required: Обязательный
+      subject:
+        name: Название
+        description: Описание
+        department: Кафедра
 
   accounts:
     student: Студент
@@ -108,7 +112,11 @@ ru:
         create: Добавить специальность
         update: Сохранить изменения
       question:
-        create: Добавить вопрос
+        create: Добавить критерий
+        update: Сохранить изменения
+      subject:
+        create: Добавить дисциплину
+        update: Сохранить изменения
 
   layout:
     menu:
@@ -184,6 +192,7 @@ ru:
     save_fail: Произошла ошибка при сохранении изменений
     invalid_current_password: Текущий пароль указан неверно
     password_has_been_changed: Пароль был успешно изменен
+    account_removed: Аккаунт был удалён
     panel:
       title_left_path: Настройки
       tabs:
@@ -295,7 +304,7 @@ ru:
 
   questions:
     index:
-      title: Список критериев для оценки преподавателей
+      title: Список критериев для оценки лекций
       empty: Критерии ещё не были добавлены в систему
       create_link: Добавить критерий
       question_text: Критерий
@@ -303,6 +312,11 @@ ru:
       link_alt_delete: удалить
     form:
       req_hint: Данный критерий будет обязательным для заполнения студентами
+      cancel: Отменить
+    new:
+      title: Добавление критерия
+    edit:
+      title: Редактирование критерия
 
   subscriptions:
     feedback:
@@ -340,6 +354,7 @@ ru:
         btn_add: Добавить комменатрий
         btn_cancel: Отменить
       comment:
+        anonym: Аноним
         delete_confirm: Вы уверены?
 
 

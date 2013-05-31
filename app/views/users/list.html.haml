@@ -9,17 +9,18 @@
       %tr
         %th.wp-5
         %th= User.human_attribute_name('login')
-        %th= User.human_attribute_name('name')
         %th= User.human_attribute_name('surname')
+        %th= User.human_attribute_name('name')
         %th= User.human_attribute_name('patronymic')
       - if @users.empty?
         %td{colspan: 5}= t('.empty')
       - else
         - @users.each do |user|
           %tr
-            %td.first= image_tag("user_#{User::ACCTYPES.key(user.account_type)}.png")
+            %td.first
+              = image_tag "user_#{User::ACCTYPES.key(user.account_type)}.png", title: t("accounts.#{User::ACCTYPES.key(user.account_type)}")
             %td= link_to user.login, profile_path(user.login)
-            %td= user.name.blank? ? "—" : user.name
             %td= user.surname.blank? ? "—" : user.surname
+            %td= user.name.blank? ? "—" : user.name
             %td= user.patronymic.blank? ? "—" : user.patronymic
     = will_paginate @users

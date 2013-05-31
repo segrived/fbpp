@@ -1,3 +1,5 @@
+- content_for :title, t('private_messages.inbox.title')
+
 = render layout: 'private_messages/panel', locals: {title: t('private_messages.inbox.title')} do
   .block-content.no-brd
     = render partial: 'private_messages/message_list', object: @messages, locals: {inbox: true}

@@ -1,3 +1,5 @@
+- content_for :title, t('.title', login: @message.sender.login)
+
 .block.brd
   = block_title t('.title', login: @message.sender.login), "mail.png"
   .block-content

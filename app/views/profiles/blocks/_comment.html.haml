@@ -2,7 +2,10 @@
 .comment[comment]{class: cls}
   .comment-title
     .comment-title-left
-      %span.login= "#{comment.user.login},"
+      - if comment.anonymously
+        %span.login= t('.anonym') << ","
+      - else
+        %span.login= link_to "#{comment.user.login},", profile_path(comment.user.login)
       = comment.posttime.strftime('%e.%m.%Y, %H:%M')
     .comment-title-right
       %span.comment-rating.strong= "#{comment.rating}"
@@ -14,4 +17,4 @@
         = link_to delete_comment_path(comment.id), method: :delete, confirm: t(".delete_confirm") do
           = image_tag "cross.png"
   .cf
-  .comment-body= comment.body
+  .comment-body= simple_format comment.body

@@ -1,3 +1,5 @@
+- content_for :title, t('private_messages.new.title')
+
 = render layout: 'private_messages/panel', locals: {title: t('private_messages.new.title')} do
   = form_for @private_message, url: :messages_new, method: :post do |f|
     .block-content

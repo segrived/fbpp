@@ -35,6 +35,10 @@ en:
       question:
         text: Text of question
         required: Mandatory
+      subject:
+        name: Title
+        description: Description
+        department: Department
 
   accounts:
     student: Student
@@ -108,12 +112,16 @@ en:
         create: Add specialty
         update: Save changes
       question:
-        create: Add question
+        create: Add criterion
+        update: Save changes
+      subject:
+        create: Add subject
+        update: Save changes
 
   layout:
     menu:
       register: register
-      login: login
+      login: log in
       settings: settings
       logout: log out
     footer:
@@ -126,7 +134,7 @@ en:
         title: My account
         create_admin: Create admin account
       account_not_logged:
-        login_btn: Login
+        login_btn: Log in
         hasnt_account: I don't have an account yet
       account_logged:
         logged_as: You are logged in as
@@ -184,6 +192,7 @@ en:
     save_fail: There was an error saving changes
     invalid_current_password: Your current password is incorrect
     password_has_been_changed: Password has been changed
+    account_removed: Account has been removed
     panel:
       title_left_path: Settings
       tabs:
@@ -295,7 +304,7 @@ en:
 
   questions:
     index:
-      title: List of the lecturers evaluation criterions
+      title: List of the lections evaluation criterions
       empty: There are no criterions yet
       create_link: Add criterion
       question_text: Сriterion
@@ -303,6 +312,11 @@ en:
       link_alt_delete: delete
     form:
       req_hint: This criterion will be mandatory for students
+      cancel: Cancel
+    new:
+      title: Add criterion
+    edit:
+      title: Edit criterion
 
   subscriptions:
     feedback:
@@ -340,6 +354,7 @@ en:
         btn_add: Add comment
         btn_cancel: Cancel
       comment:
+        anonym: Anonymous
         delete_confirm: Are you sure?
 
 

@@ -12,6 +12,10 @@ group :assets do
   gem 'i18n-js'
 end
 
+group :development do
+  gem 'rails-erd'
+end
+
 gem 'rake'
 gem 'validates_existence'
 gem 'will_paginate'
@@ -21,3 +25,4 @@ gem 'haml-rails'
 gem 'russian', '~> 0.6.0'
 gem 'turbolinks'
 gem 'time_diff'
+gem 'rails_autolink'

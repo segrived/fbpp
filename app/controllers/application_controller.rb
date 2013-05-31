@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :disable_sidebar!, only: [:render_403, :render_404]
   before_filter :set_locale
-  before_filter :set_config
 
   def set_locale
     if params[:locale] && I18n.available_locales.include?(params[:locale].to_sym)
@@ -16,10 +15,6 @@ class ApplicationController < ActionController::Base
     elsif cookies['locale'] && I18n.available_locales.include?(cookies['locale'].to_sym)
       I18n.locale = cookies['locale'].to_sym
     end
-  end
-
-  def set_config
-    Fbpp::Application.config.test = :test
   end
 
   def enable_sidebar!

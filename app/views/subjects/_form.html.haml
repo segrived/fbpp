@@ -11,7 +11,7 @@
     .form-field
       = f.label :department_id, Subject.human_attribute_name("department")
       .styled.wp-100
-        = f.collection_select :department_id, Departament.all, :id, :name
+        = f.collection_select :department_id, Department.all, :id, :name
   .block-buttons
     = f.submit class: 'btn-green'
     - unless @subject.new_record?

@@ -34,12 +34,20 @@ class SettingsController < ApplicationController
 
     if request.delete? then
       if logged_user.admin? then
-        redirect_to :settings_remove_account, notice: 'cant-delete' and return
+        render_403 and return
+      end
+      if logged_user.student? then
+        if params[:remove_comments] then
+          Comment.destroy_all(user_id: logged_user.id)
+        end
+        if params[:remove_feedbacks] then
+          Feedback.destroy_all(student_id: logged_user.student.id)
+        end
       end
       logged_user.update_attributes({ removed: true, account_type: nil })
       # Выход из системы
       clear_user_session
-      redirect_to :login, :alert => "Account has been removed"
+      redirect_to :login, alert: t('settings.account_removed')
     end
   end
 
@@ -82,7 +90,7 @@ class SettingsController < ApplicationController
       if student.save then
         redirect_to :settings_student, alert: t('settings.save_suc')
       else
-        redirect_to :settings_student, alert: t('settings.save_fail')
+        redirect_to :settings_student, notice: t('settings.save_fail')
       end
     end
   end

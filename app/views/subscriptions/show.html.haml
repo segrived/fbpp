@@ -1,3 +1,5 @@
+- content_for :title, t('.title')
+
 - f = @subscription.feedbacks.collect(&:id)
 - data = FeedbackAnswer.where(feedback_id: f).average(:answer, group: 'question')
 :javascript

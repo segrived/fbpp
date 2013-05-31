@@ -1,0 +1,4 @@
+%p
+  %strong Тип аккаунта:
+  - acctype_str = User::ACCTYPES.key(@user.account_type).to_s
+  %span= t("accounts.#{acctype_str}")

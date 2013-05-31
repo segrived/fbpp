@@ -5,8 +5,9 @@
       %span.strong= feedback.student.user.login
     .right
       = feedback.time.strftime('%e.%m.%Y, %H:%M')
-      = link_to feedback_destroy_path(feedback.id), method: :delete do
-        = image_tag "cross.png", class: "remove-feedback"
+      - if logged? && logged_user.student? && feedback.student_id == logged_user.student.id
+        = link_to feedback_destroy_path(feedback.id), method: :delete do
+          = image_tag "cross.png", class: "remove-feedback"
     .cf
   .feedback-content
     %table

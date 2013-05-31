@@ -8,5 +8,6 @@
     - elsif logged_user.lecturer?
       %span.block-tabs-tab= nav_link t('.tabs.lecturer'), :settings_lecturer
     %span.block-tabs-tab= nav_link t('.tabs.change_password'), :settings_change_password
-    %span.block-tabs-tab= nav_link t('.tabs.remove_account'), :settings_remove_account
+    - unless logged_user.admin?
+      %span.block-tabs-tab= nav_link t('.tabs.remove_account'), :settings_remove_account
   = yield

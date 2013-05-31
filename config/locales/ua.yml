@@ -35,6 +35,10 @@ ua:
       question:
         text: Текст запитання
         required: Обов'язкове
+      subject:
+        name: Назва
+        description: Опис
+        department: Кафедра
 
   accounts:
     student: Студент
@@ -108,7 +112,11 @@ ua:
         create: Додати спеціальність
         update: Зберігти зміни
       question:
-        create: Додати запитання
+        create: Додати критерій
+        update: Зберігти зміни
+      subject:
+        create: Додати дисципліну
+        update: Зберігти зміни
 
   layout:
     menu:
@@ -184,6 +192,7 @@ ua:
     save_fail: Виникла помилка при збереженні змін
     invalid_current_password: Поточний пароль вказано неправильно
     password_has_been_changed: Пароль було успішно змінено
+    account_removed: Акаунт було видалено
     panel:
       title_left_path: Налаштування
       tabs:
@@ -295,7 +304,7 @@ ua:
 
   questions:
     index:
-      title: Список критеріїв для оцінювання викладачів
+      title: Список критеріїв для оцінювання лекцій
       empty: Критерії ще не були додані до системи
       create_link: Додати критерій
       question_text: Критерій
@@ -303,6 +312,11 @@ ua:
       link_alt_delete: видалити
     form:
       req_hint: Даний критерій буде обов'язковим для заповнення студентами
+      cancel: Скасувати
+    new:
+      title: Створення критерію
+    edit:
+      title: Редагування критерію
 
   subscriptions:
     feedback:
@@ -340,6 +354,7 @@ ua:
         btn_add: Додати коментар
         btn_cancel: Скасувати
       comment:
+        anonym: Анонім
         delete_confirm: Ви впевнені?
 
 

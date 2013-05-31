@@ -2,7 +2,7 @@
 
 %html
   %head
-    %title Feedback 1.2 Beta
+    %title= yield(:title) << " — Feedback++"
     = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -33,10 +33,15 @@
       .push
 
     %footer
+      #line
       #footer-left
         = t('layout.footer.left_text')
-        = link_to "[ua]", set_locale_path(:ua)
-        = link_to "[ru]", set_locale_path(:ru)
-        = link_to "[en]", set_locale_path(:en)
+      #locale-switcher
+        = link_to set_locale_path(:ua) do
+          = image_tag "flags/flag_ukraine.png"
+        = link_to set_locale_path(:ru) do
+          = image_tag "flags/flag_russia.png"
+        = link_to set_locale_path(:en) do
+          = image_tag "flags/flag_great_britain.png"
       #footer-right
         = t('layout.footer.right_text')

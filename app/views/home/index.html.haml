@@ -1,11 +1,40 @@
+- content_for :title, t('.title')
+
 .block.brd
   = block_title t('.title'), "news.png"
   .block-content
-    %h3 12.04.2013, 11:46
-    %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque tempor porta. Donec volutpat nibh at metus eleifend tempor. Morbi non erat eu lorem imperdiet ultricies vel vel lectus. Mauris porta ultrices orci ut rhoncus. Aenean blandit aliquam tempor. Sed sit amet sem nisi. Nulla vitae eleifend massa. Nulla rutrum suscipit varius. Mauris malesuada, massa ac interdum elementum, risus lacus lobortis sapien, vitae tristique orci quam at erat. Integer varius facilisis erat. Cras eget ante nisl, eu placerat dolor. In velit est, consequat vel hendrerit non, elementum nec turpis. Vestibulum egestas nibh sit amet lacus congue adipiscing.
+    %h3 31.05.2013
+    %p Презентация проекта.
     %hr.dashed/
-    %h3 7.04.2013, 22:13
-    %p Integer at nisi libero, eu varius est. Praesent eleifend gravida tempus. Nunc posuere eleifend nibh sed egestas. Proin vehicula purus ac quam aliquet lacinia. Nunc non euismod massa. Aenean hendrerit aliquam gravida. Curabitur sed dui et metus scelerisque venenatis nec ut ante.
+
+    %h3 28.05.2013
+    %p Добавлена поддержка различных языков интерфейса, сайт переведён на украинский и английский. Для изменения языка нажмите на нужный флажок в нижнем левом углу сайта.
     %hr.dashed/
-    %h3 3.04.2013, 11:45
-    %p Praesent quis ante ipsum. Mauris vel libero purus. Donec vestibulum felis in ipsum malesuada porta id sit amet magna. Sed sed mi lorem. Fusce faucibus est vitae purus ornare elementum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi dignissim pretium quam ac imperdiet. Vivamus at nisi ac risus adipiscing faucibus. Proin quis metus ut leo sollicitudin venenatis. Aliquam porta venenatis lectus, a malesuada quam commodo sit amet. In consectetur, ligula non congue consectetur, nisl metus congue sem, in luctus arcu mauris sagittis ante. Cras eu lectus arcu. Quisque cursus lobortis viverra.
+
+    %h3 26.05.2013
+    %p Переработана система отзывов. Кроме всего прочего, на страницах с отзывами теперь отображается диаграмма по критерием оценивания.
+    %hr.dashed/
+
+    %h3 15.04.2013
+    %p Добавлена возможность оставлять анонимные комментарии. Анонимность гарантирует непредвзятость, так что смело пользуйтесь этой функцией.
+    %hr.dashed/
+
+    %h3 30.03.2013
+    %p Введена возможность удаления своего аккаунта. При удалении также можно удалить свои отзывы и комментарии к преподавателям.
+    %hr.dashed/
+
+    %h3 27.03.2013
+    %p Некоторые поправки юзабилити. Теперь пользоваться сайтом намного удобнее.
+    %hr.dashed/
+
+    %h3 26.03.2013
+    %p Добавлена система личных сообщений. Пользователи всех категорий (студенты, преподаватели, администратор и модераторы) теперь могут отправлять и получать ЛС.
+    %hr.dashed/
+
+    %h3 24.03.2013
+    %p
+      Добавлена трёхуровневая система подтверждения аккаунтов преподавателей:
+      %ol
+        %li При регистрации преподавателю предоставляется статус «Не подтверждён».
+        %li После успешной проверки регистрационных данных модератором статус изменяется на «Подтверждена правильность данных».
+        %li После личной встречи с преподавателем — на «Подтверждена личность».

@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
-  before_filter :require_auth, :except => [:login, :profile]
-  before_filter :require_not_auth, :only => :login
+  before_filter :require_auth
 
   # GET /logout
   def logout

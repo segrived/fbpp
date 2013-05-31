@@ -1,3 +1,5 @@
+- content_for :title, t('settings.remove_account.title')
+
 = render layout: 'settings/panel', locals: {title: t('settings.remove_account.title')} do
   = form_tag :settings_remove_account, method: :delete do
     .block-content

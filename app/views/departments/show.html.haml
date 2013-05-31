@@ -1,3 +1,5 @@
+- content_for :title, t('.title') << " «" << @department.name << "»"
+
 .block.brd
   = block_title t('.title'), "depart.png"
   .block-content

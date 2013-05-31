@@ -221,6 +221,7 @@ header
     #user-1
       background-image: image-url("user_pack/user_zorro.png")
     #user-2
+      margin-left: -2px
       background-image: image-url("user_pack/user_zorro.png")
     #dialog
       float: left
@@ -257,12 +258,22 @@ aside
 footer
   background-color: #eee
   font-size: 14px
-  border-top: 1px solid #ddd
-  #footer-left, #footer-right
-    padding-top: 7px
+  #line
+    border-top: 1px solid #ddd
+  #footer-left, #footer-right, #locale-switcher
+    margin-top: 7px
   #footer-left
     padding-left: 10px
     float: left
+  #locale-switcher
+    float: left
+    margin-left: 20px
+    margin-top: 9px
+    img
+      margin-left: 2px
+      width: 16px
+      height: 16px
+
   #footer-right
     padding-right: 10px
     float: right
@@ -506,7 +517,7 @@ table td
   padding: 4px
   cursor: default
   a, span
-    padding: 0.2em 0.3em
+    padding: 0.2em 0.6em
   .disabled
     color: #aaaaaa
   .current
