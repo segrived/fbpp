@@ -3,6 +3,10 @@
   .block-content
     %ul
       %li
+        = image_tag "stat.png"
+        = link_to t(".stat"), :stat
+      %hr.dashed.compact/ 
+      %li
         = image_tag "depart.png"
         = link_to t(".departments"), :departments
       %li

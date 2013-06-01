@@ -154,6 +154,7 @@ ua:
         title: Викладачі
       site_map:
         title: Мапа сайту
+        stat: статистика
         departments: кафедри
         specialties: спеціальності
         subjects: дисципліни

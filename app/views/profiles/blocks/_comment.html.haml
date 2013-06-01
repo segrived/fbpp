@@ -17,4 +17,4 @@
         = link_to delete_comment_path(comment.id), method: :delete, confirm: t(".delete_confirm") do
           = image_tag "cross.png"
   .cf
-  .comment-body= simple_format comment.body
+  .comment-body= simple_format comment.body.bbcode_to_html({}, true, :enable, :bold, :italics, :underline)

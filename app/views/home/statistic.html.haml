@@ -1,0 +1,21 @@
+.block.brd
+  = block_title "Преподаватели с наибольшим количеством отзывов"
+  .block-content.no-brd
+    %table.wp-100
+      %th{width: '85%'} Никнейм преподавателя
+      %th Отзывов
+      - @feedbacks_leaders.each_pair do |l, count|
+        %tr
+          %td.first= link_to l.user.login, profile_path(l.user.login)
+          %td.t-center= count
+
+.block.brd
+  = block_title "Преподаватели с наибольшим количеством комментариев"
+  .block-content.no-brd
+    %table.wp-100
+      %th{width: '85%'} Никнейм преподавателя
+      %th Отзывов
+      - @comment_leaders.each_pair do |l, count|
+        %tr
+          %td.first= link_to l.user.login, profile_path(l.user.login)
+          %td.t-center= count

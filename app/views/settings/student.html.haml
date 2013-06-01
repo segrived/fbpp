@@ -9,7 +9,7 @@
       / Специальность
       .form-field
         = label_tag :specialty, Student.human_attribute_name(:specialty)
-        .styled.wp-95
+        .styled.wp-100
           = select_tag :specialty, |
             options_from_collection_for_select(Specialty.all, :id, :name, |
               @student.specialty ? @student.specialty.id : nil), |
@@ -18,7 +18,7 @@
       .form-field
         = label_tag :course, Student.human_attribute_name(:course)
         - courses_list = (1..Student::MAX_COURSE).map { |n| [t('settings.student.course', n: n), n] }
-        .styled.wp-95
+        .styled.wp-100
           = select_tag :course, options_for_select(courses_list, @student.course),
             :prompt => t('settings.not_selected_m')
     .block-buttons

@@ -33,5 +33,4 @@
   - if logged? && @user.login != logged_user.login
     .block-buttons
       = btn_link "Написать сообщение", messages_new_path(@user.login), true, 'green'
-
 = render partial: 'profiles/blocks/comments_block', locals: {lecturer: @lecturer}

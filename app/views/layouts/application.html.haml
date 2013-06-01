@@ -37,11 +37,12 @@
       #footer-left
         = t('layout.footer.left_text')
       #locale-switcher
-        = link_to set_locale_path(:ua) do
+        = link_to set_locale_path(:ua), title: "Українська" do
           = image_tag "flags/flag_ukraine.png"
-        = link_to set_locale_path(:ru) do
+        = link_to set_locale_path(:ru), title: "Русский" do
           = image_tag "flags/flag_russia.png"
-        = link_to set_locale_path(:en) do
+        = link_to set_locale_path(:en), title: "English" do
           = image_tag "flags/flag_great_britain.png"
       #footer-right
+        = link_to "[исходный код]", "https://github.com/segrived/fbpp"
         = t('layout.footer.right_text')

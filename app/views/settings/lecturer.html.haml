@@ -9,7 +9,7 @@
       / Кафедра
       .form-field
         = label_tag :department, Lecturer.human_attribute_name(:department)
-        .styled.wp-95
+        .styled.wp-100
           = select_tag :department, |
             options_from_collection_for_select(Department.all, :id, :name, |
               @lecturer.department ? @lecturer.department.id : nil), |
@@ -17,7 +17,7 @@
       / Ученая степень
       .form-field
         = label_tag :degree, Lecturer.human_attribute_name(:scientific_degree)
-        .styled.wp-95
+        .styled.wp-100
           = select_tag :degree, |
             options_from_collection_for_select(ScientificDegree.all, :id, :title, |
               @lecturer.scientific_degree ? @lecturer.scientific_degree.id : nil), |

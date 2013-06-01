@@ -82,6 +82,7 @@ p
 
 ul
   list-style-position: inside
+  margin: 0px
   padding: 0px
   padding-left: 3px
   &.compact
@@ -430,7 +431,6 @@ div.comments
       background-color: #eeeeee
 
 div.comment-form
-  @extend .hidden
   @extend .b-center
   padding: 10px
   border: 1px solid #ddd
@@ -441,6 +441,10 @@ div.comment-form
       background-color: #eee
       font-weight: bold
       color: #444
+
+
+.comments-block .comment-form
+  @extend .hidden
 
 .box
   padding: 8px
@@ -583,3 +587,15 @@ canvas.chart
   color: #ff4400
   font-weight: bold
   font-size: 14px
+
+#show-new-news-form
+  @extend .compact
+  @extend .btn-blue
+
+#new-news-item-form.hidden
+  padding: 10px
+  margin-bottom: 15px
+
+#news-block img
+  border: 1px solid #aaa
+  max-width: 100%

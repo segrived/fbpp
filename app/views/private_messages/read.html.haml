@@ -7,7 +7,8 @@
       = PrivateMessage.human_attribute_name(:title) << ": "
       %strong= @message.title
     %hr.dashed/
-    %p= simple_format @message.body
+    - text = @message.body.bbcode_to_html({}, true, :enable, :bold, :italics, :underline)
+    %p= auto_link simple_format text
   .block-buttons
     .left
       - if @type == :inbox

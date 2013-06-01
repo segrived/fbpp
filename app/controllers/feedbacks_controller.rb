@@ -2,6 +2,7 @@ class FeedbacksController < ApplicationController
 
   def new
     @question = Question.all
+    @subscription = SubjectSubscription.find(params[:id])
   end
 
   def add

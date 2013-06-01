@@ -154,11 +154,12 @@ en:
         title: Lecturers
       site_map:
         title: Site map
+        stat: statistic
         departments: departments
         specialties: specialties
         subjects: subjects
         user: users
-        faq: FAQ
+        faq: faq
         about: about
 
   users:

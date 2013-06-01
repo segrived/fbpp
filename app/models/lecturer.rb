@@ -32,6 +32,19 @@ class Lecturer < ActiveRecord::Base
     subject_subscriptions.where(subject_id: subject_id).count > 0
   end
 
+  def self.feedback_leaders(result_limit = 5)
+    Lecturer
+      .joins(subject_subscriptions: [:feedbacks])
+      .group("subject_subscriptions.lecturer_id")
+      .order("count_all DESC")
+      .limit(result_limit)
+      .count
+  end
+
+  def self.comment_leaders(result_limit = 5)
+    Lecturer.joins(:comments).group(:lecturer_id).order("count_all DESC").limit(result_limit).count
+  end
+
   validates :user_id, presence: true
   validates :scientific_degree_id, :department_id, existence: { allow_nil: true }
   validates :confirm_level, inclusion: { in: CONFIRM_LEVELS.values }

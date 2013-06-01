@@ -46,7 +46,7 @@ Fbpp::Application.routes.draw do
   get ":action" => "home#:action", constraints: { action: /index|faq|about/ }, as: :home
 
   # Кафедры, специальности и дисциплины
-  resources :departments, :specialties, :subjects
+  resources :departments, :specialties, :subjects, :news
   resources :questions, except: [:show]
   resources :feedbacks, controller: 'subscriptions'
   post "subjects/:id/subscribe" => "subjects#subscribe", as: :subject_subscribe
@@ -60,6 +60,8 @@ Fbpp::Application.routes.draw do
   get "create_admin" => "users#create_admin"
 
   get "set_locale/:locale" => "application#set_locale", as: :set_locale
+
+  get "stat" => "home#statistic"
 
   unless Rails.application.config.consider_all_requests_local
     match '*not_found', to: 'errors#error_404'

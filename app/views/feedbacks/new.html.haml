@@ -3,6 +3,12 @@
 :coffeescript
   jQuery ->
 
+    check_all_answered = () ->
+      ajax_data = []
+      for q in $('.question')
+        ajax_data.push { qid: $(q).data('question-id'), answer: $(q).data('rating') }
+      ajax_data.every (x) -> x.answer?
+
     highlight_start = (question, rating) ->
       stars = question.find('.rating-star')
       stars.text("☆")
@@ -17,6 +23,8 @@
       rating = $(@).data('rating')
       question = $(@).closest('div.question')
       $(question).data('rating', rating).addClass('answered')
+      if check_all_answered()
+        $('.comment-form').show('normal')
     # Вывод мышки с области звездочек ;)
     $('.answer').mouseleave ->
       _this = $(@)
@@ -35,7 +43,7 @@
         alert("#{t('.not_all_req_questions')}")
         return
       $.post "/feedbacks/#{params[:id]}/add",
-        answers: $.stringify(ajax_data)
+        answers: $.stringify(ajax_data),
         complete: (request, textStatus) ->
           $('.question-list, .block-buttons').hide()
           $('.succ-dialog').show()
