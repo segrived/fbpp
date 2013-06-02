@@ -148,6 +148,8 @@ ua:
         title: Функції адміністратора
         admin_mods: управління модераторами
         question_editor: редактор запитань
+        invites: запрошення на сайт
+        site_globals: глобальні налаштування сайту
       departments:
         title: Кафедри
       lecturers:

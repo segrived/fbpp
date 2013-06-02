@@ -17,14 +17,6 @@
             #dialog
             #user-2{style: "background-image: url(/assets/user_pack/#{pics[1]})"}
             #logo
-        %nav
-          %ul
-            - if logged?
-              %li= nav_link t('layout.menu.settings'), :settings
-              %li= nav_link t('layout.menu.logout'), :logout
-            - else
-              %li= nav_link t('layout.menu.register'), :register
-              %li= nav_link t('layout.menu.login'), :login
       #page-content
         = content_start do
           = yield

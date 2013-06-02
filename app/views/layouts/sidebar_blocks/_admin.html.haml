@@ -7,5 +7,11 @@
           = image_tag "user_mod.png"
           = link_to t('.admin_mods'), :admin_mods
       %li
+        = image_tag "config.png"
+        = link_to t('.site_globals'), :admin_globals
+      %li
         = image_tag "help.png"
         = link_to t('.question_editor'), :questions
+      %li
+        = image_tag "invite.png"
+        = link_to t('.invites'), :admin_invites

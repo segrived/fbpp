@@ -59,10 +59,17 @@ Fbpp::Application.routes.draw do
   get "departments/:id/subjects" => "departments#subjects", as: :department_subjects
   get "create_admin" => "users#create_admin"
 
+  get "stats" => "home#statistic"
+
+  namespace :admin do
+    delete 'invites/cleanup' => "invites#cleanup"
+    resources :invites
+    get 'globals' => 'configs#index'
+    post 'globals' => 'configs#save'
+  end
+
+ 
   get "set_locale/:locale" => "application#set_locale", as: :set_locale
-
-  get "stat" => "home#statistic"
-
   unless Rails.application.config.consider_all_requests_local
     match '*not_found', to: 'errors#error_404'
   end

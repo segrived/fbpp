@@ -1,0 +1,26 @@
+:coffeescript
+  jQuery ->
+    $("#expires").datepicker({
+      changeMonth: true,
+      changeYear: true,
+      dateFormat: 'yy-mm-dd',
+      minDate: 0,
+      maxDate: "+1Y"
+    })
+
+.block
+  = block_title "Генератор приглашений"
+  = form_tag admin_invites_path, method: :post do
+    .block-content
+      .form-field
+        = label_tag :count, "Количество приглашений:", class: 'required'
+        = text_field_tag :count, 1, class: 'wp-100'
+      .form-field
+        = label_tag :remains, "Число возможных регистраций с одного приглашения:", class: 'required'
+        = text_field_tag :remains, 10, class: 'wp-100'
+      .form-field
+        = label_tag :expires, "Приглашения действительны до:", class: 'required'
+        = text_field_tag :expires, "", class: 'wp-100'
+        .form-field-hint Если не указан - инвайты будут действительны неограниченное время (до отзыва их администратором или модератором)
+    .block-buttons
+      = submit_tag "Создать приглашения", class: 'btn-green'

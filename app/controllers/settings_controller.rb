@@ -57,6 +57,7 @@ class SettingsController < ApplicationController
     unless logged_user.lecturer? then
       render_403 and return
     end
+
     if request.get? then
       @lecturer = logged_user.lecturer
     elsif request.put? then
@@ -68,7 +69,11 @@ class SettingsController < ApplicationController
         lecturer.confirm_level = Lecturer::CONFIRM_LEVELS[:unconfirmed]
       end
       if lecturer.save then
-        redirect_to :settings_lecturer, alert: t('settings.save_suc')
+        if params[:reg] then
+          redirect_to :root
+        else
+          redirect_to :settings_lecturer, alert: t('settings.save_suc')
+        end
       else
         redirect_to :settings_lecturer, notice: t('settings.save_fail')
       end
@@ -81,6 +86,7 @@ class SettingsController < ApplicationController
     unless logged_user.student? then
       render_403 and return
     end
+
     if request.get? then
       @student = logged_user.student
     elsif request.put? then
@@ -88,7 +94,11 @@ class SettingsController < ApplicationController
       student.specialty_id = params[:specialty]
       student.course = params[:course]
       if student.save then
-        redirect_to :settings_student, alert: t('settings.save_suc')
+        if params[:reg] then
+          redirect_to :root
+        else
+          redirect_to :settings_student, alert: t('settings.save_suc')
+        end
       else
         redirect_to :settings_student, notice: t('settings.save_fail')
       end

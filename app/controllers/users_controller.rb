@@ -14,10 +14,13 @@ class UsersController < ApplicationController
     # Запрос на создание нового пользователя
     if request.post? then
       @user = User.new(params[:user])
-      # Пользователь может создать только аккаунт студента или преподавателя
-      unless User.in_user_group?(@user) then
-        render_403 and return
+      # Если включена регистрация по инвайтам - проверяем правильность введённого кода
+      if SiteGlobal.invite_reg && !Invite.valid?(params[:invite]) then
+        @user.errors[:base] << "Invalid invation code"
+        render :register and return
       end
+      # Пользователь может создать только аккаунт студента или преподавателя
+      render_403 and return unless User.in_user_group?(@user)
       # Если запись успешно создана
       if @user.save then
         # Создание записи в дополнительной таблице
@@ -25,6 +28,9 @@ class UsersController < ApplicationController
           Student.create(user_id: @user.id)
         elsif @user.lecturer? then
           Lecturer.create(user_id: @user.id, confirm_level: Lecturer::CONFIRM_LEVELS[:unconfirmed])
+        end
+        if SiteGlobal.invite_reg
+          Invite.use(params[:invite])
         end
         login, password = params[:user][:login], params[:user][:password]
         session[:user_id] = User.authenticate(login, password).id

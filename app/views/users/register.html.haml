@@ -46,17 +46,23 @@
       .form-field
         = f.label :surname, User.human_attribute_name(:surname), class: 'lecturer-req'
         = f.text_field :surname, class: 'wp-100'
+        .form-field-hint= t('.hint_name')
 
       / Имя
       .form-field
         = f.label :name, User.human_attribute_name(:name), class: 'lecturer-req'
         = f.text_field :name, class: 'wp-100'
-        .form-field-hint= t('.hint_name')
 
       / Отчество
       .form-field
         = f.label :patronymic, User.human_attribute_name(:patronymic), class: 'lecturer-req'
         = f.text_field :patronymic, class: 'wp-100'
+
+      - if SiteGlobal.invite_reg
+        / Инвайт
+        .form-field
+          = label_tag :invite, "Приглашение", class: 'required'
+          = text_field_tag :invite, params[:invite], class: 'wp-100'
 
     .block-buttons
       = f.submit class: 'btn-green'

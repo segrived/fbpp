@@ -148,6 +148,8 @@ ru:
         title: Функции администратора
         admin_mods: управление модераторами
         question_editor: редактор вопросов
+        invites: приглашения на сайт
+        site_globals: глобальные настройки сайта
       departments:
         title: Кафедры
       lecturers:

@@ -5,6 +5,7 @@
     .block-content
       - if params[:reg] then
         .alert= t('settings.student.after_reg')
+        = hidden_field_tag :reg, 1
       = messages
       / Специальность
       .form-field

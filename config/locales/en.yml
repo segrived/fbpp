@@ -148,6 +148,8 @@ en:
         title: Admin functions
         admin_mods: moderator management
         question_editor: question editor
+        invites: invites
+        site_globals: site global options
       departments:
         title: Departments
       lecturers:

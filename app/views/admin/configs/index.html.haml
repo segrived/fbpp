@@ -1,0 +1,14 @@
+.block.brd
+  = block_title "Глобальные настройки сайта", "config.png"
+  = form_for :admin_globals, method: :post do
+    .block-content
+      = messages
+      .form-field
+        = check_box_tag 'invite_reg', 1, SiteGlobal.invite_reg
+        = label_tag 'invite_reg', "Включить регистрацию по инвайтам", class: 'inline normal'
+      .form-field
+        = check_box_tag 'enable_api', 1, SiteGlobal.enable_api
+        = label_tag 'enable_api', "Разрешить доступ к API", class: 'inline normal'
+        .form-field-hint В данный момент API приложения нестабильно, поэтому включать его не рекомендуется
+    .block-buttons
+      = submit_tag "Сохранить настройки сайта", class: 'btn-green'
