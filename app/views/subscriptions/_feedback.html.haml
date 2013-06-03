@@ -20,3 +20,8 @@
             %td= a.question.text
             - cls = "rating-#{a.answer}"
             %td.t-center.answer-rating{class: cls}= "#{a.answer} / 5"
+    - if feedback.feedback_comment.present? && (defined? show_comment)
+      %hr.dashed
+      %div{style: 'margin: 10px'}
+        %p.strong Комментарий к отзыву:
+        %p= feedback.feedback_comment.comment.body

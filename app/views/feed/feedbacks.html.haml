@@ -1,0 +1,10 @@
+= render layout: 'feed/panel' do
+  .block-content
+    - @last_feedbacks.each do |feedback|
+      %p
+        Отзыв преподавателю
+        %b= link_to feedback.subject_subscription.lecturer.full_name, profile_path(feedback.subject_subscription.lecturer.user.login)
+        по дисциплине
+        %b= link_to feedback.subject_subscription.subject.name, subject_path(feedback.subject_subscription.subject.id)
+        = render partial: 'subscriptions/feedback', locals: {feedback: feedback, show_comment: true}
+      %hr

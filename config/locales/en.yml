@@ -157,6 +157,7 @@ en:
       site_map:
         title: Site map
         stat: statistic
+        feed: news feed
         departments: departments
         specialties: specialties
         subjects: subjects

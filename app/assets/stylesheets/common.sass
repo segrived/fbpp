@@ -66,11 +66,19 @@ $content-width: 650px
 .c-red
   color: #ff0000
 
-a
+.link
   text-decoration: none
   color: #777
+  &:hover
+    cursor: pointer
+
+.link-dashed
+  border-bottom: 1px dashed
+
+a
+  @extend .link
   &.dashed
-    border-bottom: 1px dashed
+    @extend .link-dashed
   &.button
     display: inline-block
 
@@ -602,3 +610,7 @@ canvas.chart
 
 .monospace
   font-family: monospace
+
+.show-connected-feedback
+  font-size: 12px
+  margin-bottom: 10px

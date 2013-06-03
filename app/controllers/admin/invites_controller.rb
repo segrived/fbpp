@@ -1,10 +1,12 @@
 class Admin::InvitesController < Admin::BaseAdminController
 
   def index
-    @invites = Invite.all
+    page = params[:page] || 1
+    @invites = Invite.paginate(per_page: 50, page: page).all
   end
 
   def new
+    render :new
   end
 
   def create

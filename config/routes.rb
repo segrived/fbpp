@@ -35,7 +35,7 @@ Fbpp::Application.routes.draw do
 
   get "feedback/:id" => "subscriptions#show", as: :subscriptions
   get "users" => redirect("/users/all")
-  get "users/:filter/(:page)" => "users#list", :as => :users, :page => /\d+/
+  get "users/:filter/(page-(:page))" => "users#list", :as => :users, :page => /\d+/
   # Комментарии
   get "lecturer/:lid/comments" => "sessions#lecturer_comments", :as => :lecturer_comments
   post "comments/add" => "comments#add", :as => :add_comment
@@ -54,16 +54,22 @@ Fbpp::Application.routes.draw do
   get "feedbacks/:id/new" => "feedbacks#new", as: 'new_feedback'
   post "feedbacks/:id/add" => "feedbacks#add", as: 'add_feedback'
   delete "feedbacks/:id/destroy" => "feedbacks#destroy", as: 'feedback_destroy'
-  get "feedbacks/:id/all/(page-(:page))" => "subscriptions#all", as: 'feedbacks_all'
+  get "feedbacks/:id/all/(page-(:page))" => "subscriptions#all", as: 'feedbacks_all', page: /[\d]+/
   get "departments/:id/lecturers" => "departments#lecturers", as: :department_lecturers
   get "departments/:id/subjects" => "departments#subjects", as: :department_subjects
   get "create_admin" => "users#create_admin"
 
   get "stats" => "home#statistic"
+  match "feed" => redirect("/feed/feedbacks")
+  get "feed/feedbacks" => "home#feed_feedbacks"
+  get "feed/comments" => "home#feed_comments"
+  get "feed/users" => "home#feed_users"
 
   namespace :admin do
+    get 'invites/(page-(:page))' => "invites#index", page: /[\d]+/
     delete 'invites/cleanup' => "invites#cleanup"
     resources :invites
+    # Глобальные настройки сайта
     get 'globals' => 'configs#index'
     post 'globals' => 'configs#save'
   end

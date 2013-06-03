@@ -1,0 +1,7 @@
+.block.brd
+  = block_title "Последние обновления", "feed.png"
+  .block-tabs
+    %span.block-tabs-tab= nav_link "Отзывы", :feed_feedbacks
+    %span.block-tabs-tab= nav_link "Комментарии", :feed_comments
+    %span.block-tabs-tab= nav_link "Пользователи", :feed_users
+  = yield

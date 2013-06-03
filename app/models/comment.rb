@@ -1,6 +1,9 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :lecturer
+  
+  has_one :feedback_comment, dependent: :destroy
+
   attr_accessible :user_id, :lecturer_id
   attr_accessible :anonymously, :mark, :posttime, :body
 

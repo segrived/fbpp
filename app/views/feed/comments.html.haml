@@ -1,0 +1,9 @@
+= render layout: 'feed/panel' do
+  .block-content
+    .comments
+      - @last_comments.each do |comment|
+        %p
+          Комментарий оставлен преподавателю
+          %b= link_to comment.lecturer.full_name, profile_path(comment.lecturer.user.login)
+        = render partial: 'profiles/blocks/comment', locals: {comment: comment}
+        %hr

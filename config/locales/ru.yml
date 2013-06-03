@@ -157,6 +157,7 @@ ru:
       site_map:
         title: Карта сайта
         stat: статистика
+        feed: лента новостей
         departments: кафедры
         specialties: специальности
         subjects: дисциплины

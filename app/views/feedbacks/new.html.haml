@@ -24,7 +24,7 @@
       question = $(@).closest('div.question')
       $(question).data('rating', rating).addClass('answered')
       if check_all_answered()
-        $('.comment-form').show('normal')
+        $('.add-comment-checkbox').show('normal')
     # Вывод мышки с области звездочек ;)
     $('.answer').mouseleave ->
       _this = $(@)
@@ -42,11 +42,21 @@
       unless all_answered
         alert("#{t('.not_all_req_questions')}")
         return
+      if $('#add_comment').is(':checked')
+        feedback_comment = {
+          mark: $('#comment_mark').val(),
+          body: $('#comment_body').val(),
+          anonymously: (! $('#comment_anonymously').is(':checked')),
+          lecturer_id: $('#comment_lecturer_id').val()
+        }
       $.post "/feedbacks/#{params[:id]}/add",
         answers: $.stringify(ajax_data),
+        comment: feedback_comment # отправит null, если комментария нет
         complete: (request, textStatus) ->
-          $('.question-list, .block-buttons').hide()
+          $('.question-list, .block-buttons, .comment-block').hide()
           $('.succ-dialog').show()
+    $('#add_comment').bind 'change', () ->
+      $('.feedback-comment-form').toggle($(@).is(':checked'))
 
 
 .block.brd
@@ -66,6 +76,14 @@
             .answer
               - (1..5).each do |x|
                 %span.rating-star{id: "s_#{x}", data: {rating: x}} ☆
+      .comment-block
+        .add-comment-checkbox.hidden
+          %hr.dashed
+          .form-field
+            = check_box_tag :add_comment
+            = label_tag :add_comment, "Добавить комментарий к отзыву", class: 'inline normal'
+        .feedback-comment-form.hidden
+          = render partial: 'profiles/blocks/comment_add', locals: {lecturer_id: @subscription.lecturer.id}
     .block-buttons
       %button.btn-green.compact#send-feedback= t(".add_btn")
   - else

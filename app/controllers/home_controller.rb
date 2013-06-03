@@ -21,4 +21,26 @@ class HomeController < ApplicationController
       end
   end
 
+  def feed
+    @last_feedbacks = Feedback.order('time DESC').limit(5)
+    @last_comments = Comment.order('posttime DESC').limit(5)
+    @last_users = User.order('regdate DESC').limit(5)
+    render 'feed/index'
+  end
+
+  def feed_feedbacks
+    @last_feedbacks = Feedback.order('time DESC').limit(5)
+    render 'feed/feedbacks'
+  end
+
+  def feed_comments
+    @last_comments = Comment.order('posttime DESC').limit(5)
+    render 'feed/comments'
+  end
+
+  def feed_users
+    @last_users = User.order('regdate DESC').limit(15)
+    render 'feed/users'
+  end
+
 end

@@ -1,0 +1,6 @@
+= render layout: 'feed/panel' do
+  .block-content
+    - @last_users.each do |user|
+      %p
+        %span.strong{style: 'padding-right: 15px'}= user.regdate.strftime('%d.%m.%Y, %H:%M')
+        = link_to user.login, profile_path(user.login)

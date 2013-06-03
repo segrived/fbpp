@@ -15,6 +15,7 @@
       .form-field
         = label_tag :count, "Количество приглашений:", class: 'required'
         = text_field_tag :count, 1, class: 'wp-100'
+        .form-field-hint Разрешено создавать не более 50 инвайтов за один раз
       .form-field
         = label_tag :remains, "Число возможных регистраций с одного приглашения:", class: 'required'
         = text_field_tag :remains, 10, class: 'wp-100'

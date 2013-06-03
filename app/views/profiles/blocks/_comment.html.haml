@@ -18,3 +18,10 @@
           = image_tag "cross.png"
   .cf
   .comment-body= simple_format comment.body.bbcode_to_html({}, true, :enable, :bold, :italics, :underline)
+  - if comment.feedback_comment.present?
+    %span.right.link.link-dashed.show-connected-feedback связанный отзыв
+    .cf
+    .connected-feedback.hidden
+      = render partial: 'subscriptions/feedback',
+        locals: { feedback: comment.feedback_comment.feedback }
+    

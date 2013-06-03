@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601191406) do
+ActiveRecord::Schema.define(:version => 20130602202952) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "key"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(:version => 20130601191406) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "feedback_comments", :force => true do |t|
+    t.integer  "feedback_id"
+    t.integer  "comment_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "feedback_comments", ["comment_id"], :name => "index_feedback_comments_on_comment_id"
+  add_index "feedback_comments", ["feedback_id"], :name => "index_feedback_comments_on_feedback_id"
 
   create_table "feedbacks", :force => true do |t|
     t.integer  "student_id"

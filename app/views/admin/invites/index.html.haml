@@ -3,14 +3,17 @@
   .block-content.no-brd
     %table.wp-100
       %tr
-        %th{width: '75%'} Код инвайта
+        %th{width: '60%'} Код инвайта
         %th{width: '10%'} Дост.
+        %th Создан
         %th Истекает
       - @invites.each do |invite|
         %tr
           %td.first.monospace= invite.code
           %td= invite.remains
+          %td= invite.created_at.strftime('%d.%m.%Y')
           %td= invite.expires ? invite.expires.strftime('%d.%m.%Y') : "Никогда"
+    = will_paginate @users
   .block-buttons
     .left= btn_link "Сгенерировать пришлашения", new_admin_invite_path, true, 'green'
     .right= btn_link "Удалить все", admin_invites_cleanup_path, true, 'red',
