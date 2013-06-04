@@ -15,7 +15,7 @@
         remote: true, id: 'downvote_link'
       - if logged? && (can_admin? || comment.user == logged_user)
         = link_to delete_comment_path(comment.id), method: :delete, confirm: t(".delete_confirm") do
-          = image_tag "cross.png"
+          = image_tag "cross.png", style: "vertical-align: -2px"
   .cf
   .comment-body= simple_format comment.body.bbcode_to_html({}, true, :enable, :bold, :italics, :underline)
   - if comment.feedback_comment.present?

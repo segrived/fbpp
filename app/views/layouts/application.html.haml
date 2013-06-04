@@ -36,5 +36,7 @@
         = link_to set_locale_path(:en), title: "English" do
           = image_tag "flags/flag_great_britain.png"
       #footer-right
-        = link_to "[исходный код]", "https://github.com/segrived/fbpp"
         = t('layout.footer.right_text')
+        %span{style: "padding-right: 15px"}
+        = link_to "https://github.com/segrived/fbpp", title: "Исходный код" do
+          = image_tag "source_code.png", style: "vertical-align: -3px"

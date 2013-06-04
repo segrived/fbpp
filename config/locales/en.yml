@@ -135,7 +135,7 @@ en:
         create_admin: Create admin account
       account_not_logged:
         login_btn: Log in
-        hasnt_account: I don't have an account yet
+        hasnt_account: Register
       account_logged:
         logged_as: You are logged in as
         admin_mods: moderators
@@ -149,14 +149,14 @@ en:
         admin_mods: moderator management
         question_editor: question editor
         invites: invites
-        site_globals: site global options
+        site_globals: site options
       departments:
         title: Departments
       lecturers:
         title: Lecturers
       site_map:
         title: Site map
-        stat: statistic
+        stat: statistics
         feed: news feed
         departments: departments
         specialties: specialties

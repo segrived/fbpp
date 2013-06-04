@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   end
 
   def statistic
+    # Топ по количеству отзывов
     _feedbacks_leaders = Lecturer.feedback_leaders(10)
     @feedbacks_leaders = Lecturer
       .where(id: _feedbacks_leaders.keys)
@@ -12,6 +13,8 @@ class HomeController < ApplicationController
       .sort_by {|k, v| v}.reverse.inject({}) do |r, s|
         r.merge!({s[0] => s[1]})
       end
+
+    # Топ по количеству комментариев
     _comment_leaders = Lecturer.comment_leaders(10)
     @comment_leaders = Lecturer
       .where(id: _comment_leaders.keys)
@@ -19,13 +22,6 @@ class HomeController < ApplicationController
       .sort_by {|k, v| v}.reverse.inject({}) do |r, s|
         r.merge!({s[0] => s[1]})
       end
-  end
-
-  def feed
-    @last_feedbacks = Feedback.order('time DESC').limit(5)
-    @last_comments = Comment.order('posttime DESC').limit(5)
-    @last_users = User.order('regdate DESC').limit(5)
-    render 'feed/index'
   end
 
   def feed_feedbacks

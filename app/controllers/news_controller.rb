@@ -16,4 +16,9 @@ class NewsController < ApplicationController
     end
   end
 
+  def destroy
+    NewsItem.find(params[:id]).destroy
+    redirect_to :back, alert: "Removed!"
+  end
+
 end

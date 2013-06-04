@@ -18,8 +18,15 @@
         = submit_tag "Сохранить", class: "compact btn-green"
     #news-block
       - @news.each_with_index do |item, index|
-        %h3= item.posttime.strftime('%d.%m.%Y')
-        %p= simple_format item.text.bbcode_to_html
+        .left
+          %h3= item.posttime.strftime('%d.%m.%Y')
+        - if can_admin?
+          .right
+            = link_to news_path(item.id), method: :delete do
+              = image_tag "cross.png"
+        .cf
+        .news-content
+          %p= simple_format item.text.bbcode_to_html
         - unless index + 1 == @news.length
           %hr.dashed
     - if logged? && can_admin?

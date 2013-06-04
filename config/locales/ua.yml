@@ -135,7 +135,7 @@ ua:
         create_admin: Створити адміністратора
       account_not_logged:
         login_btn: Увійти
-        hasnt_account: В мене ще немає акаунту
+        hasnt_account: Реєстрація
       account_logged:
         logged_as: Ви увійшли як
         admin_mods: модератори

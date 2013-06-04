@@ -7,5 +7,4 @@ jQuery ->
 
     $(".show-connected-feedback").click ->
       feedback = $(@).closest('.comment').find('.connected-feedback')
-      feedback.toggle 200, () ->
-        $.scrollTo $(feedback)
+      feedback.toggle 200
